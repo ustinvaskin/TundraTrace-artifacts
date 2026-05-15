@@ -1,0 +1,11 @@
+val user = {
+  name: "Ada",
+  score: "10"
+};
+
+val bonus = 5;
+val total = user.score + bonus;
+
+print(total);
+print(origin(total));
+print(history(total));

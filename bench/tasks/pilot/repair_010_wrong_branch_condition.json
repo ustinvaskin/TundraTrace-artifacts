@@ -1,0 +1,52 @@
+{
+  "id": "repair_010_wrong_branch_condition",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "wrong_branch",
+  "evidence_type": "branch_behavior",
+  "trace_leakage_risk": "medium",
+  "difficulty": "medium",
+  "features": ["if", "comparison", "string"],
+  "program": "val score = 72;\nval threshold = 80;\n\nif (score > threshold) {\n  print(\"review\");\n} else {\n  print(\"pass\");\n}",
+  "runtime_error": null,
+  "provenance_compact": [
+    "score was number 72",
+    "threshold was number 80",
+    "condition score > threshold evaluated to false",
+    "the program executed the else branch",
+    "actual output was \"pass\"",
+    "expected output was \"review\""
+  ],
+  "expected_output": "review",
+  "oracle_patch": "score < threshold",
+  "reference_solution": "val score = 72;\nval threshold = 80;\n\nif (score < threshold) {\n  print(\"review\");\n} else {\n  print(\"pass\");\n}",
+  "tests": [
+    {
+      "name": "below_threshold",
+      "input": "",
+      "expected_output": "review"
+    },
+    {
+      "name": "above_threshold",
+      "input": "",
+      "replacements": [
+        {
+          "old": "val score = 72;",
+          "new": "val score = 92;"
+        }
+      ],
+      "expected_output": "pass"
+    },
+    {
+      "name": "at_threshold",
+      "input": "",
+      "replacements": [
+        {
+          "old": "val score = 72;",
+          "new": "val score = 80;"
+        }
+      ],
+      "expected_output": "pass"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "id": "repair_020_accumulator_nested_records",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "incorrect_accumulator",
+  "evidence_type": "final_value_history",
+  "trace_leakage_risk": "low",
+  "difficulty": "hard",
+  "features": ["list", "record", "for", "assignment", "field_access", "arithmetic"],
+  "program": "val groups = [\n  {\n    name: \"north\",\n    entries: [\n      { amount: 2 },\n      { amount: 3 }\n    ]\n  },\n  {\n    name: \"south\",\n    entries: [\n      { amount: 4 }\n    ]\n  }\n];\n\nvar total = 0;\nfor (group in groups) {\n  for (entry in group.entries) {\n    total = entry.amount;\n  }\n}\n\nprint(total);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "total started as number 0",
+    "the loop visited entry amounts 2, 3, and 4",
+    "each inner loop iteration replaced total with entry.amount",
+    "final total came from the last amount 4",
+    "expected total should accumulate all nested entry amounts"
+  ],
+  "expected_output": "9",
+  "oracle_patch": "total = total + entry.amount",
+  "reference_solution": "val groups = [\n  {\n    name: \"north\",\n    entries: [\n      { amount: 2 },\n      { amount: 3 }\n    ]\n  },\n  {\n    name: \"south\",\n    entries: [\n      { amount: 4 }\n    ]\n  }\n];\n\nvar total = 0;\nfor (group in groups) {\n  for (entry in group.entries) {\n    total = total + entry.amount;\n  }\n}\n\nprint(total);",
+  "tests": [
+    {
+      "name": "original_nested_amounts",
+      "input": "",
+      "expected_output": "9"
+    },
+    {
+      "name": "changed_nested_amounts",
+      "input": "",
+      "replacements": [
+        {
+          "old": "{ amount: 2 }",
+          "new": "{ amount: 5 }"
+        },
+        {
+          "old": "{ amount: 3 }",
+          "new": "{ amount: 6 }"
+        },
+        {
+          "old": "{ amount: 4 }",
+          "new": "{ amount: 7 }"
+        }
+      ],
+      "expected_output": "18"
+    },
+    {
+      "name": "zero_last_amount",
+      "input": "",
+      "replacements": [
+        {
+          "old": "{ amount: 4 }",
+          "new": "{ amount: 0 }"
+        }
+      ],
+      "expected_output": "5"
+    }
+  ]
+}

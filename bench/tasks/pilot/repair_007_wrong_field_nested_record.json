@@ -1,0 +1,33 @@
+{
+  "id": "repair_007_wrong_field_nested_record",
+  "track": "provenance_debugging",
+  "failure_kind": "runtime_error",
+  "bug_type": "wrong_field",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "low",
+  "difficulty": "medium",
+  "features": ["record", "field_access", "nested_record", "addition"],
+  "program": "val report = {\n  user: {\n    name: \"Ada\",\n    score: 10\n  },\n  bonus: 2\n};\n\nval total = report.user.points + report.bonus;\nprint(total);",
+  "runtime_error": {
+    "type": "FieldError",
+    "message": "Undefined field 'points'.",
+    "line": 9,
+    "expression": "report.user.points"
+  },
+  "provenance_compact": [
+    "total came from report.user.points + report.bonus",
+    "report.user.points tried to read missing field points",
+    "report.user has fields name and score",
+    "report.user.score was number 10",
+    "report.bonus was number 2"
+  ],
+  "expected_output": "12",
+  "oracle_patch": "report.user.score + report.bonus",
+  "reference_solution": "val report = {\n  user: {\n    name: \"Ada\",\n    score: 10\n  },\n  bonus: 2\n};\n\nval total = report.user.score + report.bonus;\nprint(total);",
+  "tests": [
+    {
+      "input": "",
+      "expected_output": "12"
+    }
+  ]
+}

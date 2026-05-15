@@ -1,0 +1,52 @@
+{
+  "id": "repair_039_missing_history_update_on_match",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "missing_update",
+  "evidence_type": "final_value_history",
+  "trace_leakage_risk": "medium",
+  "difficulty": "medium",
+  "features": ["list", "record", "for", "assignment", "field_access", "if", "comparison", "string"],
+  "program": "val items = [\n  { id: 4, matched: true },\n  { id: 5, matched: false },\n  { id: 7, matched: true }\n];\n\nvar lastMatch = \"none\";\nfor (item in items) {\n  if (item.matched) {\n    print(item.id);\n  }\n}\n\nprint(lastMatch);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "lastMatch started as string \"none\"",
+    "matching item ids were 4 and 7",
+    "the loop visited both matching items",
+    "lastMatch was never reassigned inside the match branch",
+    "final lastMatch stayed \"none\"",
+    "expected final match was 7"
+  ],
+  "expected_output": "4\n7\n7",
+  "oracle_patch": "lastMatch = item.id;",
+  "reference_solution": "val items = [\n  { id: 4, matched: true },\n  { id: 5, matched: false },\n  { id: 7, matched: true }\n];\n\nvar lastMatch = \"none\";\nfor (item in items) {\n  if (item.matched) {\n    print(item.id);\n    lastMatch = item.id;\n  }\n}\n\nprint(lastMatch);",
+  "tests": [
+    {
+      "name": "multiple_matches",
+      "input": "",
+      "expected_output": "4\n7\n7"
+    },
+    {
+      "name": "one_match",
+      "input": "",
+      "replacements": [
+        {
+          "old": "{ id: 7, matched: true }",
+          "new": "{ id: 7, matched: false }"
+        }
+      ],
+      "expected_output": "4\n4"
+    },
+    {
+      "name": "different_final_match",
+      "input": "",
+      "replacements": [
+        {
+          "old": "{ id: 5, matched: false }",
+          "new": "{ id: 5, matched: true }"
+        }
+      ],
+      "expected_output": "4\n5\n7\n7"
+    }
+  ]
+}

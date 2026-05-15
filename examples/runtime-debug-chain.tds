@@ -1,0 +1,13 @@
+val raw = {
+  price: "10"
+};
+
+val item = {
+  cost: raw.price
+};
+
+val cart = [item];
+val subtotal = cart[0].cost;
+val total = subtotal + 5;
+
+print(total);

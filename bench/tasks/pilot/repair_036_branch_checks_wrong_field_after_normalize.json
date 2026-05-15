@@ -1,0 +1,56 @@
+{
+  "id": "repair_036_branch_checks_wrong_field_after_normalize",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "wrong_branch_source",
+  "evidence_type": "branch_behavior",
+  "trace_leakage_risk": "medium",
+  "difficulty": "medium",
+  "features": ["function", "return", "record", "field_access", "if", "equality", "string"],
+  "program": "def normalize(raw) {\n  return {\n    previousLevel: raw.previousLevel,\n    currentLevel: raw.currentLevel\n  };\n}\n\nval raw = {\n  previousLevel: \"low\",\n  currentLevel: \"high\"\n};\n\nval normalized = normalize(raw);\nif (normalized.previousLevel == \"high\") {\n  print(\"alert\");\n} else {\n  print(\"ok\");\n}",
+  "runtime_error": null,
+  "provenance_compact": [
+    "normalized.previousLevel was string \"low\"",
+    "normalized.currentLevel was string \"high\"",
+    "condition normalized.previousLevel == \"high\" evaluated to false",
+    "the program executed the else branch",
+    "actual output was \"ok\"",
+    "expected output was \"alert\""
+  ],
+  "expected_output": "alert",
+  "oracle_patch": "normalized.currentLevel == \"high\"",
+  "reference_solution": "def normalize(raw) {\n  return {\n    previousLevel: raw.previousLevel,\n    currentLevel: raw.currentLevel\n  };\n}\n\nval raw = {\n  previousLevel: \"low\",\n  currentLevel: \"high\"\n};\n\nval normalized = normalize(raw);\nif (normalized.currentLevel == \"high\") {\n  print(\"alert\");\n} else {\n  print(\"ok\");\n}",
+  "tests": [
+    {
+      "name": "current_high_previous_low",
+      "input": "",
+      "expected_output": "alert"
+    },
+    {
+      "name": "current_low_previous_high",
+      "input": "",
+      "replacements": [
+        {
+          "old": "previousLevel: \"low\"",
+          "new": "previousLevel: \"high\""
+        },
+        {
+          "old": "currentLevel: \"high\"",
+          "new": "currentLevel: \"low\""
+        }
+      ],
+      "expected_output": "ok"
+    },
+    {
+      "name": "both_high",
+      "input": "",
+      "replacements": [
+        {
+          "old": "previousLevel: \"low\"",
+          "new": "previousLevel: \"high\""
+        }
+      ],
+      "expected_output": "alert"
+    }
+  ]
+}

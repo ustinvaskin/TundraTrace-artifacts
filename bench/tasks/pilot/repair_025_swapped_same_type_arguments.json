@@ -1,0 +1,44 @@
+{
+  "id": "repair_025_swapped_same_type_arguments",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "swapped_arguments",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "medium",
+  "difficulty": "hard",
+  "features": ["function", "return", "record", "field_access", "parseNumber", "call", "arithmetic"],
+  "program": "def encodeScore(base, adjustment) {\n  return base * 10 + adjustment;\n}\n\nval raw = {\n  base: \"7\",\n  adjustment: \"3\"\n};\n\nval base = parseNumber(raw.base);\nval adjustment = parseNumber(raw.adjustment);\nval code = encodeScore(adjustment, base);\n\nprint(code);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "code came from encodeScore(adjustment, base)",
+    "encodeScore parameter base received adjustment",
+    "encodeScore parameter adjustment received base",
+    "result came from 3 * 10 + 7",
+    "expected calculation is 7 * 10 + 3"
+  ],
+  "expected_output": "73",
+  "oracle_patch": "encodeScore(base, adjustment)",
+  "reference_solution": "def encodeScore(base, adjustment) {\n  return base * 10 + adjustment;\n}\n\nval raw = {\n  base: \"7\",\n  adjustment: \"3\"\n};\n\nval base = parseNumber(raw.base);\nval adjustment = parseNumber(raw.adjustment);\nval code = encodeScore(base, adjustment);\n\nprint(code);",
+  "tests": [
+    {
+      "name": "original_code",
+      "input": "",
+      "expected_output": "73"
+    },
+    {
+      "name": "changed_base_and_adjustment",
+      "input": "",
+      "replacements": [
+        {
+          "old": "base: \"7\"",
+          "new": "base: \"8\""
+        },
+        {
+          "old": "adjustment: \"3\"",
+          "new": "adjustment: \"4\""
+        }
+      ],
+      "expected_output": "84"
+    }
+  ]
+}

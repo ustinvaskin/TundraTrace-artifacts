@@ -1,0 +1,36 @@
+{
+  "id": "repair_015_wrong_index_function_return",
+  "track": "provenance_debugging",
+  "failure_kind": "runtime_error",
+  "bug_type": "wrong_index",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "low",
+  "difficulty": "medium",
+  "features": ["function", "return", "list", "record", "indexing", "field_access"],
+  "program": "def chooseBest(scores) {\n  return scores[3];\n}\n\nval row = {\n  name: \"Ada\",\n  scores: [7, 8, 9]\n};\n\nval best = chooseBest(row.scores);\nprint(best);",
+  "runtime_error": {
+    "type": "IndexError",
+    "message": "List index 3 out of bounds.",
+    "line": 2,
+    "expression": "scores[3]",
+    "index_value": "3",
+    "index_type": "Number"
+  },
+  "provenance_compact": [
+    "best came from chooseBest(row.scores)",
+    "row.scores came from field scores of row",
+    "row.scores was [7, 8, 9]",
+    "chooseBest tried to read scores[3]",
+    "valid indexes were 0, 1, and 2",
+    "the expected best score is at index 2"
+  ],
+  "expected_output": "9",
+  "oracle_patch": "scores[2]",
+  "reference_solution": "def chooseBest(scores) {\n  return scores[2];\n}\n\nval row = {\n  name: \"Ada\",\n  scores: [7, 8, 9]\n};\n\nval best = chooseBest(row.scores);\nprint(best);",
+  "tests": [
+    {
+      "input": "",
+      "expected_output": "9"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "id": "repair_008_wrong_index_nested_list",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "wrong_index",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "medium",
+  "difficulty": "medium",
+  "features": ["list", "record", "indexing", "field_access"],
+  "program": "val rows = [\n  { label: \"low\", value: 10 },\n  { label: \"target\", value: 20 },\n  { label: \"high\", value: 30 }\n];\n\nval selected = rows[2];\nprint(selected.value);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "selected came from rows[2]",
+    "rows[2] was the record with label \"high\" and value 30",
+    "the expected target row has label \"target\" and value 20",
+    "selected.value came from field value of rows[2]"
+  ],
+  "expected_output": "20",
+  "oracle_patch": "rows[1]",
+  "reference_solution": "val rows = [\n  { label: \"low\", value: 10 },\n  { label: \"target\", value: 20 },\n  { label: \"high\", value: 30 }\n];\n\nval selected = rows[1];\nprint(selected.value);",
+  "tests": [
+    {
+      "name": "original_target_value",
+      "input": "",
+      "expected_output": "20"
+    },
+    {
+      "name": "changed_target_value",
+      "input": "",
+      "replacements": [
+        {
+          "old": "{ label: \"target\", value: 20 }",
+          "new": "{ label: \"target\", value: 25 }"
+        }
+      ],
+      "expected_output": "25"
+    },
+    {
+      "name": "changed_neighbor_values",
+      "input": "",
+      "replacements": [
+        {
+          "old": "{ label: \"low\", value: 10 }",
+          "new": "{ label: \"low\", value: 12 }"
+        },
+        {
+          "old": "{ label: \"high\", value: 30 }",
+          "new": "{ label: \"high\", value: 38 }"
+        }
+      ],
+      "expected_output": "20"
+    }
+  ]
+}

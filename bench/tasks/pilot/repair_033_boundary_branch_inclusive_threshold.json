@@ -1,0 +1,52 @@
+{
+  "id": "repair_033_boundary_branch_inclusive_threshold",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "wrong_branch_boundary",
+  "evidence_type": "branch_behavior",
+  "trace_leakage_risk": "medium",
+  "difficulty": "medium",
+  "features": ["if", "comparison", "string"],
+  "program": "val score = 80;\nval threshold = 80;\n\nif (score > threshold) {\n  print(\"qualify\");\n} else {\n  print(\"hold\");\n}",
+  "runtime_error": null,
+  "provenance_compact": [
+    "score was number 80",
+    "threshold was number 80",
+    "condition score > threshold evaluated to false",
+    "the program executed the else branch",
+    "actual output was \"hold\"",
+    "expected output was \"qualify\""
+  ],
+  "expected_output": "qualify",
+  "oracle_patch": "score >= threshold",
+  "reference_solution": "val score = 80;\nval threshold = 80;\n\nif (score >= threshold) {\n  print(\"qualify\");\n} else {\n  print(\"hold\");\n}",
+  "tests": [
+    {
+      "name": "at_threshold",
+      "input": "",
+      "expected_output": "qualify"
+    },
+    {
+      "name": "above_threshold",
+      "input": "",
+      "replacements": [
+        {
+          "old": "val score = 80;",
+          "new": "val score = 91;"
+        }
+      ],
+      "expected_output": "qualify"
+    },
+    {
+      "name": "below_threshold",
+      "input": "",
+      "replacements": [
+        {
+          "old": "val score = 80;",
+          "new": "val score = 72;"
+        }
+      ],
+      "expected_output": "hold"
+    }
+  ]
+}

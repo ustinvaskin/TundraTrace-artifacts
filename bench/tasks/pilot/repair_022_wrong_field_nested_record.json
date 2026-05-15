@@ -1,0 +1,51 @@
+{
+  "id": "repair_022_wrong_field_nested_record",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "wrong_field",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "medium",
+  "difficulty": "medium",
+  "features": ["record", "field_access", "parseNumber", "addition"],
+  "program": "val account = {\n  name: \"Ada\",\n  billing: {\n    current: \"30\",\n    previous: \"12\"\n  }\n};\n\nval charge = parseNumber(account.billing.previous);\nval fee = 5;\nval total = charge + fee;\n\nprint(total);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "total came from charge + fee",
+    "charge came from parseNumber(account.billing.previous)",
+    "account.billing.previous was string \"12\"",
+    "account.billing.current was string \"30\"",
+    "expected total should use the current billing value"
+  ],
+  "expected_output": "35",
+  "oracle_patch": "account.billing.current",
+  "reference_solution": "val account = {\n  name: \"Ada\",\n  billing: {\n    current: \"30\",\n    previous: \"12\"\n  }\n};\n\nval charge = parseNumber(account.billing.current);\nval fee = 5;\nval total = charge + fee;\n\nprint(total);",
+  "tests": [
+    {
+      "name": "original_current",
+      "input": "",
+      "expected_output": "35"
+    },
+    {
+      "name": "changed_current",
+      "input": "",
+      "replacements": [
+        {
+          "old": "current: \"30\"",
+          "new": "current: \"44\""
+        }
+      ],
+      "expected_output": "49"
+    },
+    {
+      "name": "changed_previous_only",
+      "input": "",
+      "replacements": [
+        {
+          "old": "previous: \"12\"",
+          "new": "previous: \"99\""
+        }
+      ],
+      "expected_output": "35"
+    }
+  ]
+}

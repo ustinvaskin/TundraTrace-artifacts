@@ -1,0 +1,59 @@
+{
+  "id": "repair_016_bad_initial_value_records",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "incorrect_accumulator",
+  "evidence_type": "final_value_history",
+  "trace_leakage_risk": "low",
+  "difficulty": "medium",
+  "features": ["list", "record", "for", "assignment", "field_access", "arithmetic"],
+  "program": "val fees = [\n  { label: \"base\", amount: 2 },\n  { label: \"service\", amount: 5 },\n  { label: \"tax\", amount: 1 }\n];\n\nvar total = 10;\nfor (fee in fees) {\n  total = total + fee.amount;\n}\n\nprint(total);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "total started as number 10",
+    "fee amounts were 2, 5, and 1",
+    "the loop added each fee amount",
+    "actual output included the incorrect initial value",
+    "expected total should start from 0"
+  ],
+  "expected_output": "8",
+  "oracle_patch": "var total = 0;",
+  "reference_solution": "val fees = [\n  { label: \"base\", amount: 2 },\n  { label: \"service\", amount: 5 },\n  { label: \"tax\", amount: 1 }\n];\n\nvar total = 0;\nfor (fee in fees) {\n  total = total + fee.amount;\n}\n\nprint(total);",
+  "tests": [
+    {
+      "name": "original_fees",
+      "input": "",
+      "expected_output": "8"
+    },
+    {
+      "name": "changed_fees",
+      "input": "",
+      "replacements": [
+        {
+          "old": "{ label: \"base\", amount: 2 }",
+          "new": "{ label: \"base\", amount: 4 }"
+        },
+        {
+          "old": "{ label: \"service\", amount: 5 }",
+          "new": "{ label: \"service\", amount: 6 }"
+        },
+        {
+          "old": "{ label: \"tax\", amount: 1 }",
+          "new": "{ label: \"tax\", amount: 3 }"
+        }
+      ],
+      "expected_output": "13"
+    },
+    {
+      "name": "zero_tax",
+      "input": "",
+      "replacements": [
+        {
+          "old": "{ label: \"tax\", amount: 1 }",
+          "new": "{ label: \"tax\", amount: 0 }"
+        }
+      ],
+      "expected_output": "7"
+    }
+  ]
+}

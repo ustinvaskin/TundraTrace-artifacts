@@ -1,0 +1,52 @@
+{
+  "id": "repair_023_wrong_index_after_helper",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "wrong_index",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "medium",
+  "difficulty": "hard",
+  "features": ["function", "return", "record", "field_access", "list", "indexing", "parseNumber", "multiplication"],
+  "program": "def selectRate(rates) {\n  return rates[0];\n}\n\nval raw = {\n  base: \"10\",\n  rates: [\n    { label: \"old\", amount: \"2\" },\n    { label: \"current\", amount: \"3\" }\n  ]\n};\n\nval base = parseNumber(raw.base);\nval rate = parseNumber(selectRate(raw.rates).amount);\nval total = base * rate;\n\nprint(total);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "total came from base * rate",
+    "rate came from parseNumber(selectRate(raw.rates).amount)",
+    "selectRate returned rates[0]",
+    "rates[0].amount was string \"2\"",
+    "rates[1].amount was string \"3\"",
+    "the current rate is stored at index 1"
+  ],
+  "expected_output": "30",
+  "oracle_patch": "return rates[1];",
+  "reference_solution": "def selectRate(rates) {\n  return rates[1];\n}\n\nval raw = {\n  base: \"10\",\n  rates: [\n    { label: \"old\", amount: \"2\" },\n    { label: \"current\", amount: \"3\" }\n  ]\n};\n\nval base = parseNumber(raw.base);\nval rate = parseNumber(selectRate(raw.rates).amount);\nval total = base * rate;\n\nprint(total);",
+  "tests": [
+    {
+      "name": "original_current_rate",
+      "input": "",
+      "expected_output": "30"
+    },
+    {
+      "name": "changed_current_rate",
+      "input": "",
+      "replacements": [
+        {
+          "old": "amount: \"3\"",
+          "new": "amount: \"5\""
+        }
+      ],
+      "expected_output": "50"
+    },
+    {
+      "name": "changed_old_rate_only",
+      "input": "",
+      "replacements": [
+        {
+          "old": "amount: \"2\"",
+          "new": "amount: \"9\""
+        }
+      ],
+      "expected_output": "30"
+    }
+  ]
+}

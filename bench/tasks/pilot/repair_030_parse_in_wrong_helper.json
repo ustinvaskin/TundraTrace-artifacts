@@ -1,0 +1,62 @@
+{
+  "id": "repair_030_parse_in_wrong_helper",
+  "track": "provenance_debugging",
+  "failure_kind": "runtime_error",
+  "bug_type": "type_mismatch",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "low",
+  "difficulty": "hard",
+  "features": ["function", "return", "record", "field_access", "addition", "parseNumber"],
+  "program": "def normalizeFee(raw) {\n  return parseNumber(raw.fee);\n}\n\ndef normalizePrice(raw) {\n  return raw.price;\n}\n\ndef makeItem(raw) {\n  return {\n    price: normalizePrice(raw),\n    fee: normalizeFee(raw)\n  };\n}\n\nval raw = {\n  price: \"32\",\n  fee: \"4\"\n};\n\nval item = makeItem(raw);\nval total = item.price + item.fee;\n\nprint(total);",
+  "runtime_error": {
+    "type": "TypeError",
+    "message": "Cannot add String and Number.",
+    "line": 21,
+    "expression": "item.price + item.fee",
+    "left_value": "32",
+    "left_type": "String",
+    "right_value": "4",
+    "right_type": "Number"
+  },
+  "provenance_compact": [
+    "total came from item.price + item.fee",
+    "item.price came from normalizePrice(raw)",
+    "normalizePrice returned raw.price",
+    "raw.price was string \"32\"",
+    "item.fee came from normalizeFee(raw)",
+    "normalizeFee returned parseNumber(raw.fee)",
+    "raw.fee was string \"4\""
+  ],
+  "expected_output": "36",
+  "oracle_patch": "return parseNumber(raw.price);",
+  "reference_solution": "def normalizeFee(raw) {\n  return parseNumber(raw.fee);\n}\n\ndef normalizePrice(raw) {\n  return parseNumber(raw.price);\n}\n\ndef makeItem(raw) {\n  return {\n    price: normalizePrice(raw),\n    fee: normalizeFee(raw)\n  };\n}\n\nval raw = {\n  price: \"32\",\n  fee: \"4\"\n};\n\nval item = makeItem(raw);\nval total = item.price + item.fee;\n\nprint(total);",
+  "tests": [
+    {
+      "name": "original_price",
+      "input": "",
+      "expected_output": "36"
+    },
+    {
+      "name": "changed_price",
+      "input": "",
+      "replacements": [
+        {
+          "old": "price: \"32\"",
+          "new": "price: \"41\""
+        }
+      ],
+      "expected_output": "45"
+    },
+    {
+      "name": "changed_fee",
+      "input": "",
+      "replacements": [
+        {
+          "old": "fee: \"4\"",
+          "new": "fee: \"6\""
+        }
+      ],
+      "expected_output": "38"
+    }
+  ]
+}

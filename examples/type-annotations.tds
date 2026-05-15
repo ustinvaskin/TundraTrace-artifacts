@@ -1,0 +1,15 @@
+val score: Number = 10;
+val name: String = "Ada";
+val ready: Bool = true;
+val nothing: None = none;
+val scores: List<Number> = [1, 2, 3];
+val user: Record = {
+  name: name,
+  score: score
+};
+
+def describe(user) {
+  return user.name;
+}
+
+print(describe(user));

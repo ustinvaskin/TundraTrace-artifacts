@@ -1,0 +1,52 @@
+{
+  "id": "repair_017_wrong_branch_nested_record",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "wrong_branch",
+  "evidence_type": "branch_behavior",
+  "trace_leakage_risk": "medium",
+  "difficulty": "medium",
+  "features": ["record", "field_access", "if", "comparison", "string"],
+  "program": "val report = {\n  user: {\n    name: \"Ada\",\n    score: 68\n  },\n  passMark: 70\n};\n\nif (report.user.score > report.passMark) {\n  print(\"review\");\n} else {\n  print(\"pass\");\n}",
+  "runtime_error": null,
+  "provenance_compact": [
+    "report.user.score was number 68",
+    "report.passMark was number 70",
+    "condition report.user.score > report.passMark evaluated to false",
+    "the program executed the else branch",
+    "actual output was \"pass\"",
+    "expected output was \"review\""
+  ],
+  "expected_output": "review",
+  "oracle_patch": "report.user.score < report.passMark",
+  "reference_solution": "val report = {\n  user: {\n    name: \"Ada\",\n    score: 68\n  },\n  passMark: 70\n};\n\nif (report.user.score < report.passMark) {\n  print(\"review\");\n} else {\n  print(\"pass\");\n}",
+  "tests": [
+    {
+      "name": "below_pass_mark",
+      "input": "",
+      "expected_output": "review"
+    },
+    {
+      "name": "above_pass_mark",
+      "input": "",
+      "replacements": [
+        {
+          "old": "score: 68",
+          "new": "score: 78"
+        }
+      ],
+      "expected_output": "pass"
+    },
+    {
+      "name": "at_pass_mark",
+      "input": "",
+      "replacements": [
+        {
+          "old": "score: 68",
+          "new": "score: 70"
+        }
+      ],
+      "expected_output": "pass"
+    }
+  ]
+}

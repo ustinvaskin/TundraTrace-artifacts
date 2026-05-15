@@ -1,0 +1,53 @@
+{
+  "id": "repair_035_nested_guard_wrong_branch_body",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "wrong_branch_body",
+  "evidence_type": "branch_behavior",
+  "trace_leakage_risk": "medium",
+  "difficulty": "hard",
+  "features": ["record", "field_access", "if", "comparison", "boolean", "string"],
+  "program": "val request = {\n  enabled: true,\n  priority: 9\n};\n\nif (request.enabled) {\n  if (request.priority > 5) {\n    print(\"skip\");\n  } else {\n    print(\"queue\");\n  }\n} else {\n  print(\"disabled\");\n}",
+  "runtime_error": null,
+  "provenance_compact": [
+    "request.enabled was bool true",
+    "outer condition request.enabled evaluated to true",
+    "request.priority was number 9",
+    "inner condition request.priority > 5 evaluated to true",
+    "the program executed the inner true branch",
+    "actual output was \"skip\"",
+    "expected output was \"apply\""
+  ],
+  "expected_output": "apply",
+  "oracle_patch": "print(\"apply\");",
+  "reference_solution": "val request = {\n  enabled: true,\n  priority: 9\n};\n\nif (request.enabled) {\n  if (request.priority > 5) {\n    print(\"apply\");\n  } else {\n    print(\"queue\");\n  }\n} else {\n  print(\"disabled\");\n}",
+  "tests": [
+    {
+      "name": "enabled_high_priority",
+      "input": "",
+      "expected_output": "apply"
+    },
+    {
+      "name": "enabled_low_priority",
+      "input": "",
+      "replacements": [
+        {
+          "old": "priority: 9",
+          "new": "priority: 3"
+        }
+      ],
+      "expected_output": "queue"
+    },
+    {
+      "name": "disabled_request",
+      "input": "",
+      "replacements": [
+        {
+          "old": "enabled: true",
+          "new": "enabled: false"
+        }
+      ],
+      "expected_output": "disabled"
+    }
+  ]
+}

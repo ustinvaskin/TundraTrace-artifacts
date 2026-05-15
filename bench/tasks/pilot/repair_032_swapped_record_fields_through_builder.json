@@ -1,0 +1,46 @@
+{
+  "id": "repair_032_swapped_record_fields_through_builder",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "swapped_arguments",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "medium",
+  "difficulty": "hard",
+  "features": ["function", "return", "record", "field_access", "parseNumber", "arithmetic"],
+  "program": "def makePair(raw) {\n  return {\n    base: raw.adjustment,\n    adjustment: raw.base\n  };\n}\n\ndef score(pair) {\n  return parseNumber(pair.base) * 10 + parseNumber(pair.adjustment);\n}\n\nval raw = {\n  base: \"6\",\n  adjustment: \"2\"\n};\n\nval pair = makePair(raw);\nval code = score(pair);\n\nprint(code);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "code came from score(pair)",
+    "score used pair.base as the tens value",
+    "pair.base came from raw.adjustment",
+    "raw.adjustment was string \"2\"",
+    "score used pair.adjustment as the ones value",
+    "pair.adjustment came from raw.base",
+    "raw.base was string \"6\""
+  ],
+  "expected_output": "62",
+  "oracle_patch": "base: raw.base, adjustment: raw.adjustment",
+  "reference_solution": "def makePair(raw) {\n  return {\n    base: raw.base,\n    adjustment: raw.adjustment\n  };\n}\n\ndef score(pair) {\n  return parseNumber(pair.base) * 10 + parseNumber(pair.adjustment);\n}\n\nval raw = {\n  base: \"6\",\n  adjustment: \"2\"\n};\n\nval pair = makePair(raw);\nval code = score(pair);\n\nprint(code);",
+  "tests": [
+    {
+      "name": "original_pair",
+      "input": "",
+      "expected_output": "62"
+    },
+    {
+      "name": "changed_base_and_adjustment",
+      "input": "",
+      "replacements": [
+        {
+          "old": "base: \"6\"",
+          "new": "base: \"8\""
+        },
+        {
+          "old": "adjustment: \"2\"",
+          "new": "adjustment: \"5\""
+        }
+      ],
+      "expected_output": "85"
+    }
+  ]
+}

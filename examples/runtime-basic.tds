@@ -1,0 +1,25 @@
+val x = 1 + 2 * 3;
+print(x);
+
+val user = {
+  name: "Ada",
+  score: "10"
+};
+
+print(user.name);
+print(parseNumber(user.score) + 5);
+
+val items = [1, 2, 3, 4];
+print(len(items));
+
+var total = 0;
+for (item in [1, 2, 3]) {
+  total = total + item;
+}
+print(total);
+
+if (total == 6 and len(items) == 4) {
+  print("yes");
+} else {
+  print("no");
+}

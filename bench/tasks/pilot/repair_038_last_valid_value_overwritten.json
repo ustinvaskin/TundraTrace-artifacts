@@ -1,0 +1,52 @@
+{
+  "id": "repair_038_last_valid_value_overwritten",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "incorrect_final_value",
+  "evidence_type": "final_value_history",
+  "trace_leakage_risk": "medium",
+  "difficulty": "medium",
+  "features": ["list", "record", "for", "assignment", "field_access", "if", "string", "boolean"],
+  "program": "val events = [\n  { id: \"A\", approved: true },\n  { id: \"B\", approved: true },\n  { id: \"C\", approved: false }\n];\n\nvar lastApproved = \"none\";\nfor (event in events) {\n  lastApproved = event.id;\n}\n\nprint(lastApproved);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "lastApproved started as string \"none\"",
+    "event ids were \"A\", \"B\", and \"C\"",
+    "event C had approved false",
+    "each loop iteration replaced lastApproved with event.id",
+    "final lastApproved came from rejected event C",
+    "expected final approved id should remain \"B\""
+  ],
+  "expected_output": "B",
+  "oracle_patch": "update lastApproved only when event.approved is true",
+  "reference_solution": "val events = [\n  { id: \"A\", approved: true },\n  { id: \"B\", approved: true },\n  { id: \"C\", approved: false }\n];\n\nvar lastApproved = \"none\";\nfor (event in events) {\n  if (event.approved) {\n    lastApproved = event.id;\n  }\n}\n\nprint(lastApproved);",
+  "tests": [
+    {
+      "name": "rejected_last_event",
+      "input": "",
+      "expected_output": "B"
+    },
+    {
+      "name": "approved_last_event",
+      "input": "",
+      "replacements": [
+        {
+          "old": "{ id: \"C\", approved: false }",
+          "new": "{ id: \"C\", approved: true }"
+        }
+      ],
+      "expected_output": "C"
+    },
+    {
+      "name": "multiple_rejected_tail",
+      "input": "",
+      "replacements": [
+        {
+          "old": "{ id: \"B\", approved: true }",
+          "new": "{ id: \"B\", approved: false }"
+        }
+      ],
+      "expected_output": "A"
+    }
+  ]
+}

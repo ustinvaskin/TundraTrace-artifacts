@@ -1,0 +1,48 @@
+{
+  "id": "repair_024_helper_return_bad_value",
+  "track": "provenance_debugging",
+  "failure_kind": "runtime_error",
+  "bug_type": "helper_return_bad_value",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "medium",
+  "difficulty": "medium",
+  "features": ["function", "return", "record", "field_access", "addition", "parseNumber"],
+  "program": "def loadCount(raw) {\n  return raw.label;\n}\n\nval raw = {\n  label: \"widgets\",\n  count: \"6\"\n};\n\nval count = loadCount(raw);\nval total = parseNumber(count) + 4;\n\nprint(total);",
+  "runtime_error": {
+    "type": "RuntimeError",
+    "message": "Cannot parse number from \"widgets\".",
+    "line": 10,
+    "expression": "parseNumber(count)",
+    "left_value": "widgets",
+    "left_type": "String"
+  },
+  "provenance_compact": [
+    "count came from loadCount(raw)",
+    "loadCount returned raw.label",
+    "raw.label was string \"widgets\"",
+    "raw.count was string \"6\"",
+    "parseNumber(count) failed because count was not numeric"
+  ],
+  "expected_output": "10",
+  "oracle_patch": "return raw.count;",
+  "reference_solution": "def loadCount(raw) {\n  return raw.count;\n}\n\nval raw = {\n  label: \"widgets\",\n  count: \"6\"\n};\n\nval count = loadCount(raw);\nval total = parseNumber(count) + 4;\n\nprint(total);",
+  "tests": [
+    {
+      "name": "original_count",
+      "input": "",
+      "expected_output": "10"
+    },
+    {
+      "name": "changed_count",
+      "input": "",
+      "replacements": [
+        {
+          "old": "count: \"6\"",
+          "new": "count: \"11\""
+        }
+      ],
+      "expected_output": "15"
+    }
+  ]
+}
+

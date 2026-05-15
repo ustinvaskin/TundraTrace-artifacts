@@ -1,0 +1,50 @@
+{
+  "id": "repair_027_missing_parse_at_origin",
+  "track": "provenance_debugging",
+  "failure_kind": "runtime_error",
+  "bug_type": "type_mismatch",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "low",
+  "difficulty": "medium",
+  "features": ["function", "return", "record", "field_access", "addition", "parseNumber"],
+  "program": "def normalize(raw) {\n  return {\n    price: raw.price,\n    fee: parseNumber(raw.fee)\n  };\n}\n\nval raw = {\n  price: \"18\",\n  fee: \"2\"\n};\n\nval item = normalize(raw);\nval total = item.price + item.fee;\n\nprint(total);",
+  "runtime_error": {
+    "type": "TypeError",
+    "message": "Cannot add String and Number.",
+    "line": 14,
+    "expression": "item.price + item.fee",
+    "left_value": "18",
+    "left_type": "String",
+    "right_value": "2",
+    "right_type": "Number"
+  },
+  "provenance_compact": [
+    "total came from item.price + item.fee",
+    "item.price came from raw.price without parsing",
+    "raw.price was string \"18\"",
+    "item.fee came from parseNumber(raw.fee)",
+    "raw.fee was string \"2\""
+  ],
+  "expected_output": "20",
+  "oracle_patch": "price: parseNumber(raw.price)",
+  "reference_solution": "def normalize(raw) {\n  return {\n    price: parseNumber(raw.price),\n    fee: parseNumber(raw.fee)\n  };\n}\n\nval raw = {\n  price: \"18\",\n  fee: \"2\"\n};\n\nval item = normalize(raw);\nval total = item.price + item.fee;\n\nprint(total);",
+  "tests": [
+    {
+      "name": "original_price",
+      "input": "",
+      "expected_output": "20"
+    },
+    {
+      "name": "changed_price",
+      "input": "",
+      "replacements": [
+        {
+          "old": "price: \"18\"",
+          "new": "price: \"25\""
+        }
+      ],
+      "expected_output": "27"
+    }
+  ]
+}
+

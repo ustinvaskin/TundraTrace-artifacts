@@ -1,0 +1,59 @@
+{
+  "id": "repair_011_incorrect_accumulator_loop",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "incorrect_accumulator",
+  "evidence_type": "final_value_history",
+  "trace_leakage_risk": "low",
+  "difficulty": "hard",
+  "features": ["list", "record", "for", "assignment", "field_access", "arithmetic"],
+  "program": "val items = [\n  { name: \"a\", cost: 2 },\n  { name: \"b\", cost: 3 },\n  { name: \"c\", cost: 4 }\n];\n\nvar total = 0;\nfor (item in items) {\n  total = item.cost;\n}\n\nprint(total);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "total started as number 0",
+    "loop visited item costs 2, 3, and 4",
+    "each loop iteration replaced total with item.cost",
+    "final total came from the last item cost 4",
+    "expected total should accumulate all item costs"
+  ],
+  "expected_output": "9",
+  "oracle_patch": "total = total + item.cost",
+  "reference_solution": "val items = [\n  { name: \"a\", cost: 2 },\n  { name: \"b\", cost: 3 },\n  { name: \"c\", cost: 4 }\n];\n\nvar total = 0;\nfor (item in items) {\n  total = total + item.cost;\n}\n\nprint(total);",
+  "tests": [
+    {
+      "name": "original_three_items",
+      "input": "",
+      "expected_output": "9"
+    },
+    {
+      "name": "changed_costs",
+      "input": "",
+      "replacements": [
+        {
+          "old": "{ name: \"a\", cost: 2 }",
+          "new": "{ name: \"a\", cost: 5 }"
+        },
+        {
+          "old": "{ name: \"b\", cost: 3 }",
+          "new": "{ name: \"b\", cost: 6 }"
+        },
+        {
+          "old": "{ name: \"c\", cost: 4 }",
+          "new": "{ name: \"c\", cost: 7 }"
+        }
+      ],
+      "expected_output": "18"
+    },
+    {
+      "name": "zero_middle_cost",
+      "input": "",
+      "replacements": [
+        {
+          "old": "{ name: \"b\", cost: 3 }",
+          "new": "{ name: \"b\", cost: 0 }"
+        }
+      ],
+      "expected_output": "6"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "id": "repair_037_running_total_reset_inside_loop",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "incorrect_accumulator_reset",
+  "evidence_type": "final_value_history",
+  "trace_leakage_risk": "low",
+  "difficulty": "medium",
+  "features": ["list", "record", "for", "assignment", "field_access", "arithmetic"],
+  "program": "val items = [\n  { amount: 2 },\n  { amount: 5 },\n  { amount: 7 }\n];\n\nvar total = 0;\nfor (item in items) {\n  total = 0;\n  total = total + item.amount;\n}\n\nprint(total);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "total started as number 0",
+    "loop visited amounts 2, 5, and 7",
+    "each iteration reset total to 0 before adding item.amount",
+    "total history ended at 7 after the last iteration",
+    "expected total should preserve earlier additions"
+  ],
+  "expected_output": "14",
+  "oracle_patch": "remove the reset inside the loop",
+  "reference_solution": "val items = [\n  { amount: 2 },\n  { amount: 5 },\n  { amount: 7 }\n];\n\nvar total = 0;\nfor (item in items) {\n  total = total + item.amount;\n}\n\nprint(total);",
+  "tests": [
+    {
+      "name": "original_amounts",
+      "input": "",
+      "expected_output": "14"
+    },
+    {
+      "name": "changed_amounts",
+      "input": "",
+      "replacements": [
+        {
+          "old": "{ amount: 2 }",
+          "new": "{ amount: 4 }"
+        },
+        {
+          "old": "{ amount: 5 }",
+          "new": "{ amount: 6 }"
+        },
+        {
+          "old": "{ amount: 7 }",
+          "new": "{ amount: 8 }"
+        }
+      ],
+      "expected_output": "18"
+    },
+    {
+      "name": "zero_middle_amount",
+      "input": "",
+      "replacements": [
+        {
+          "old": "{ amount: 5 }",
+          "new": "{ amount: 0 }"
+        }
+      ],
+      "expected_output": "9"
+    }
+  ]
+}

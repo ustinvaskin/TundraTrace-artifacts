@@ -1,0 +1,60 @@
+{
+  "timestamp": "20260515-144516",
+  "provider": "ollama",
+  "models": [
+    "deepseek-coder:6.7b",
+    "qwen2.5-coder:14b",
+    "qwen3-coder:30b"
+  ],
+  "task_set": "pilot",
+  "prompt_version": "v2",
+  "scoring_modes": [
+    "strict",
+    "normalized"
+  ],
+  "trials": 3,
+  "tasks": [
+    "repair_006_type_mismatch_function_chain",
+    "repair_007_wrong_field_nested_record",
+    "repair_008_wrong_index_nested_list",
+    "repair_009_bad_parse_location",
+    "repair_010_wrong_branch_condition",
+    "repair_011_incorrect_accumulator_loop",
+    "repair_012_swapped_function_arguments_chain",
+    "repair_013_type_mismatch_list_sum",
+    "repair_014_wrong_field_alias_chain",
+    "repair_015_wrong_index_function_return",
+    "repair_016_bad_initial_value_records",
+    "repair_017_wrong_branch_nested_record",
+    "repair_018_swapped_ratio_arguments",
+    "repair_019_wrong_field_similar_names",
+    "repair_020_accumulator_nested_records",
+    "repair_021_deep_chain_type_mismatch",
+    "repair_022_wrong_field_nested_record",
+    "repair_023_wrong_index_after_helper",
+    "repair_024_helper_return_bad_value",
+    "repair_025_swapped_same_type_arguments",
+    "repair_026_list_record_value_flow",
+    "repair_027_missing_parse_at_origin",
+    "repair_028_value_copied_through_function",
+    "repair_029_wrong_helper_source_chain",
+    "repair_030_parse_in_wrong_helper",
+    "repair_031_wrong_index_after_grouping",
+    "repair_032_swapped_record_fields_through_builder",
+    "repair_033_boundary_branch_inclusive_threshold",
+    "repair_034_branch_uses_stale_flag",
+    "repair_035_nested_guard_wrong_branch_body",
+    "repair_036_branch_checks_wrong_field_after_normalize",
+    "repair_037_running_total_reset_inside_loop",
+    "repair_038_last_valid_value_overwritten",
+    "repair_039_missing_history_update_on_match",
+    "repair_040_wrong_record_from_parallel_lists",
+    "repair_041_wrong_discount_source_after_normalize"
+  ],
+  "conditions": [
+    "error-only",
+    "provenance-assisted"
+  ],
+  "timeout_seconds": 300,
+  "resume_enabled": true
+}

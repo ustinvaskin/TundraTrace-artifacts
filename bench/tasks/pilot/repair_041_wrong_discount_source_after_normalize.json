@@ -1,0 +1,52 @@
+{
+  "id": "repair_041_wrong_discount_source_after_normalize",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "wrong_field",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "medium",
+  "difficulty": "hard",
+  "features": ["function", "return", "record", "field_access", "parseNumber", "arithmetic"],
+  "program": "def normalize(raw) {\n  return {\n    price: raw.price,\n    promoDiscount: raw.memberDiscount,\n    memberDiscount: raw.memberDiscount\n  };\n}\n\nval raw = {\n  price: \"80\",\n  promoDiscount: \"12\",\n  memberDiscount: \"5\"\n};\n\nval item = normalize(raw);\nval price = parseNumber(item.price);\nval discount = parseNumber(item.promoDiscount);\nval final = price - discount;\n\nprint(final);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "final came from price - discount",
+    "discount came from parseNumber(item.promoDiscount)",
+    "item.promoDiscount came from normalize(raw)",
+    "normalize copied promoDiscount from raw.memberDiscount",
+    "raw.memberDiscount was string \"5\"",
+    "raw.promoDiscount was string \"12\""
+  ],
+  "expected_output": "68",
+  "oracle_patch": "promoDiscount: raw.promoDiscount",
+  "reference_solution": "def normalize(raw) {\n  return {\n    price: raw.price,\n    promoDiscount: raw.promoDiscount,\n    memberDiscount: raw.memberDiscount\n  };\n}\n\nval raw = {\n  price: \"80\",\n  promoDiscount: \"12\",\n  memberDiscount: \"5\"\n};\n\nval item = normalize(raw);\nval price = parseNumber(item.price);\nval discount = parseNumber(item.promoDiscount);\nval final = price - discount;\n\nprint(final);",
+  "tests": [
+    {
+      "name": "original_discounts",
+      "input": "",
+      "expected_output": "68"
+    },
+    {
+      "name": "changed_promo_only",
+      "input": "",
+      "replacements": [
+        {
+          "old": "promoDiscount: \"12\"",
+          "new": "promoDiscount: \"20\""
+        }
+      ],
+      "expected_output": "60"
+    },
+    {
+      "name": "changed_member_only",
+      "input": "",
+      "replacements": [
+        {
+          "old": "memberDiscount: \"5\"",
+          "new": "memberDiscount: \"9\""
+        }
+      ],
+      "expected_output": "68"
+    }
+  ]
+}

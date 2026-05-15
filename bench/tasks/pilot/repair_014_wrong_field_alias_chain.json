@@ -1,0 +1,34 @@
+{
+  "id": "repair_014_wrong_field_alias_chain",
+  "track": "provenance_debugging",
+  "failure_kind": "runtime_error",
+  "bug_type": "wrong_field",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "low",
+  "difficulty": "medium",
+  "features": ["record", "field_access"],
+  "program": "val raw = {\n  profile: {\n    name: \"Ada\",\n    score: 12\n  }\n};\n\nval profile = raw.profile;\nval selected = {\n  points: profile.score\n};\n\nprint(selected.score);",
+  "runtime_error": {
+    "type": "FieldError",
+    "message": "Undefined field 'score'.",
+    "line": 13,
+    "expression": "selected.score"
+  },
+  "provenance_compact": [
+    "selected came from { points: profile.score }",
+    "selected has field points",
+    "points came from profile.score",
+    "profile came from raw.profile",
+    "raw.profile.score was number 12",
+    "the failing access requested missing field score on selected"
+  ],
+  "expected_output": "12",
+  "oracle_patch": "selected.points",
+  "reference_solution": "val raw = {\n  profile: {\n    name: \"Ada\",\n    score: 12\n  }\n};\n\nval profile = raw.profile;\nval selected = {\n  points: profile.score\n};\n\nprint(selected.points);",
+  "tests": [
+    {
+      "input": "",
+      "expected_output": "12"
+    }
+  ]
+}

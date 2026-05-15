@@ -1,0 +1,55 @@
+{
+  "id": "repair_012_swapped_function_arguments_chain",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "swapped_arguments",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "low",
+  "difficulty": "hard",
+  "features": ["function", "return", "record", "field_access", "parseNumber", "call", "arithmetic"],
+  "program": "def applyDiscount(price, discount) {\n  return price - discount;\n}\n\nval raw = {\n  price: \"20\",\n  discount: \"5\"\n};\n\nval price = parseNumber(raw.price);\nval discount = parseNumber(raw.discount);\nval final = applyDiscount(discount, price);\nprint(final);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "final came from applyDiscount(discount, price)",
+    "applyDiscount parameter price received discount",
+    "applyDiscount parameter discount received price",
+    "result came from 5 - 20",
+    "expected calculation is 20 - 5"
+  ],
+  "expected_output": "15",
+  "oracle_patch": "applyDiscount(price, discount)",
+  "reference_solution": "def applyDiscount(price, discount) {\n  return price - discount;\n}\n\nval raw = {\n  price: \"20\",\n  discount: \"5\"\n};\n\nval price = parseNumber(raw.price);\nval discount = parseNumber(raw.discount);\nval final = applyDiscount(price, discount);\nprint(final);",
+  "tests": [
+    {
+      "name": "original_discount",
+      "input": "",
+      "expected_output": "15"
+    },
+    {
+      "name": "changed_price_and_discount",
+      "input": "",
+      "replacements": [
+        {
+          "old": "price: \"20\"",
+          "new": "price: \"30\""
+        },
+        {
+          "old": "discount: \"5\"",
+          "new": "discount: \"7\""
+        }
+      ],
+      "expected_output": "23"
+    },
+    {
+      "name": "zero_discount",
+      "input": "",
+      "replacements": [
+        {
+          "old": "discount: \"5\"",
+          "new": "discount: \"0\""
+        }
+      ],
+      "expected_output": "20"
+    }
+  ]
+}

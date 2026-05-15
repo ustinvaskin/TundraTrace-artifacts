@@ -1,0 +1,52 @@
+{
+  "id": "repair_028_value_copied_through_function",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "incorrect_copied_value",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "medium",
+  "difficulty": "hard",
+  "features": ["function", "return", "record", "field_access", "parseNumber", "arithmetic"],
+  "program": "def buildAdjustment(raw) {\n  return {\n    amount: raw.price\n  };\n}\n\nval raw = {\n  price: \"50\",\n  discount: \"8\"\n};\n\nval adjustment = buildAdjustment(raw);\nval price = parseNumber(raw.price);\nval discount = parseNumber(adjustment.amount);\nval final = price - discount;\n\nprint(final);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "final came from price - discount",
+    "discount came from parseNumber(adjustment.amount)",
+    "adjustment.amount came from raw.price",
+    "raw.price was string \"50\"",
+    "raw.discount was string \"8\"",
+    "expected discount should come from raw.discount"
+  ],
+  "expected_output": "42",
+  "oracle_patch": "amount: raw.discount",
+  "reference_solution": "def buildAdjustment(raw) {\n  return {\n    amount: raw.discount\n  };\n}\n\nval raw = {\n  price: \"50\",\n  discount: \"8\"\n};\n\nval adjustment = buildAdjustment(raw);\nval price = parseNumber(raw.price);\nval discount = parseNumber(adjustment.amount);\nval final = price - discount;\n\nprint(final);",
+  "tests": [
+    {
+      "name": "original_discount",
+      "input": "",
+      "expected_output": "42"
+    },
+    {
+      "name": "changed_discount",
+      "input": "",
+      "replacements": [
+        {
+          "old": "discount: \"8\"",
+          "new": "discount: \"12\""
+        }
+      ],
+      "expected_output": "38"
+    },
+    {
+      "name": "changed_price",
+      "input": "",
+      "replacements": [
+        {
+          "old": "price: \"50\"",
+          "new": "price: \"60\""
+        }
+      ],
+      "expected_output": "52"
+    }
+  ]
+}

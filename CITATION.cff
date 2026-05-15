@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software or benchmark, please cite it as below."
+title: "TundraTrace Artifacts"
+type: software
+authors:
+  - family-names: "Vaskin"
+    given-names: "Ustin"
+abstract: >-
+  Artifacts for TundraTrace, including the TundraCore interpreter,
+  TundraTrace runtime-evidence components, TundraBench benchmark tasks,
+  prompt templates, scoring scripts, final study outputs, and manuscript source.
+keywords:
+  - program repair
+  - benchmark
+  - runtime evidence
+  - large language models
+license: "Apache-2.0"

@@ -1,0 +1,53 @@
+{
+  "id": "repair_031_wrong_index_after_grouping",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "wrong_index",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "medium",
+  "difficulty": "hard",
+  "features": ["function", "return", "record", "field_access", "list", "indexing", "parseNumber", "addition"],
+  "program": "def chooseCurrent(groups) {\n  return groups[0].items[0];\n}\n\nval groups = [\n  {\n    name: \"archive\",\n    items: [\n      { total: \"11\" }\n    ]\n  },\n  {\n    name: \"current\",\n    items: [\n      { total: \"27\" }\n    ]\n  }\n];\n\nval item = chooseCurrent(groups);\nval total = parseNumber(item.total) + 2;\n\nprint(total);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "total came from parseNumber(item.total) + 2",
+    "item came from chooseCurrent(groups)",
+    "chooseCurrent returned groups[0].items[0]",
+    "groups[0].name was string \"archive\"",
+    "groups[0].items[0].total was string \"11\"",
+    "groups[1].name was string \"current\"",
+    "groups[1].items[0].total was string \"27\""
+  ],
+  "expected_output": "29",
+  "oracle_patch": "return groups[1].items[0];",
+  "reference_solution": "def chooseCurrent(groups) {\n  return groups[1].items[0];\n}\n\nval groups = [\n  {\n    name: \"archive\",\n    items: [\n      { total: \"11\" }\n    ]\n  },\n  {\n    name: \"current\",\n    items: [\n      { total: \"27\" }\n    ]\n  }\n];\n\nval item = chooseCurrent(groups);\nval total = parseNumber(item.total) + 2;\n\nprint(total);",
+  "tests": [
+    {
+      "name": "original_current_group",
+      "input": "",
+      "expected_output": "29"
+    },
+    {
+      "name": "changed_current_total",
+      "input": "",
+      "replacements": [
+        {
+          "old": "total: \"27\"",
+          "new": "total: \"36\""
+        }
+      ],
+      "expected_output": "38"
+    },
+    {
+      "name": "changed_archive_total_only",
+      "input": "",
+      "replacements": [
+        {
+          "old": "total: \"11\"",
+          "new": "total: \"40\""
+        }
+      ],
+      "expected_output": "29"
+    }
+  ]
+}

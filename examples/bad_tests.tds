@@ -1,0 +1,11 @@
+// -----------------------------------------------------------------------------
+// Negative Scanner Tests
+// These are supposed to produce scanner errors.
+// -----------------------------------------------------------------------------
+
+val x = 10;
+val y = @;
+print(x);
+
+val text = "hello
+world

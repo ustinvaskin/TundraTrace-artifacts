@@ -1,0 +1,53 @@
+{
+  "id": "repair_040_wrong_record_from_parallel_lists",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "wrong_index",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "medium",
+  "difficulty": "medium",
+  "features": ["function", "return", "record", "field_access", "list", "indexing", "parseNumber", "addition"],
+  "program": "def buildSelected(names, scores) {\n  return {\n    name: names[1],\n    score: scores[0]\n  };\n}\n\nval names = [\"Ada\", \"Bea\"];\nval scores = [\"10\", \"20\"];\n\nval selected = buildSelected(names, scores);\nval total = parseNumber(selected.score) + 1;\n\nprint(total);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "total came from parseNumber(selected.score) + 1",
+    "selected.name came from names[1]",
+    "selected.score came from scores[0]",
+    "names[1] was string \"Bea\"",
+    "scores[0] was string \"10\"",
+    "scores[1] was string \"20\"",
+    "the selected record should use aligned index 1 values"
+  ],
+  "expected_output": "21",
+  "oracle_patch": "score: scores[1]",
+  "reference_solution": "def buildSelected(names, scores) {\n  return {\n    name: names[1],\n    score: scores[1]\n  };\n}\n\nval names = [\"Ada\", \"Bea\"];\nval scores = [\"10\", \"20\"];\n\nval selected = buildSelected(names, scores);\nval total = parseNumber(selected.score) + 1;\n\nprint(total);",
+  "tests": [
+    {
+      "name": "original_alignment",
+      "input": "",
+      "expected_output": "21"
+    },
+    {
+      "name": "changed_second_score",
+      "input": "",
+      "replacements": [
+        {
+          "old": "\"20\"",
+          "new": "\"35\""
+        }
+      ],
+      "expected_output": "36"
+    },
+    {
+      "name": "changed_first_score_only",
+      "input": "",
+      "replacements": [
+        {
+          "old": "\"10\"",
+          "new": "\"99\""
+        }
+      ],
+      "expected_output": "21"
+    }
+  ]
+}

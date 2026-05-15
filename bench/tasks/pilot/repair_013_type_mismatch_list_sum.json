@@ -1,0 +1,38 @@
+{
+  "id": "repair_013_type_mismatch_list_sum",
+  "track": "provenance_debugging",
+  "failure_kind": "runtime_error",
+  "bug_type": "type_mismatch",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "low",
+  "difficulty": "hard",
+  "features": ["list", "indexing", "parseNumber", "addition"],
+  "program": "val raw = [\"4\", \"6\", \"8\"];\n\nval first = parseNumber(raw[0]);\nval second = raw[1];\nval third = parseNumber(raw[2]);\n\nval total = first + second + third;\nprint(total);",
+  "runtime_error": {
+    "type": "TypeError",
+    "message": "Cannot add Number and String.",
+    "line": 7,
+    "expression": "first + second",
+    "left_value": "4",
+    "left_type": "Number",
+    "right_value": "6",
+    "right_type": "String"
+  },
+  "provenance_compact": [
+    "total came from first + second + third",
+    "first came from parseNumber(raw[0])",
+    "second came from raw[1]",
+    "raw[1] was string \"6\"",
+    "third came from parseNumber(raw[2])",
+    "the failing addition used a Number and a String"
+  ],
+  "expected_output": "18",
+  "oracle_patch": "parseNumber(raw[1])",
+  "reference_solution": "val raw = [\"4\", \"6\", \"8\"];\n\nval first = parseNumber(raw[0]);\nval second = parseNumber(raw[1]);\nval third = parseNumber(raw[2]);\n\nval total = first + second + third;\nprint(total);",
+  "tests": [
+    {
+      "input": "",
+      "expected_output": "18"
+    }
+  ]
+}

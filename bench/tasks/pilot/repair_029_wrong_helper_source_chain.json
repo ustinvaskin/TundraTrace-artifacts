@@ -1,0 +1,53 @@
+{
+  "id": "repair_029_wrong_helper_source_chain",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "wrong_field",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "medium",
+  "difficulty": "hard",
+  "features": ["function", "return", "record", "field_access", "list", "indexing", "parseNumber", "addition"],
+  "program": "def extractAmount(raw) {\n  return raw.backup.total;\n}\n\ndef makeLine(raw) {\n  return {\n    amount: extractAmount(raw)\n  };\n}\n\nval raw = {\n  current: {\n    total: \"25\"\n  },\n  backup: {\n    total: \"9\"\n  }\n};\n\nval line = makeLine(raw);\nval ledger = [line];\nval amount = parseNumber(ledger[0].amount);\nval fee = 3;\nval final = amount + fee;\n\nprint(final);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "final came from amount + fee",
+    "amount came from parseNumber(ledger[0].amount)",
+    "ledger[0].amount came from line.amount",
+    "line.amount came from extractAmount(raw)",
+    "extractAmount returned raw.backup.total",
+    "raw.backup.total was string \"9\"",
+    "raw.current.total was string \"25\""
+  ],
+  "expected_output": "28",
+  "oracle_patch": "return raw.current.total;",
+  "reference_solution": "def extractAmount(raw) {\n  return raw.current.total;\n}\n\ndef makeLine(raw) {\n  return {\n    amount: extractAmount(raw)\n  };\n}\n\nval raw = {\n  current: {\n    total: \"25\"\n  },\n  backup: {\n    total: \"9\"\n  }\n};\n\nval line = makeLine(raw);\nval ledger = [line];\nval amount = parseNumber(ledger[0].amount);\nval fee = 3;\nval final = amount + fee;\n\nprint(final);",
+  "tests": [
+    {
+      "name": "original_current",
+      "input": "",
+      "expected_output": "28"
+    },
+    {
+      "name": "changed_current",
+      "input": "",
+      "replacements": [
+        {
+          "old": "total: \"25\"",
+          "new": "total: \"31\""
+        }
+      ],
+      "expected_output": "34"
+    },
+    {
+      "name": "changed_backup_only",
+      "input": "",
+      "replacements": [
+        {
+          "old": "total: \"9\"",
+          "new": "total: \"18\""
+        }
+      ],
+      "expected_output": "28"
+    }
+  ]
+}

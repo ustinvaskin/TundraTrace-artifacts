@@ -1,0 +1,39 @@
+{
+  "id": "repair_006_type_mismatch_function_chain",
+  "track": "provenance_debugging",
+  "failure_kind": "runtime_error",
+  "bug_type": "type_mismatch",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "low",
+  "difficulty": "hard",
+  "features": ["function", "return", "record", "field_access", "list", "indexing", "addition", "parseNumber"],
+  "program": "def getPriceText(raw) {\n  return raw.price;\n}\n\nval raw = {\n  price: \"10\"\n};\n\nval item = {\n  cost: getPriceText(raw)\n};\n\nval cart = [item];\nval subtotal = cart[0].cost;\nval fee = 5;\nval total = subtotal + fee;\n\nprint(total);",
+  "runtime_error": {
+    "type": "TypeError",
+    "message": "Cannot add String and Number.",
+    "line": 16,
+    "expression": "subtotal + fee",
+    "left_value": "10",
+    "left_type": "String",
+    "right_value": "5",
+    "right_type": "Number"
+  },
+  "provenance_compact": [
+    "total came from subtotal + fee",
+    "subtotal came from cart[0].cost",
+    "cart[0].cost came from field cost",
+    "cost came from getPriceText(raw)",
+    "getPriceText returned raw.price",
+    "raw.price was string \"10\"",
+    "fee was number 5"
+  ],
+  "expected_output": "15",
+  "oracle_patch": "parseNumber(subtotal) + fee",
+  "reference_solution": "def getPriceText(raw) {\n  return raw.price;\n}\n\nval raw = {\n  price: \"10\"\n};\n\nval item = {\n  cost: getPriceText(raw)\n};\n\nval cart = [item];\nval subtotal = cart[0].cost;\nval fee = 5;\nval total = parseNumber(subtotal) + fee;\n\nprint(total);",
+  "tests": [
+    {
+      "input": "",
+      "expected_output": "15"
+    }
+  ]
+}

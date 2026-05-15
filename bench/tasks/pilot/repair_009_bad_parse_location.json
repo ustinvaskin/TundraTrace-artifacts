@@ -1,0 +1,32 @@
+{
+  "id": "repair_009_bad_parse_location",
+  "track": "provenance_debugging",
+  "failure_kind": "runtime_error",
+  "bug_type": "bad_data_transformation",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "low",
+  "difficulty": "medium",
+  "features": ["record", "field_access", "parseNumber", "addition"],
+  "program": "val raw = {\n  price: \"10\"\n};\n\nval numeric = parseNumber(raw.price);\nval total = parseNumber(numeric) + 5;\nprint(total);",
+  "runtime_error": {
+    "type": "TypeError",
+    "message": "parseNumber() expects a string.",
+    "line": 6,
+    "expression": "parseNumber(numeric)"
+  },
+  "provenance_compact": [
+    "numeric came from parseNumber(raw.price)",
+    "raw.price was string \"10\"",
+    "numeric was already number 10",
+    "parseNumber(numeric) tried to parse a Number as if it were a String"
+  ],
+  "expected_output": "15",
+  "oracle_patch": "numeric + 5",
+  "reference_solution": "val raw = {\n  price: \"10\"\n};\n\nval numeric = parseNumber(raw.price);\nval total = numeric + 5;\nprint(total);",
+  "tests": [
+    {
+      "input": "",
+      "expected_output": "15"
+    }
+  ]
+}

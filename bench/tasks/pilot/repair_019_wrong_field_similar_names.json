@@ -1,0 +1,38 @@
+{
+  "id": "repair_019_wrong_field_similar_names",
+  "track": "provenance_debugging",
+  "failure_kind": "runtime_error",
+  "bug_type": "wrong_field",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "medium",
+  "difficulty": "hard",
+  "features": ["record", "field_access", "list", "addition"],
+  "program": "val raw = {\n  user: {\n    score: 12,\n    scores: [10, 11, 12],\n    scoreText: \"12\"\n  },\n  bonus: 3\n};\n\nval profile = raw.user;\nval total = profile.scoreText + raw.bonus;\nprint(total);",
+  "runtime_error": {
+    "type": "TypeError",
+    "message": "Cannot add String and Number.",
+    "line": 11,
+    "expression": "profile.scoreText + raw.bonus",
+    "left_value": "12",
+    "left_type": "String",
+    "right_value": "3",
+    "right_type": "Number"
+  },
+  "provenance_compact": [
+    "total came from profile.scoreText + raw.bonus",
+    "profile came from raw.user",
+    "profile.scoreText was string \"12\"",
+    "profile also has numeric field score",
+    "raw.bonus was number 3",
+    "the failing addition used a String and a Number"
+  ],
+  "expected_output": "15",
+  "oracle_patch": "profile.score + raw.bonus",
+  "reference_solution": "val raw = {\n  user: {\n    score: 12,\n    scores: [10, 11, 12],\n    scoreText: \"12\"\n  },\n  bonus: 3\n};\n\nval profile = raw.user;\nval total = profile.score + raw.bonus;\nprint(total);",
+  "tests": [
+    {
+      "input": "",
+      "expected_output": "15"
+    }
+  ]
+}

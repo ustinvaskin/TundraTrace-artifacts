@@ -1,0 +1,51 @@
+{
+  "id": "repair_026_list_record_value_flow",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "wrong_field",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "high",
+  "difficulty": "hard",
+  "features": ["record", "list", "indexing", "field_access", "parseNumber", "multiplication", "addition"],
+  "program": "val order = {\n  lines: [\n    { sku: \"A\", quantity: \"2\", unitPrice: \"5\" },\n    { sku: \"B\", quantity: \"1\", unitPrice: \"4\" }\n  ]\n};\n\nval first = order.lines[0];\nval second = order.lines[1];\nval subtotal = parseNumber(first.quantity) * parseNumber(first.quantity) + parseNumber(second.quantity) * parseNumber(second.unitPrice);\n\nprint(subtotal);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "subtotal used first.quantity as both quantity and price",
+    "first.quantity came from order.lines[0].quantity and was string \"2\"",
+    "first.unitPrice came from order.lines[0].unitPrice and was string \"5\"",
+    "second line used quantity and unitPrice correctly",
+    "expected subtotal should use first.unitPrice for the first line price"
+  ],
+  "expected_output": "14",
+  "oracle_patch": "parseNumber(first.quantity) * parseNumber(first.unitPrice)",
+  "reference_solution": "val order = {\n  lines: [\n    { sku: \"A\", quantity: \"2\", unitPrice: \"5\" },\n    { sku: \"B\", quantity: \"1\", unitPrice: \"4\" }\n  ]\n};\n\nval first = order.lines[0];\nval second = order.lines[1];\nval subtotal = parseNumber(first.quantity) * parseNumber(first.unitPrice) + parseNumber(second.quantity) * parseNumber(second.unitPrice);\n\nprint(subtotal);",
+  "tests": [
+    {
+      "name": "original_lines",
+      "input": "",
+      "expected_output": "14"
+    },
+    {
+      "name": "changed_first_price",
+      "input": "",
+      "replacements": [
+        {
+          "old": "unitPrice: \"5\"",
+          "new": "unitPrice: \"7\""
+        }
+      ],
+      "expected_output": "18"
+    },
+    {
+      "name": "changed_first_quantity",
+      "input": "",
+      "replacements": [
+        {
+          "old": "quantity: \"2\"",
+          "new": "quantity: \"3\""
+        }
+      ],
+      "expected_output": "19"
+    }
+  ]
+}

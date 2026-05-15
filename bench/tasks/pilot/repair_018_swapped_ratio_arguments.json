@@ -1,0 +1,55 @@
+{
+  "id": "repair_018_swapped_ratio_arguments",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "swapped_arguments",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "low",
+  "difficulty": "hard",
+  "features": ["function", "return", "record", "field_access", "parseNumber", "call", "division"],
+  "program": "def ratio(numerator, denominator) {\n  return numerator / denominator;\n}\n\nval raw = {\n  numerator: \"20\",\n  denominator: \"5\"\n};\n\nval numerator = parseNumber(raw.numerator);\nval denominator = parseNumber(raw.denominator);\nval result = ratio(denominator, numerator);\nprint(result);",
+  "runtime_error": null,
+  "provenance_compact": [
+    "result came from ratio(denominator, numerator)",
+    "ratio parameter numerator received denominator",
+    "ratio parameter denominator received numerator",
+    "result came from 5 / 20",
+    "expected calculation is 20 / 5"
+  ],
+  "expected_output": "4",
+  "oracle_patch": "ratio(numerator, denominator)",
+  "reference_solution": "def ratio(numerator, denominator) {\n  return numerator / denominator;\n}\n\nval raw = {\n  numerator: \"20\",\n  denominator: \"5\"\n};\n\nval numerator = parseNumber(raw.numerator);\nval denominator = parseNumber(raw.denominator);\nval result = ratio(numerator, denominator);\nprint(result);",
+  "tests": [
+    {
+      "name": "original_ratio",
+      "input": "",
+      "expected_output": "4"
+    },
+    {
+      "name": "changed_ratio",
+      "input": "",
+      "replacements": [
+        {
+          "old": "numerator: \"20\"",
+          "new": "numerator: \"30\""
+        },
+        {
+          "old": "denominator: \"5\"",
+          "new": "denominator: \"6\""
+        }
+      ],
+      "expected_output": "5"
+    },
+    {
+      "name": "ratio_one",
+      "input": "",
+      "replacements": [
+        {
+          "old": "denominator: \"5\"",
+          "new": "denominator: \"20\""
+        }
+      ],
+      "expected_output": "1"
+    }
+  ]
+}

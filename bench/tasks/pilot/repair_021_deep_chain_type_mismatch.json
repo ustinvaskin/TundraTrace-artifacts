@@ -1,0 +1,52 @@
+{
+  "id": "repair_021_deep_chain_type_mismatch",
+  "track": "provenance_debugging",
+  "failure_kind": "runtime_error",
+  "bug_type": "type_mismatch",
+  "evidence_type": "value_provenance",
+  "trace_leakage_risk": "low",
+  "difficulty": "hard",
+  "features": ["function", "return", "record", "field_access", "list", "indexing", "addition", "parseNumber"],
+  "program": "def readAmount(raw) {\n  return raw.invoice.amount;\n}\n\ndef wrapLine(raw) {\n  return {\n    charge: readAmount(raw)\n  };\n}\n\nval raw = {\n  invoice: {\n    amount: \"40\"\n  }\n};\n\nval line = wrapLine(raw);\nval lines = [line];\nval subtotal = lines[0].charge;\nval fee = 2;\nval total = subtotal + fee;\n\nprint(total);",
+  "runtime_error": {
+    "type": "TypeError",
+    "message": "Cannot add String and Number.",
+    "line": 22,
+    "expression": "subtotal + fee",
+    "left_value": "40",
+    "left_type": "String",
+    "right_value": "2",
+    "right_type": "Number"
+  },
+  "provenance_compact": [
+    "total came from subtotal + fee",
+    "subtotal came from lines[0].charge",
+    "lines[0].charge came from line.charge",
+    "line.charge came from readAmount(raw)",
+    "readAmount returned raw.invoice.amount",
+    "raw.invoice.amount was string \"40\"",
+    "fee was number 2"
+  ],
+  "expected_output": "42",
+  "oracle_patch": "parseNumber(subtotal) + fee",
+  "reference_solution": "def readAmount(raw) {\n  return raw.invoice.amount;\n}\n\ndef wrapLine(raw) {\n  return {\n    charge: readAmount(raw)\n  };\n}\n\nval raw = {\n  invoice: {\n    amount: \"40\"\n  }\n};\n\nval line = wrapLine(raw);\nval lines = [line];\nval subtotal = lines[0].charge;\nval fee = 2;\nval total = parseNumber(subtotal) + fee;\n\nprint(total);",
+  "tests": [
+    {
+      "name": "original_amount",
+      "input": "",
+      "expected_output": "42"
+    },
+    {
+      "name": "changed_amount",
+      "input": "",
+      "replacements": [
+        {
+          "old": "amount: \"40\"",
+          "new": "amount: \"55\""
+        }
+      ],
+      "expected_output": "57"
+    }
+  ]
+}
+

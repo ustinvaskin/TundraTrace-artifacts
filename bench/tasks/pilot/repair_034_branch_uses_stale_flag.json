@@ -1,0 +1,56 @@
+{
+  "id": "repair_034_branch_uses_stale_flag",
+  "track": "provenance_debugging",
+  "failure_kind": "wrong_output",
+  "bug_type": "wrong_branch_source",
+  "evidence_type": "branch_behavior",
+  "trace_leakage_risk": "medium",
+  "difficulty": "medium",
+  "features": ["record", "field_access", "if", "boolean", "string"],
+  "program": "val cached = {\n  active: false\n};\n\nval current = {\n  active: true\n};\n\nif (cached.active) {\n  print(\"send\");\n} else {\n  print(\"skip\");\n}",
+  "runtime_error": null,
+  "provenance_compact": [
+    "cached.active was bool false",
+    "current.active was bool true",
+    "condition cached.active evaluated to false",
+    "the program executed the else branch",
+    "actual output was \"skip\"",
+    "expected output was \"send\""
+  ],
+  "expected_output": "send",
+  "oracle_patch": "current.active",
+  "reference_solution": "val cached = {\n  active: false\n};\n\nval current = {\n  active: true\n};\n\nif (current.active) {\n  print(\"send\");\n} else {\n  print(\"skip\");\n}",
+  "tests": [
+    {
+      "name": "current_active_cached_inactive",
+      "input": "",
+      "expected_output": "send"
+    },
+    {
+      "name": "current_inactive_cached_active",
+      "input": "",
+      "replacements": [
+        {
+          "old": "val cached = {\n  active: false\n};",
+          "new": "val cached = {\n  active: true\n};"
+        },
+        {
+          "old": "val current = {\n  active: true\n};",
+          "new": "val current = {\n  active: false\n};"
+        }
+      ],
+      "expected_output": "skip"
+    },
+    {
+      "name": "both_active",
+      "input": "",
+      "replacements": [
+        {
+          "old": "val cached = {\n  active: false\n};",
+          "new": "val cached = {\n  active: true\n};"
+        }
+      ],
+      "expected_output": "send"
+    }
+  ]
+}
