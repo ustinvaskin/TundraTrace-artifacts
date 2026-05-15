@@ -6,13 +6,13 @@ Artifacts for the paper:
 
 TundraTrace is a controlled benchmark stack for studying when compact
 source-level runtime evidence changes large-language-model program-repair
-behavior. This repository contains:
+behavior. This artifact repository contains:
 
-- **TundraCore**: a small interpreted language used as the controlled repair
-  substrate;
-- **TundraTrace**: runtime provenance support for compact repair evidence; and
-- **TundraBench**: paired repair tasks, prompt templates, scoring scripts, and
-  frozen final-study outputs.
+- the Tundra interpreter source in `src/tundra/`;
+- runnable language and provenance examples in `examples/`;
+- the frozen 36-task benchmark, prompt templates, and scoring scripts in
+  `bench/`; and
+- methodology, leakage, and audit documentation in `docs/`.
 
 The final study uses a frozen 36-task benchmark with paired baseline and
 evidence-assisted prompts. In the final result matrix, evidence-assisted
