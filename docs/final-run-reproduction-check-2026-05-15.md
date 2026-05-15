@@ -2,7 +2,7 @@
 
 Date: 2026-05-15
 
-This check recomputes the paper-facing final results from the frozen released
+This check recomputes the released final results from the frozen
 result file:
 
 ```text

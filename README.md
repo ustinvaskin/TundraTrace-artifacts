@@ -22,7 +22,7 @@ overall and from `138/216` to `156/216` on the value-provenance slice.
 ## Repository Layout
 
 ```text
-src/tundra/                  TundraCore interpreter source
+src/tundra/                  interpreter source
 examples/                    runnable Tundra examples
 bench/tasks/pilot/           frozen 36-task final benchmark inventory
 bench/prompts/v2/            frozen final prompt templates

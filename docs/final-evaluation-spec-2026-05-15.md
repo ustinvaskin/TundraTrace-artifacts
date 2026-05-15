@@ -27,8 +27,7 @@ The intended study claim is:
 
 ## 3. Primary Hypotheses
 
-These are directional study expectations, not claims already proven by the
-pilots.
+These are directional study expectations, not claims assumed before analysis.
 
 | ID | Hypothesis |
 | --- | --- |
@@ -77,7 +76,7 @@ Target composition:
 | Medium difficulty | 18 |
 | Hard difficulty | 18 |
 
-Final pilot inventory:
+Final task inventory:
 
 | Dimension | Current |
 | --- | ---: |
@@ -95,7 +94,7 @@ The primary full-study analysis includes all 36 tasks.
 The confirmatory evidence-effect slice is the value-provenance subset, because:
 
 - it is the central study mechanism;
-- it has the strongest pilot support;
+- it has the strongest prior support;
 - it is the largest evidence-type stratum;
 - the branch-behavior and final-value-history strata are useful but smaller and
   more exploratory.

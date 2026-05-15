@@ -6,9 +6,9 @@ Initial public artifact release for:
 
 ## Included
 
-- TundraCore interpreter source
-- TundraTrace provenance-enabled examples
-- Frozen 36-task TundraBench final benchmark inventory
+- Interpreter source
+- Provenance-enabled runnable examples
+- Frozen 36-task final benchmark inventory
 - Frozen `v2` prompt templates
 - Scoring, audit, summary, and paired-bootstrap scripts
 - Final combined result files, manifest, and summary
