@@ -4,9 +4,9 @@ Artifacts for the paper:
 
 > **TundraTrace: Evaluating Compact Runtime Evidence for LLM Program Repair**
 
-TundraTrace is a controlled benchmark stack for studying when compact
-source-level runtime evidence changes large-language-model program-repair
-behavior. This artifact repository contains:
+This repository is the frozen artifact bundle for the TundraTrace study of when
+compact source-level runtime evidence changes large-language-model
+program-repair behavior. It contains:
 
 - the Tundra interpreter source in `src/tundra/`;
 - runnable language and provenance examples in `examples/`;

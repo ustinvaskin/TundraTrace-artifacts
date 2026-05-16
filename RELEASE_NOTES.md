@@ -1,6 +1,6 @@
 # v0.1.0
 
-Initial public artifact release for:
+Initial public artifact-bundle release for:
 
 > **TundraTrace: Evaluating Compact Runtime Evidence for LLM Program Repair**
 

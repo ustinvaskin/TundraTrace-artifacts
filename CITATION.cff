@@ -6,7 +6,7 @@ authors:
   - family-names: "Vaskin"
     given-names: "Ustin"
 abstract: >-
-  Artifacts for TundraTrace, including the interpreter source, runtime-evidence
+  Frozen artifact bundle for TundraTrace, including the interpreter source, runtime-evidence
   examples, benchmark tasks, prompt templates, scoring scripts, final study
   outputs, frozen prompt/repair files, and audit documentation.
 keywords:
