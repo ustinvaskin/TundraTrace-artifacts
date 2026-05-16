@@ -1,0 +1,23 @@
+def chooseCurrent(groups) {
+  return groups[1].items[0];
+}
+
+val groups = [
+  {
+    name: "archive",
+    items: [
+      { total: "11" }
+    ]
+  },
+  {
+    name: "current",
+    items: [
+      { total: "27" }
+    ]
+  }
+];
+
+val item = chooseCurrent(groups);
+val total = parseNumber(item.total) + 2;
+
+print(total);

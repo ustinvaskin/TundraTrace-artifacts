@@ -1,0 +1,8 @@
+val raw = ["4", "6", "8"];
+
+val first = parseNumber(raw[0]);
+val second = parseNumber(raw[1]);  // Change here to parseNumber(raw[1])
+val third = parseNumber(raw[2]);
+
+val total = first + second + third;
+print(total);

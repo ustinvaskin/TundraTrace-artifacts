@@ -1,0 +1,33 @@
+The issue is with the final calculation, where you are adding a number to a
+a string which will result in NaN (Not a Number) in JavaScript. This could 
+be corrected by parsing the "fee" variable as an integer first. Here's the 
+fixed code:
+
+```tundra
+def extractAmount(raw) {
+  return raw.backup.total;
+}
+
+def makeLine(raw) {
+  return {
+    amount: extractAmount(raw)
+  };
+}
+
+val raw = {
+  current: {
+    total: "25"
+  },
+  backup: {
+    total: "9"
+  }
+};
+
+val line = makeLine(raw);
+val ledger = [line];
+val amount = parseNumber(ledger[0].amount);
+val fee = 3; // corrected to an integer, previously it was a string
+val final = amount + fee;
+
+print(final);
+```

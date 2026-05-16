@@ -1,0 +1,25 @@
+Tundra does not support floating point arithmetic directly, we need to conv
+convert raw values into integers before performing subtraction operation. 
+
+Here is the corrected version of your Tundra code that would return the exp
+expected result (68):
+
+```tundra
+def normalize(raw) {
+  return {
+    price: parseNumber(raw.price),
+    promoDiscount: parseNumber(raw.promoDiscount),
+    memberDiscount: parseNumber(raw.memberDiscount)
+  };
+}
+
+val raw = {
+  price: "80",
+  promoDiscount: "12",
+  memberDiscount: "5"
+};
+
+var item = normalize(raw);
+var final = item.price - item.promoDiscount - item.memberDiscount;
+print(final);
+```

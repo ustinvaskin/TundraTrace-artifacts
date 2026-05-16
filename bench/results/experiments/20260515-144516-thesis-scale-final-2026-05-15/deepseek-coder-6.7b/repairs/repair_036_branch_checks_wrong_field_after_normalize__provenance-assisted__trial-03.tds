@@ -1,0 +1,22 @@
+The problem is that in Tundra, comparing strings requires using "==". In Ja
+JavaScript, it's done differently with "===", which checks both value and t
+type. This issue can be fixed by modifying the comparison to use "===":
+
+def normalize(raw) {
+  return {
+    previousLevel: raw.previousLevel,
+    currentLevel: raw.currentLevel
+   };
+}
+
+val raw = {
+  previousLevel: "low",
+  currentLevel: "high"
+};
+
+val normalized = normalize(raw);
+if (normalized.previousLevel === "high") {
+  print("alert");
+} else {
+  print("ok");
+}

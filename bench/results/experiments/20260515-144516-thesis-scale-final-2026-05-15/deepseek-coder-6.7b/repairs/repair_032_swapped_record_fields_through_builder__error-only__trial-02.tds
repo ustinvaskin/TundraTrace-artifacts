@@ -1,0 +1,20 @@
+def makePair(raw) {
+  return {
+    base: raw.adjustment,
+    adjustment: raw.base
+  };
+}
+
+def score(pair) {
+  return parseNumber(pair.base) * 10 + parseNumber(pair.adjustment);
+}
+
+val raw = {
+  base: "6",
+  adjustment: "2"
+};
+
+var pair = makePair(raw);
+var code = score(pair);
+
+print(code);

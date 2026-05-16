@@ -1,0 +1,21 @@
+The bug in your program is that you are multiplying `base` with 10 before a
+adding it to `adjustment`, which should be done after this multiplication. 
+The corrected code would look like this:
+
+```tundra
+def encodeScore(base, adjustment) {
+    return base * 10 + adjustment;
+}
+
+val raw = {
+    base: "7",
+    adjustment: "3"
+};
+
+val base = parseNumber(raw.base);
+val adjustment = parseNumber(raw.adjustment);
+val code = encodeScore(base, adjustment); // Switched the order of argument
+arguments
+
+print(code);
+```

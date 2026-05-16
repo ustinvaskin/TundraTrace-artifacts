@@ -1,0 +1,11 @@
+def chooseBest(scores) {
+  return scores[scores.length - 1];
+}
+
+val row = {
+  name: "Ada",
+  scores: [7, 8, 9]
+};
+
+val best = chooseBest(row.scores);
+print(best);

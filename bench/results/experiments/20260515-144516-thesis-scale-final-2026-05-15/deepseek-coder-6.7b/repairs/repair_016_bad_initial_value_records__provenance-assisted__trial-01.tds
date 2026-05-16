@@ -1,0 +1,25 @@
+The program is supposed to subtract all fee amounts from the total. The sum
+sum of all fees is not being calculated correctly because of a typo in the 
+for loop statement where it tries to access 'amount' on the entire list of 
+fees, instead of individual fee records in the array. 
+
+Here is the corrected code:
+```tundra
+val fees = [
+   { label: "base", amount: 2 },
+   { label: "service", amount<｜begin▁of▁sentence｜>: 5},
+   { label: "tax", amount: 1}
+];
+
+var total = 0;
+for (fee in fees) {
+  total = total - fee.amount;
+}
+
+print(total);
+```
+The correct output is now -8 because the original total of 10 was subtracte
+subtracted by all the amounts from the 'fees' array which results in a fina
+final result of -8. The '-fee.amount' part makes sure that we are subtracti
+subtracting the fee amount instead of adding it, hence giving us our desire
+desired outcome.

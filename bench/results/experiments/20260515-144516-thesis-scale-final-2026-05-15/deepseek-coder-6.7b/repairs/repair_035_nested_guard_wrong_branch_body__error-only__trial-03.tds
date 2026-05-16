@@ -1,0 +1,22 @@
+This is because Tundra uses a zero-based index for its arrays, and priority
+priority is set to 9, not 8. The condition "request.priority > 5" should be
+be "request.priority >= 5".
+
+So the corrected program would look like this:
+
+```tundra
+val request = {
+  enabled: true,
+  priority: 9
+};
+
+if (request.enabled) {
+  if (request.priority >= 5) {
+    print("skip");
+  } else {
+    print("queue");
+  }
+} else {
+  print("disabled");
+}
+```

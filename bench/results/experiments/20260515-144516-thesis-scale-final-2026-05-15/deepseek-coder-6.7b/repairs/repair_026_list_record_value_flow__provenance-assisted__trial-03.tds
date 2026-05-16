@@ -1,0 +1,25 @@
+The bug in your code is that you are multiplying `first.quantity` by itself
+itself when calculating the `subtotal`, instead of using its real value whi
+which can be obtained from `parseNumber(first.unitPrice)`. You need to chan
+change your calculation line as follows to fix this error:
+
+```tundra
+val subtotal = parseNumber(first.quantity) * parseNumber(first.unitPrice);
+```
+
+Therefore, the corrected program will be:
+
+```tundra
+val order = {
+  lines: [
+    { sku: "A", quantity: "2", unitPrice: "5" },
+    { sku: "B", quantity: "1", unitPrice: "4" }
+  ]
+};
+
+val first = order.lines[0];
+val second = order.lines[1];
+val subtotal = parseNumber(first.quantity) * parseNumber(first.unitPrice);
+
+print(subtotal);
+```

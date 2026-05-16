@@ -1,0 +1,28 @@
+The bug is in the line where we parse the values of `pair` to calculate `sc
+`score(pair)`. The function `parseNumber()` expects a String argument and r
+returns a Number but it's being passed field names (`pair.base` and `pair.a
+`pair.adjustment`), not string representations of numbers. Here is the corr
+correct code:
+
+```tundra
+def makePair(raw) {
+  return {
+    base: raw.adjustment,
+    adjustment: raw.base
+  };
+}
+
+def score(pair) {
+  return parseNumber(pair.base) * 10 + parseNumber(pair.adjustment);
+}
+
+val raw = {
+  base: "6",
+  adjustment: "2"
+};
+
+val pair = makePair(raw);
+val code = score(pair);
+
+print(code);
+```

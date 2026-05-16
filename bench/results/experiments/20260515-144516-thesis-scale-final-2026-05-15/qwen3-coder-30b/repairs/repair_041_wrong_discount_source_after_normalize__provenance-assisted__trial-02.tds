@@ -1,0 +1,20 @@
+def normalize(raw) {
+  return {
+    price: raw.price,
+    promoDiscount: raw.promoDiscount,
+    memberDiscount: raw.memberDiscount
+  };
+}
+
+val raw = {
+  price: "80",
+  promoDiscount: "12",
+  memberDiscount: "5"
+};
+
+val item = normalize(raw);
+val price = parseNumber(item.price);
+val discount = parseNumber(item.promoDiscount);
+val final = price - discount;
+
+print(final);

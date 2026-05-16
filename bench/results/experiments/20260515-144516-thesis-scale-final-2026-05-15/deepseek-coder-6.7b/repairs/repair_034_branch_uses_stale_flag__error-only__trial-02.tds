@@ -1,0 +1,23 @@
+In Tundra, if you want to compare two boolean values directly like in your 
+code (cached.active), it will return a Syntax Error: unexpected token 'val'
+'val'. In Tundra, when comparing two boolean variables or records, the synt
+syntax is different from JavaScript/Python where we use "==" operator for c
+comparison.
+
+So correcting this issue by using "==", here is the corrected code:
+
+```tundra
+val cached = {
+  active: false
+};
+
+val current = {
+  active: true
+};
+
+if (cached.active == true) {
+  print("send");
+} else {
+  print("skip");
+}
+```

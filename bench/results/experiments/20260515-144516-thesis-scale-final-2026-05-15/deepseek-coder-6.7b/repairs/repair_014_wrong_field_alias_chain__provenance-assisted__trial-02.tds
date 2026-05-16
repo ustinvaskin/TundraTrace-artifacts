@@ -1,0 +1,26 @@
+The error is that you're trying to print "selected.score", but in the defin
+definition of 'selected', only the field "points" is defined, not "score". 
+You need to change this line from 
+```tundra
+print(selected.score);
+```
+to
+```tundra
+print(selected.points);
+```
+The correct program will be:
+```tundra
+val raw = {
+  profile: {
+    name: "Ada",
+    score: 12
+   }
+};
+
+val profile = raw.profile;
+val selected = {
+  points: profile.score
+};
+
+print(selected.points);
+```

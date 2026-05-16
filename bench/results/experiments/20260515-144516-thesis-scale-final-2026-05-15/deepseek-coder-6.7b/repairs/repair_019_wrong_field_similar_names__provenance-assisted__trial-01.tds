@@ -1,0 +1,23 @@
+The error in this program is due to trying to add a `String` (profile.score
+(profile.scoreText) with an `Number` (raw.bonus). In Tundra, you can't dire
+directly concatenate two different types together like this. The fix will i
+involve converting the scoreText into a number before adding it to the bonu
+bonus.
+
+Here is the corrected program:
+
+```tundra
+val raw = {
+  user: {
+    score: 12,
+    scores: [10, 11, 12],
+    scoreText: "12"
+   },
+  bonus: 3
+};
+
+val profile = raw.user;
+// Convert the String into Number using parseNumber function
+val total = parseNumber(profile.scoreText) + raw.bonus;
+print(total);
+```

@@ -1,0 +1,33 @@
+The problem with your code is that you are subtracting promoDiscount from t
+the original price, not just memberDiscount. You should be subtracting memb
+memberDiscount from the final price after applying the discount. 
+
+Here is the corrected program:
+
+```tundra
+def normalize(raw) {
+  return {
+    price: raw.price,
+    promoDiscount: raw.memberDiscount,
+    memberDiscount: raw.memberDiscount
+   };
+}
+
+val raw = {
+  price: "80",
+  promoDiscount: "12",
+  memberDiscount: "5"
+};
+
+val item = normalize(raw);
+val price = parseNumber(item.price);
+val discount = parseNumber(item.memberDiscount); // corrected this line fro
+from raw to item
+val final = price - discount;
+
+print(final);
+```
+This program should now produce the expected output of 68 (i.e., original p
+price minus member discount). It first normalizes the raw data, then parses
+parses the prices and discounts as numbers, subtracts promoDiscount from th
+the final price, and prints out the result.

@@ -1,0 +1,33 @@
+The expected output is 29, however, based on your current Tundra source cod
+code, you are adding "2" to a string (because total from item.total appears
+appears as a String), not a number. 
+
+You can fix this by converting the strings into numbers before performing a
+arithmetic operations using `parseNumber` function. The updated program sho
+should look like:
+
+```tundra
+def chooseCurrent(groups) {
+  return groups[0].items[0];
+}
+
+val groups = [
+  {
+    name: "archive",
+    items: [
+      { total: "11" }
+    ]
+  },
+  {
+    name: "current",
+    items: [
+      { total: "27" }
+    ]
+  }
+];
+
+val item = chooseCurrent(groups);
+val total = parseNumber(item.total) + 2;
+
+print(total);
+```

@@ -1,0 +1,44 @@
+Here's the corrected version of your Tundra program:
+
+```tundra
+def normalize(raw) {
+  return {
+    price: raw.price,
+    promoDiscount: raw.memberDiscount,
+    memberDiscount: raw.memberDiscount
+   };
+}
+
+val raw = {
+  price: "80",
+  promoDiscount: "12",<｜begin▁of▁sentence｜>",
+  memberDiscount: "5"
+};
+
+val item = normalize(raw);
+val price = parseNumber(item.price);
+val discount = parseNumber(item.promoDiscount) - parseNumber(item.memberDis
+parseNumber(item.memberDiscount);
+val final = price - discount;
+
+print(final);
+```
+The problem in your program is that the promo and member discounts are the 
+same because `raw.memberDiscount` is copied to both `promoDiscount` and `me
+`memberDiscount` fields of `item` record, however you should subtract `item
+`item.memberDiscount` from `price` instead of `discount`. So I changed this
+this line:
+```tundra
+val discount = parseNumber(item.promoDiscount) - parseNumber(item.memberDis
+parseNumber(item.memberDiscount);
+``` 
+to be like this:
+```tundra
+val priceAfterMemberDiscount = parseNumber(price) - parseNumber(item.member
+parseNumber(item.memberDiscount);
+```
+Then, subtract `priceAfterMemberDiscount` from the initial `price` (which i
+is a number parsed from item.price). This should give you the correct resul
+result. Please note that Tundra does not have built-in support for parsing 
+numbers from strings so I assume you already implemented parseNumber() func
+function which converts string to number in your environment.

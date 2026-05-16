@@ -1,0 +1,13 @@
+def applyDiscount(price, discount) {
+  return price - discount;
+}
+
+val raw = {
+  price: "20",
+  discount: "5"
+};
+
+val price = parseNumber(raw.price);
+val discount = parseNumber(raw.discount);
+val final = applyDiscount(price, discount);
+print(final);

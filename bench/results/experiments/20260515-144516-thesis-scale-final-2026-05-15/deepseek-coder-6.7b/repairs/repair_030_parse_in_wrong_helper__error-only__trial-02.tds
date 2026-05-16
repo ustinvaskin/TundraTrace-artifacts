@@ -1,0 +1,35 @@
+The problem is that the `normalizePrice` function returns a string and not 
+a number, so when you try to add it to an integer (the fee), it results in 
+a type error. To fix this issue, we need to parse the price as a number bef
+before adding it to the fee. 
+
+Here is the corrected code:
+```tundra
+def normalizeFee(raw) {
+  return parseNumber(raw.fee);
+}
+
+def normalizePrice(raw) {
+  return parseNumber(raw.price);
+}
+
+def makeItem(raw) {
+  return {
+    price: normalizePrice(raw),
+    fee: normalizeFee(raw)
+  };
+}
+
+val raw = {
+  price: "32",
+  fee: "4"
+};
+
+val item = makeItem(raw);
+val total = item.price + item.fee;
+
+print(total);
+```
+The `parseNumber` function is used to convert the strings into numbers befo
+before adding them together. This will result in an integer (number) and no
+not a string, as expected by the `print()` function.

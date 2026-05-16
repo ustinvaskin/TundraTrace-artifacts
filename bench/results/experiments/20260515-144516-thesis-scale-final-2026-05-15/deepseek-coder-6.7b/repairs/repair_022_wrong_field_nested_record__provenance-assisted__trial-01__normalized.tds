@@ -1,0 +1,14 @@
+val account = {
+  name: "Ada",
+  billing: {
+    current: "30",
+    previous: "12"
+   }
+};
+
+val charge = parseNumber(account.billing.current); // Change this line to u
+use the correct field
+val fee = 5;
+val total = charge + fee;
+
+print(total);

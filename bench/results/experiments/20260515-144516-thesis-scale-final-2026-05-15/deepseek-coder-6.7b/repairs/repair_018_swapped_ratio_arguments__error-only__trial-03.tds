@@ -1,0 +1,20 @@
+You are given a bug in your Tundra program which results to incorrect outpu
+output. The error is due to swapping of arguments while calling `ratio()` f
+function, it should be `ratio(numerator, denominator)` instead of `ratio(de
+`ratio(denominator, numerator)`. Here's the corrected code:
+
+```tundra
+def ratio(numerator, denominator) {
+  return numerator / denominator;
+}
+
+val raw = {
+  numerator: "20",
+  denominator: "5"
+};
+
+val numerator = parseNumber(raw.numerator);
+val denominator = parseNumber(raw.denominator);
+val result = ratio(numerator, denominator); // corrected line
+print(result);
+```

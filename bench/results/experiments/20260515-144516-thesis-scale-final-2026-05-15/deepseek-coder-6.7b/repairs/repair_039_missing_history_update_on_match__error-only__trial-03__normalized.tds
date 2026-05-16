@@ -1,0 +1,14 @@
+val items = [
+  { id: 4, matched: true },
+  { id: 5, matched: false },
+  { id: 7, matched: true }
+];
+
+var lastMatch = 0;
+for (item in items) {
+  if (item.matched && item.id > lastMatch) {
+    print(item.id);
+    lastMatch = item.id;
+  }
+}
+print(lastMatch);

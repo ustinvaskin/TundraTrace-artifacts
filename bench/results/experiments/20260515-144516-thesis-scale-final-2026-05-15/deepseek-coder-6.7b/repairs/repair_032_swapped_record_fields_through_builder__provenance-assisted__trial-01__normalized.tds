@@ -1,0 +1,22 @@
+def makePair(raw) {
+  return {
+    base: raw.base,
+    adjustment: raw.adjustment
+  };
+}
+
+def score(pair) {
+  return parseNumber(pair.base) * 10 + parseNumber(pair.adjustment);
+}
+
+val raw = {
+  base: "6",
+  adjustment: "2"
+};
+
+val pair = makePair(raw); // creating a pair with swapped values from raw r
+record
+val code = score(pair); // calculating the combined numerical value of tens
+tens and ones from pair record
+
+print(code); // expected output is 62

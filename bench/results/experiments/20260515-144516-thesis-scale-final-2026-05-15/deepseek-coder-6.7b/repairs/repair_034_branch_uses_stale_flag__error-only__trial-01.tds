@@ -1,0 +1,31 @@
+Tundra is a very small language and it doesn'<｜begin▁of▁sentence｜> suppor
+support the 'if-else' construct without any modification, so we can't direc
+directly fix your code in Tundra. However, you may use an alternative progr
+programming language which supports if else statement like Python or JavaSc
+JavaScript etc. 
+
+Here is how you could solve this problem using a more advanced language:
+
+```python
+cached = { 'active': False }
+current = { 'active': True }
+
+if cached['active'] : print("send")
+else : print("skip")
+```
+
+In the above code, we have used Python dictionary to simulate Tundra's reco
+record (or object) behavior. The if-else construct is also supported in pyt
+python so it should give you expected output. 
+
+Alternatively using JavaScript:
+
+```javascript
+let cached = { active: false };
+let current = { active: true };
+
+cached.active ? console.log("send") : console.log("skip");
+```
+
+Again, JavaScript's object literal syntax and if-else construct should solv
+solve your problem in an advanced language.

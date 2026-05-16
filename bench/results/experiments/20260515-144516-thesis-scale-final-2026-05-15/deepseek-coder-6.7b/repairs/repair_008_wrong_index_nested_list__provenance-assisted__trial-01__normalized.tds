@@ -1,0 +1,9 @@
+val rows = [
+  { label: "low", value: 10 },
+  { label: "target", value: 20 },
+  { label: "high", value: 30 }
+];
+
+val selected = rows[1]; //Changed from 2 to 1, as the index in Tundra start
+starts at 0.
+print(selected.value);

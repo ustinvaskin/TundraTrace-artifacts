@@ -1,0 +1,25 @@
+The program seems to be running correctly on the given inputs. The problem 
+might not exist in Tundra but rather in how you're interpreting it. Here's 
+a corrected version of your code:
+
+```tundra
+def encodeScore(base, adjustment) {
+  return base * 10 + adjustment;
+}
+
+val raw = {
+  base: "7",
+  adjustment: "3"
+};
+
+val base = parseNumber(raw.base);
+val adjustment = parseNumber(raw.adjustment);
+val code = encodeScore(base, adjustment);
+
+print(code);
+```
+
+The expected calculation `encodeScore` performs is indeed `7 * 10 + 3 = 73`
+73`. This means that the function `encodeScore` should get called with `bas
+`base` as 7 and `adjustment` as 3 in this order, not the other way around. 
+The print statement will then output "73".

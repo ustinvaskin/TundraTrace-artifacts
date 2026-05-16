@@ -1,0 +1,27 @@
+Based on your problem, it seems like there is a misunderstanding about how 
+arrays and lists in Tundra work. In Tundra, array or list indices start at 
+zero. So names[1] would refer to "Bea", not "Ada". Similarly scores[0] refe
+refers to "10" not "20". 
+
+Let's correct the code:
+```tundra
+def buildSelected(names, scores) {
+    return {
+        name: names[0],
+        score: scores[1]
+    };
+}
+
+val names = ["Ada", "Bea"];
+val scores = [10, 20];
+
+val selected = buildSelected(names, scores);
+val total = parseNumber(selected.score) + 1;
+
+print(total);
+```
+In this revised code:
+- We're using aligned index values in the `buildSelected` function (i.e., n
+names[0] and scores[1]) to get "Ada" and 20, respectively.
+- The total is calculated correctly as parseNumber(selected.score) + 1 = 20
+20 + 1 = 21.

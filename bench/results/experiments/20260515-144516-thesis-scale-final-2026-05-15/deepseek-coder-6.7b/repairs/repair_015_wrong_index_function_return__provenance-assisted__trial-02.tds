@@ -1,0 +1,20 @@
+The error occurs because lists in Tundra are zero-indexed. Therefore, `scor
+`scores[3]` tries to access a fourth element that does not exist as there a
+are only three elements in the list [0, 1, 2]. The correct index for access
+accessing the third item of the list would be `scores[2]`.
+
+The corrected program is:
+
+```tundra
+def chooseBest(scores) {
+  return scores[2];
+}
+
+val row = {
+  name: "Ada",
+  scores: [7, 8, 9]
+};
+
+val best = chooseBest(row.scores);
+print(best);
+```

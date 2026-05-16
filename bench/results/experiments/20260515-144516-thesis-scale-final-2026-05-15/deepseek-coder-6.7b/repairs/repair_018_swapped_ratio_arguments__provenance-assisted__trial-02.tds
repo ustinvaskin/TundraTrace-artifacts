@@ -1,0 +1,24 @@
+The issue in this program is that the division operation was being performe
+performed with the arguments switched. In Tundra, division operates as inte
+integer division when both operands are integers. So we need to ensure that
+that numerator and denominator are converted into actual numbers before doi
+doing the division. 
+
+Here's the corrected code:
+
+```tundra
+def ratio(numerator, denominator) {
+  return numerator / denominator;
+}
+
+val raw = {
+  numerator: "20",
+  denominator: "5"
+};
+
+val numerator = parseNumber(raw.numerator);
+val denominator = parseNumber(raw.denominator);
+val result = ratio(numerator, denominator); // The arguments were switched 
+here
+print(result);
+```

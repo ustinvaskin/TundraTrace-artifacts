@@ -1,0 +1,12 @@
+val fees = [
+   { label: "base", amount: 2 },
+   { label: "service", amount: 5 },
+   { label<｜begin▁of▁sentence｜>label: "tax"amount: 1 }
+];
+
+var total = 10;
+for (fee in fees) {
+  total = total + fee.amount;
+}
+
+print(total);

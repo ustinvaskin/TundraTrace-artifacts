@@ -1,0 +1,17 @@
+def chooseBest(scores) {
+  if (scores.length > 3) {
+    return scores[3];
+  } else {
+    return null; // or any other appropriate default value
+  }
+}
+
+val row = {
+  name: "Ada",
+  scores: [7, 8, 9]
+};
+
+val best = chooseBest(row.scores);
+if (best !== null) {
+  print(best);
+}

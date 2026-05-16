@@ -1,0 +1,29 @@
+The bug in the program is that it's currently subtracting adjustment.amount
+adjustment.amount from price instead of subtracting discount from price. He
+Here is the corrected code:
+
+```Tundra
+def buildAdjustment(raw) {
+  return {
+    amount: raw.price
+  };
+}
+
+val raw = {
+  price: "50",
+  discount: "8"
+};
+
+val adjustment = buildAdjustment(raw);
+val price = parseNumber(adjustment.amount); // Changed this line from origi
+original code
+val discount = parseNumber(raw.discount);   // Added this line to calculate
+calculate the discount correctly
+val final = price - discount;
+
+print(final);
+```
+This corrected program will produce the expected output of 42 when run, as 
+it now properly subtracts the correct amount from the price. It assumes tha
+that `raw.discount` is a string representation of a number and can be parse
+parsed by `parseNumber()` function.

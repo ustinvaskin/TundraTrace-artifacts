@@ -1,0 +1,26 @@
+The bug in this program is that it assumes every score is an integer which 
+is not always true. The parseNumber function might return a float number, t
+thus if the scores are provided as strings they will be interpreted as such
+such and then added to 1, resulting in incorrect output. To fix the issue, 
+we should convert each string score into integer before adding with 1. Here
+Here's how you can modify your program:
+
+```tundra
+def buildSelected(names, scores) {
+  return {
+    name: names[1],
+    score: parseNumber(scores[0]) // Converting the first element of scores
+scores to integer
+   };
+}
+
+val names = ["Ada", "Bea"];
+val scores = ["10", "20"];
+
+val selected = buildSelected(names, scores);
+val total = selected.score + 1;  // No need for parseNumber here as the sco
+score is already an integer
+
+print(total);
+```
+This program will now return the expected output `21` when run.

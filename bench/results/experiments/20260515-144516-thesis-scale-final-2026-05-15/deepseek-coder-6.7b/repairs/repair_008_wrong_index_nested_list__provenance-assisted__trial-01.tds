@@ -1,0 +1,15 @@
+The program is correct, it should print out 20 which corresponds to the "ta
+"target" record in the given list. Here's the Tundra source code for refere
+reference:
+
+```tundra
+val rows = [
+  { label: "low", value: 10 },
+  { label: "target", value: 20 },
+  { label: "high", value: 30 }
+];
+
+val selected = rows[1]; //Changed from 2 to 1, as the index in Tundra start
+starts at 0.
+print(selected.value);
+```

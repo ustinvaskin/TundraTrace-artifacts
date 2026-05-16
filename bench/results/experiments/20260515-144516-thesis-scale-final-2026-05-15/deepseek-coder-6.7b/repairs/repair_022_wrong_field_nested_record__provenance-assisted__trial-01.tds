@@ -1,0 +1,25 @@
+The problem in this program is that it uses a string representation of numb
+numbers ("12", "30") instead of actual numbers (12, 30). The parseNumber fu
+function converts these strings to numbers. Therefore, the total calculatio
+calculation should use account.billing.current, not account.billing.previou
+account.billing.previous.
+
+Here is the corrected program:
+```tundra
+val account = {
+  name: "Ada",
+  billing: {
+    current: "30",
+    previous: "12"
+   }
+};
+
+val charge = parseNumber(account.billing.current); // Change this line to u
+use the correct field
+val fee = 5;
+val total = charge + fee;
+
+print(total);
+```
+This program will now correctly calculate the total as 35, considering the 
+current billing amount ("30") and the fee of $5.

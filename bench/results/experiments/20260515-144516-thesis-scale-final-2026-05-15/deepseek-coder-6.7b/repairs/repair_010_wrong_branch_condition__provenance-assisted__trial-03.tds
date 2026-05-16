@@ -1,0 +1,21 @@
+The issue here is that although the logical expression (score > threshold) 
+evaluates as false, the program does not handle this case correctly. For Tu
+Tundra to return "pass", it should print "review". So, we need to reverse t
+the condition in the if-else statement from else {print("pass")} to {print(
+{print("review")}.
+
+Here is your corrected code:
+
+```tundra
+val score = 72;
+val threshold = 80;<｜begin▁of▁sentence｜>
+
+if (score > threshold) 
+{
+  print("review");
+} 
+else 
+{
+  print("pass");
+}
+```

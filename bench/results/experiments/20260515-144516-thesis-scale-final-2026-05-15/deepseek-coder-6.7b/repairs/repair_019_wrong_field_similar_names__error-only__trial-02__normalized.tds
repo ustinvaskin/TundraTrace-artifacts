@@ -1,0 +1,13 @@
+val raw = {
+  user: {
+    score: 12,
+    scores: [10, 11, 12],
+    scoreText: "12"
+  },
+  bonus: 3
+};
+
+val profile = raw.user;
+// We use the parseNumber function to convert a string into a number
+var total = parseNumber(profile.scoreText) + raw.bonus;
+print(total);

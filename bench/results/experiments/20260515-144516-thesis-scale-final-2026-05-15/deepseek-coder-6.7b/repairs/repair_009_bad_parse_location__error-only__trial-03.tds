@@ -1,0 +1,20 @@
+The problem with the program is that it tries to call `parseNumber` on an o
+object, rather than on a string. The value of "raw.price" is expected to be
+be a String when passed to `parseNumber` function so you must convert the r
+raw price to integer or float first as per your language's standard.
+
+Here is the correct program in Tundra:
+
+```tundra
+val raw = {
+  price: "10"
+};
+
+val numeric = parseInt(raw.price); // Using parseInt instead of parseNumber
+parseNumber
+val total = numeric + 5;
+print(total);
+```
+This will give the expected output i.e., 15. The `parseInt` function conver
+converts a String to an Integer, which can be added with other integers wit
+without any error.

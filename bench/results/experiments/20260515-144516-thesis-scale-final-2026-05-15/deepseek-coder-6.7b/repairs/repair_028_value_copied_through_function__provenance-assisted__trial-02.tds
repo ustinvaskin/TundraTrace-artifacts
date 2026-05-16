@@ -1,0 +1,47 @@
+The bug in the program is that it's using `raw.price` as a number, but sinc
+since the value is stored as a string (due to `parseNumber(raw.price)`), su
+subtraction operation would not give the expected result. We have to conver
+convert the string into an integer before doing subtraction. 
+
+Here is the corrected Tundra program:
+
+```tundra
+def buildAdjustment(raw) {
+    return {
+        amount: raw.price
+    };
+}
+
+val raw = {
+    price: "50",
+    discount: "8"
+};
+
+val adjustment = buildAdjustment(raw);
+val price = parseNumber(raw.price);
+val discount = parseNumber(raw.discount); // Changed here from 'adjustment.
+'adjustment.amount' to 'raw.discount'
+val final = price - discount;
+
+print(final);
+```
+
+In this corrected program, the `parseNumber` function is used on `raw.price
+`raw.price` and `raw.discount` (which are strings) to convert them into int
+integers for subtraction operation. Now it will produce the expected output
+output 42:
+
+```tundra
+val raw = {
+    price: "50",
+    discount: "8"
+};
+
+val adjustment = buildAdjustment(raw);
+val price = parseNumber(raw.price);
+val discount = parseNumber(raw.discount); // Changed here from 'adjustment.
+'adjustment.amount' to 'raw.discount'
+val final = price - discount;
+
+print(final);
+```

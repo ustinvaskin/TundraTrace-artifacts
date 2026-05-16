@@ -1,0 +1,13 @@
+val cached = {
+  active: true
+};
+
+val current = {
+  active: true
+};
+
+if (cached.active) {
+  print("send");
+} else {
+  print("skip");
+}

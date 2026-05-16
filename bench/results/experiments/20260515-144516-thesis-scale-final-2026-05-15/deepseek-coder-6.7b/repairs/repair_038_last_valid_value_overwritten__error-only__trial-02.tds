@@ -1,0 +1,29 @@
+The program is correctly written, but it doesn't ensure that all events are
+are approved before assigning lastApproved's value to event's id. This mean
+means if any unapproved (false) event occurs after an approved one, the las
+last approved id will be overwritten by this unapproved event and won't be 
+recorded as the last successful approval. 
+
+Here is a corrected version of the program:
+
+```Tundra
+val events = [
+   { id: "A", approved: true },
+   { id: "B", approved: true },
+   { id: "C", approved: false }
+];
+
+var lastApproved = "none";
+for(event in events) {
+  if (event.approved && event.id > lastApproved) {
+    lastApproved = event.id;
+  }
+}
+
+print(lastApproved);
+```
+This program will correctly assign the id of the most recent approved event
+event to `lastApproved` and then print it out, in this case "B". It compare
+compares each event's id to `lastApproved` only if that event is approved. 
+If an event's id is lexicographically greater than `lastApproved` (i.e., co
+comes after alphabetically), the program assigns it to `lastApproved`.

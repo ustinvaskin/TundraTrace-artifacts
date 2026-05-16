@@ -1,0 +1,13 @@
+val report = {
+  user: {
+    name: "Ada",
+    score: parseNumber("68")
+  },
+  passMark: parseNumber("70")
+};
+
+if (report.user.score > report.passMark) {
+  print("review");
+} else {
+  print("pass");
+}

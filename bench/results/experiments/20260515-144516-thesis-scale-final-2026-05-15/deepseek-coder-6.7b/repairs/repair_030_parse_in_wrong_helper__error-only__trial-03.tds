@@ -1,0 +1,31 @@
+The problem is that we're trying to add a string (item.price) and a number 
+(item.fee), which JavaScript can't do directly, resulting in the TypeError.
+TypeError. To fix this, you should parse both values as numbers before addi
+addition:
+
+```tundra
+def normalizeFee(raw)  {
+  return parseNumber(raw.fee);
+}
+
+def normalizePrice(raw)  {
+  return parseNumber(raw.price);
+}
+
+def makeItem(raw)  {
+  return {
+    price: normalizePrice(raw),
+    fee: normalizeFee(raw)
+   };
+}
+
+val raw = {
+  price: "32",
+  fee: "4"
+};
+
+val item = makeItem(raw);
+val total = item.price + item.fee;
+
+print(total);
+```

@@ -1,0 +1,6 @@
+The provided Tundra code seems to be working fine as per the problem statem
+statement you have mentioned. There is no runtime error or any logical issu
+issues with this code. This checks if 'score' variable is greater than a th
+threshold of 80, and prints "qualify" in that case and otherwise print "hol
+"hold". The score being 80 makes it greater (since we set threshold to be 8
+80) so the output will be "qualify".

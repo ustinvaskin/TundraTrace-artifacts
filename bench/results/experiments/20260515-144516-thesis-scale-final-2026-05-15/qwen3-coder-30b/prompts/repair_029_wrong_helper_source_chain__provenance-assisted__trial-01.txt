@@ -1,0 +1,66 @@
+You are given a program written in Tundra, a small programming language.
+The program has a bug.
+
+Fix the program so that it produces the expected output.
+
+Output contract:
+- Return only raw Tundra source code.
+- Do not use Markdown fences.
+- Do not write explanations, headings, commentary, or "Here is..." text.
+- The entire response must be directly executable by the Tundra interpreter.
+- Do not include comments unless they already appear in the program.
+
+Tundra reminders:
+- Use val for immutable bindings and var for mutable bindings.
+- Use semicolons after statements.
+- Records use { field: value, other: value }.
+- Record fields use commas, not semicolons.
+- Lists use [a, b, c].
+- Field access uses object.field.
+- Indexing uses list[index].
+- print(value) prints a value.
+- parseNumber(value) expects a String argument and returns a Number.
+- Do not use JavaScript, Python, or Java built-ins such as Number(), parseInt(), parseFloat(), int(), or Integer.parseInt().
+
+Program:
+def extractAmount(raw) {
+  return raw.backup.total;
+}
+
+def makeLine(raw) {
+  return {
+    amount: extractAmount(raw)
+  };
+}
+
+val raw = {
+  current: {
+    total: "25"
+  },
+  backup: {
+    total: "9"
+  }
+};
+
+val line = makeLine(raw);
+val ledger = [line];
+val amount = parseNumber(ledger[0].amount);
+val fee = 3;
+val final = amount + fee;
+
+print(final);
+
+Runtime error or observed failure:
+The program runs but produces the wrong output.
+
+Value provenance:
+- final came from amount + fee
+- amount came from parseNumber(ledger[0].amount)
+- ledger[0].amount came from line.amount
+- line.amount came from extractAmount(raw)
+- extractAmount returned raw.backup.total
+- raw.backup.total was string "9"
+- raw.current.total was string "25"
+
+Expected output:
+28

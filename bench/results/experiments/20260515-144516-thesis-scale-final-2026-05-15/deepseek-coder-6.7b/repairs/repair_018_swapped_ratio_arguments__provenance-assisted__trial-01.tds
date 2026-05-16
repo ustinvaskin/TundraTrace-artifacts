@@ -1,0 +1,16 @@
+def ratio(numerator, denominator) {
+  return numerator / denominator;
+}
+
+val raw = {
+  numerator: "20",
+  denominator: "5"
+};
+
+val numerator = parseNumber(raw.denominator); // swap the order of numerato
+numerator and denominator
+val denominator = parseNumber(raw.numerator); // swapping values in paramet
+parameters to match expected calculation
+val result = ratio(numerator, denominator); // matching parameter order aga
+again
+print(result);

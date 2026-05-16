@@ -1,0 +1,12 @@
+val raw = { price: "10" };
+var convertToNumber = func(s) {
+    var i = 0;
+    while (i < s.length) {
+        i++;
+    }
+    return i;
+};
+
+val numeric = convertToNumber(raw.price);
+val total = numeric + 5;
+print(total);

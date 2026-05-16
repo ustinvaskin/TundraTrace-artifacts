@@ -1,0 +1,16 @@
+The problem here is that we're comparing a boolean value with a string, whi
+which will always result in `false`. Here is the corrected program:
+
+```tundra
+val cached = { active: false };
+var current = { active: true };
+
+if (cached.active) {
+  print("send");
+} else {
+  print("skip");
+}
+```
+This code should now correctly output "send" because `cached.active` is a b
+boolean and in this case it's `false`, so the program executes the 'else' b
+branch and prints "skip".

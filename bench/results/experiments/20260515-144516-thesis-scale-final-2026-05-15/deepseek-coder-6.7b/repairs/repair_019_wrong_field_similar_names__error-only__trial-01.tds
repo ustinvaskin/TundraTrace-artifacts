@@ -1,0 +1,26 @@
+The problem in your program is that you are trying to add a string and a nu
+number directly, which will lead to a TypeError because of the different ty
+types being added. In Tundra programming language, we need to explicitly co
+convert string to numbers before adding them together. We can use parseNumb
+parseNumber function for this purpose.
+
+Here's how your corrected program should look:
+
+```tundra
+val raw = {
+  user: {
+    score: 12,
+    scores: [10, 11, 12],
+    scoreText: "12"
+   },
+  bonus: 3
+};
+
+val profile = raw.user;
+val total = parseNumber(profile.scoreText) + raw.bonus;
+print(total);
+```
+This program first extracts the user's score from the raw data, converts it
+it to a number using `parseNumber` function and then adds the bonus score t
+to get the total. The result is printed out. It should print 15 because "12
+"12" when parsed as Number becomes 12 and adding 3 results in 15.

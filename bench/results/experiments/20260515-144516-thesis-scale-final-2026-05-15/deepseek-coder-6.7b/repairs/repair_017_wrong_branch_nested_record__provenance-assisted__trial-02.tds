@@ -1,0 +1,29 @@
+The source code you have provided is correct according to the Tundra progra
+programming language syntax and should produce "review" as expected. It com
+compares the user's score with the pass mark, printing "pass" if it's less 
+or equal to 70 and "review" if greater than 70 in this case (68 > 70).
+
+Therefore, there is no apparent bug in your code that would cause it not to
+to produce the expected output. The condition report.user.score > report.pa
+report.passMark should indeed be false because the score of user Ada is 68 
+and pass mark is 70. Therefore "pass" will get printed as per your else blo
+block statement.
+
+However, if you still want a code to test this condition without running th
+the print function which doesn't have any effect in Tundra environment:
+
+```
+val report = {
+  user: {
+    name: "Ada",
+    score: 68
+  },
+  passMark: 70
+};
+
+if (report.user.score > report.passMark) {
+  val result = "review";
+} else {
+  val result = "pass";
+}
+```

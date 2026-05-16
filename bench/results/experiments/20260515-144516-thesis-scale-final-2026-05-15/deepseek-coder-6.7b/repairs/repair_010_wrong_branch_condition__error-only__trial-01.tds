@@ -1,0 +1,23 @@
+It appears that the bug is with the if-else statement, as the expected beha
+behavior of the script should be to print "review" when score > threshold (
+(72 > 80), which it does not do in this case. However, without seeing the a
+actual error message or more context about what your Tundra interpreter can
+can do and how it handles comparison operators like greater than (">"), I c
+cannot provide an exact fix for this code. 
+
+However, based on standard programming concepts:
+```Tundra
+val score = 72;
+val threshold = 80;
+
+if (score > threshold) {
+  print("review");
+} else {
+  print("pass");
+}
+```
+This will correctly print "pass" as per the condition `score <= threshold`.
+threshold`. If you wish to have different outputs for lower and higher scor
+scores, more conditions may need to be added in the if-else structure. Plea
+Please provide a correct expected output or additional context so I can giv
+give an accurate solution.

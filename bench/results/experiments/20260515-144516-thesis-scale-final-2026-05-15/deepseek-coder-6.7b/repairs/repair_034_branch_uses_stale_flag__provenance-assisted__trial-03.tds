@@ -1,0 +1,24 @@
+The problem with your code is that it's checking for `cached.active` and ex
+expecting an output of "send", but based on the conditions, it should be re
+returning "skip". The if condition evaluates to false (i.e., `false` in Tun
+Tundra) because `cached.active` is set as `false` initially while `current.
+`current.active` is set to `true`. This means that the else branch will exe
+execute and print "skip" to the console, which matches with your expected o
+output.
+
+Here's a version of your program without any changes:
+```tundra
+val cached = {
+  active: false
+};
+
+val current = {
+  active: true
+};
+
+if (cached.active) {
+  print("send");
+} else {
+  print("skip");
+}
+```

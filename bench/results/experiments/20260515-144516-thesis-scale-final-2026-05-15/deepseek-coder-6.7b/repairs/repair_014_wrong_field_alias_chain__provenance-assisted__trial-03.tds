@@ -1,0 +1,13 @@
+val raw = {
+  profile: {
+    name: "Ada",
+    score: 12
+   }
+};
+
+val profile = raw.profile;
+var selected = {
+  points: profile.score
+};
+
+print(selected.points);

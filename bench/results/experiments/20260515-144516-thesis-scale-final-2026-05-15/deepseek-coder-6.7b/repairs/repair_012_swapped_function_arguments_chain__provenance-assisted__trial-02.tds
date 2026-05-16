@@ -1,0 +1,12 @@
+The program seems to be correctly implemented in Tundra. The only possible 
+issue could be a bug or error in the parseNumber function, which you haven'
+haven't provided, assuming it works as intended. However, based on your des
+description, I can assume that this is not the case because "parseNumber" i
+is a known standard function in many programming languages and should work 
+correctly for converting string representation of numbers to actual numeric
+numeric types (integers or floating point numbers).
+
+If parseNumber("20") returns 20 and parseNumber("5") also returns 5, then y
+your program would operate as expected: applyDiscount(discount=5, price=20)
+price=20) -> 15. So there doesn't seem to be a problem with the main logic 
+of the function.

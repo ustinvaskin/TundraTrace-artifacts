@@ -1,0 +1,24 @@
+The program seems to be swapping the arguments when calling `encodeScore`, 
+so let's switch that. The corrected Tundra code should look like this:
+
+```tundra
+def encodeScore(base, adjustment) {
+  return base * 10 + adjustment;
+}
+
+val raw = {
+  base: "7",
+  adjustment: "3"
+};
+
+val base = parseNumber(raw.base);
+val adjustment = parseNumber(raw.adjustment);
+val code = encodeScore(base, adjustment);
+
+print(code);
+```
+
+This will now correctly calculate `encodeScore` as if it were a score codin
+coding system where the base number (7 in this case) is multiplied by 10 an
+and then added to the adjustment value (3 in this case). The result of the 
+calculation should be printed out, producing "73".

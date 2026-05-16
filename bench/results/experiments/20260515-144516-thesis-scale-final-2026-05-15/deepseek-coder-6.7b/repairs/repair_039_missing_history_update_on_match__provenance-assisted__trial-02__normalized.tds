@@ -1,0 +1,21 @@
+val items = [
+  { id: 4, matched: true },
+  { id: 5, matched: false },
+  { id: 7, matched: true }
+];
+
+var lastMatch = "none";
+for(item in items) {
+  if (item.matched) {
+    print(item.id);
+    lastMatch = toString(item.id); // convert the number to string before a
+assigning it to lastMatch
+  }
+}
+
+if (lastMatch == "none") {
+  print("No matches found");
+} else {
+  print(parseNumber(lastMatch)); // if there is a match, parse back the num
+number from the string
+}

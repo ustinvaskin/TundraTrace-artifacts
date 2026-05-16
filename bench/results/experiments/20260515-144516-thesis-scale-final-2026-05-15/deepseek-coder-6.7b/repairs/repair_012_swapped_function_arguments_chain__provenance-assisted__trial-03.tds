@@ -1,0 +1,32 @@
+The issue with the program is that the input values are strings. The `parse
+`parseNumber` function expects a string as argument and returns a number, b
+but it seems like it has been implemented incorrectly in Tundra or missing 
+from this language's standard library. 
+
+However, assuming such a function exists and works properly, the corrected 
+code would look something like:
+
+```tundra
+def applyDiscount(price, discount) {
+  return price - discount;
+}
+
+val raw = {
+  price: "20",
+  discount: "5"
+};
+
+val price = parseNumber(raw.price);    // convert string to number
+val discount = parseNumber(raw.discount);  // convert string to number
+val final = applyDiscount(price, discount);  
+print(final);
+```
+In Tundra, we are assuming `parseNumber` is a function that converts string
+strings into numbers. If it does not exist in the language standard library
+library, you would have to implement this yourself or find an external util
+utility/library to do so. This may involve handling edge cases and checking
+checking for invalid inputs. 
+
+Without actual implementation of `parseNumber`, we can't provide a more pre
+precise solution. Please replace it with your real implementation if necess
+necessary.

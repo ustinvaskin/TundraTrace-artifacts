@@ -1,0 +1,25 @@
+The bug in the code is that even if an event is not approved, it still gets
+gets assigned to lastApproved which results in the id of that unapproved ev
+event being considered as the last approved one. 
+
+To fix this issue we need to add a condition inside the for loop so that it
+it only updates the lastApproved variable when an event is both present and
+and approved:
+
+```tundra
+val events = [
+   { id: "A", approved: true },
+   { id: "B", approved: true },
+   { id: "C", approved: false }
+];
+
+var lastApproved = "none";
+for (event in events) {
+  if(event.approved == true){
+    lastApproved = event.id;
+  }
+}
+print(lastApproved);
+```
+With this modification, the program correctly identifies that B is the last
+last approved event and prints "B" when run.

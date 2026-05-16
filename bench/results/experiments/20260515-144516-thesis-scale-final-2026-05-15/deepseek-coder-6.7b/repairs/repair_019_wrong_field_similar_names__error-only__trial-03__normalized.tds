@@ -1,0 +1,14 @@
+val raw = {
+  user: {
+    score: 12,
+    scores: [10, 11, 12],
+    scoreText: "12"
+   },
+  bonus: 3
+};
+
+val profile = raw.user;
+var total = 0; // Declare a mutable variable to hold the result
+total = parseNumber(profile.scoreText) + raw.bonus; // Convert string into 
+number and add it to bonus
+print(total);

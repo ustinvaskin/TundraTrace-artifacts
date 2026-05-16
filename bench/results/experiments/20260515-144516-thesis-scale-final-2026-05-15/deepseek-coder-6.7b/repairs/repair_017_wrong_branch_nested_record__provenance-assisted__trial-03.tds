@@ -1,0 +1,36 @@
+The provided Tundra code is correct as per the given conditions and values.
+values. It checks if the user score in report object is greater than passMa
+passMark, then it prints "review". Otherwise, it prints "pass". In this cas
+case, as 68 (user's score) isn't more than 70 (pass mark), the program shou
+should print "pass", not "review" as expected.
+
+If you want to change the output based on conditions and ensure that correc
+correct output is produced, please provide a different condition in place o
+of `report.user.score > report.passMark` so it could be evaluated either tr
+true or false based on your needs. 
+
+For example: if we have different passMarks for users with score > 90 (outs
+(outstanding), 80-89 (excellent) and anything below 79 (poor), you can use 
+nested if conditions like this:
+
+```Tundra
+val report = {
+  user: {
+    name: "Ada",
+    score: 68
+  },
+  passMark: 70, // changing the pass mark here will change outcomes.
+};
+
+if (report.user.score > report.passMark) {
+  if(report.user.score > 90){
+     print("outstanding");
+  } else if(report.user.score >= 80){
+     print("excellent");
+  } else{
+    print("poor");  
+  }
+} else {
+  print("pass");
+}
+```

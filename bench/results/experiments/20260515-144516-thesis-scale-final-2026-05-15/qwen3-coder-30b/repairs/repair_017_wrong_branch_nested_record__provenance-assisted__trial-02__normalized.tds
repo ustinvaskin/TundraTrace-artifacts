@@ -1,0 +1,13 @@
+val report = {
+  user: {
+    name: "Ada",
+    score: 68
+  },
+  passMark: 70
+};
+
+if (report.user.score >= report.passMark) {
+  print("review");
+} else {
+  print("pass");
+}

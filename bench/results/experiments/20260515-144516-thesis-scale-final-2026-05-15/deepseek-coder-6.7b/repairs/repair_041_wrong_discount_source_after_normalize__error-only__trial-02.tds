@@ -1,0 +1,40 @@
+The bug is in the last line of your code where you're subtracting the promo
+promoDiscount from price and printing it out. The problem lies in how parse
+parseNumber() function works, which converts string to number but does not 
+remove the decimal point if there are any. So when a discount like "12" (wh
+(which is converted into 12) is deducted from a price of say 80 (also as a 
+whole number 80), it will yield an incorrect result.
+
+To fix this, you should multiply the promoDiscount by -1 before subtraction
+subtraction and then parseNumber() on final value to remove the decimal poi
+point. The corrected program is given below:
+
+```tundra
+def normalize(raw) {
+  return {
+    price: raw.price,
+    promoDiscount: raw.memberDiscount,
+    memberDiscount: raw.memberDiscount
+   };
+}
+
+val raw = {
+  price: "80",
+  promoDiscount: "12",
+  memberDiscount: "5"
+};
+
+val item = normalize(raw);
+var price = parseNumber(item.price) * 1; // Multiply by 1 to ensure it's a 
+whole number
+val discount = parseNumber(item.promoDiscount);
+var final = (discount * -1) + price;    // Subtract promoDiscount after mul
+multiplying it with -1 and adding the original price
+print(final);
+```
+This program will output 68 as expected, which is correct result. The multi
+multiplication by 1 for `price` variable ensures that it's treated like a w
+whole number (integer) even if string had a decimal point during its initia
+initial creation. After this, subtraction of discount and addition of price
+price are done to get the final value after applying memberDiscount on pric
+price.

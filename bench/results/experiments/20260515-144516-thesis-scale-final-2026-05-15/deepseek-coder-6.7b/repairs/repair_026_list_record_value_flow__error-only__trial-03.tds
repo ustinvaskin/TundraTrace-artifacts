@@ -1,0 +1,20 @@
+val order = {
+  lines: [
+    { sku: "A", quantity: "2", unitPrice: "5" },
+    { sku: "B", quantity: "1", unitPrice: "4" }
+   ]
+};
+
+val first = order.lines[0];
+val second = order<｜begin▁of▁sentence｜>order.lines[1];<s  // line was rep
+replaced with the correct code, it should be order.lines[1] instead of sord
+sorder.lines[1].
+val subtotal = parseNumber(first.quantity) * parseNumber(first.unitPrice) +
++ parseNumber(second.quantity) * parseNumber(second.unitPrice);
+
+print(subtotal); 
+Here, first and second lines in the order were parsed incorrectly. Quantiti
+Quantities are to be multiplied by unit prices not quantities for calculati
+calculating subtotals as per the problem statement. This issue was correcte
+corrected in this program. The 's' in <s  should have been removed to corre
+correct the code.

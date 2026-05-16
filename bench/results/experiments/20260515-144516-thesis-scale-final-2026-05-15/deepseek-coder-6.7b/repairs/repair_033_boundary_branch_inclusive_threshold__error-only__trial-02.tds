@@ -1,0 +1,6 @@
+There is no mistake in the Tundra code provided. It should work as expected
+expected and produce "qualify" when run, given that the score is 80 and thr
+threshold is also 80 (which it is). The reason for this would be if you had
+had a different value assigned to `score` or `threshold` at runtime, then y
+your output may change. But in its current state as provided, "qualify" sho
+should print on calling the Tundra interpreter with this code.

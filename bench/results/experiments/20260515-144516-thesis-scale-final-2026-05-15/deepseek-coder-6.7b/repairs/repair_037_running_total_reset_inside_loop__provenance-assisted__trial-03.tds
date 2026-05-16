@@ -1,0 +1,19 @@
+The bug in your code is that you're reinitializing `total` to `0` every loo
+loop, so it always keeps adding the current item amount to `0`. To fix this
+this issue, just remove or comment out the line where you initialize `total
+`total` back to 0 inside the loop. Here's how it should look:
+
+```tundra
+val items = [
+  { amount: 2 },
+  { amount: 5 },
+  { amount: 7 }
+];
+
+var total = 0;
+for (item in items) {
+  total = total + item.amount;
+}
+
+print(total);
+```

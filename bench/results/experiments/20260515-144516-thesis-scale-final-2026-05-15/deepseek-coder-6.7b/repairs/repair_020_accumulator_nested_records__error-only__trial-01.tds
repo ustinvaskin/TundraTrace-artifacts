@@ -1,0 +1,33 @@
+The code calculates the "total" from the nested list "groups", which should
+should return 9, however it is incorrectly setting each iteration's total t
+to the last entry amount because of how inner loop is structured. It assign
+assigns the value of 'entry.amount' only when it iterates through entries f
+for the last group in 'group.entries'. To fix this issue, we need to add up
+up all amounts during both iterations over groups and entries:
+
+```tundra
+val groups = [
+  {
+    name: "north",
+    entries: [
+      { amount: 2 },
+      { amount: 3 }
+     ]
+   },
+  {
+    name: "south",
+    entries: [
+      { amount: 4 }
+     ]
+   }
+];
+
+var total = 0;
+for (group in groups) {
+  for (entry in group.entries) {
+    total = total + entry.amount;
+  }
+}
+
+print(total);
+```

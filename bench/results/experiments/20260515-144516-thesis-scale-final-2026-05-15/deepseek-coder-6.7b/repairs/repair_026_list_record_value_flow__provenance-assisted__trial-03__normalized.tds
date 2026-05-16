@@ -1,0 +1,1 @@
+val subtotal = parseNumber(first.quantity) * parseNumber(first.unitPrice);

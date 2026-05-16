@@ -1,0 +1,29 @@
+Based on your description, you want the output "apply". The current program
+program prints "skip" when request.enabled is True and request.priority > 5
+5, so it seems like these conditions are not met in this context (since pri
+priority 9 is not greater than 5). If these two conditions are expected to 
+be true, then changing the print statement inside the first if block will r
+resolve the issue:
+
+```tundra
+val request = {
+  enabled: true,
+  priority: 9
+};
+
+if (request.enabled) {
+  if (request.priority > 5) {
+    print("apply"); // Changed this line from "skip" to "apply".
+  } else {
+    print("queue");
+  }
+} else {
+  print("disabled");
+}
+```
+This version of the program will now produce "apply" if both request.enable
+request.enabled and request.priority > 5 are true, otherwise it will print 
+"queue" or "disabled". Please note that without more context about your spe
+specific needs, this is a generic solution based on what you provided in yo
+your problem description. If there's anything else I can assist with Tundra
+Tundra programming, please let me know!

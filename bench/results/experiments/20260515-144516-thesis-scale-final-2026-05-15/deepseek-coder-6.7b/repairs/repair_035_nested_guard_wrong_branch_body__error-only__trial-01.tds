@@ -1,0 +1,28 @@
+Based on the provided Tundra source code and expected results, it seems lik
+like there is a logical issue in your if statements. If `request.enabled` i
+is true then if `request.priority > 5` should print "skip" not "queue". Con
+Conversely, if `request.enabled` is false it should print "disabled", not "
+"queue". 
+
+Here's the corrected Tundra source code:
+
+```tundra
+val request = {
+  enabled: true,
+  priority: 9
+};
+
+if (request.enabled) {
+  if (request.priority > 5) {
+    print("skip");
+  } else {
+    print("queue");
+  }
+} else {
+  print("disabled");
+}
+```
+
+This should now correctly print "disabled" when `request.enabled` is false,
+false, and "skip" if both conditions are met (i.e., request.enabled = true 
+AND request.priority > 5).

@@ -1,0 +1,19 @@
+def buildAdjustment(raw) {
+  return {
+    amount: raw.price
+  };
+}
+
+val raw = {
+  price: "50",
+  discount: "8"
+};
+
+val adjustment = buildAdjustment(raw);
+val price = parseNumber(adjustment.amount); // Changed this line from origi
+original code
+val discount = parseNumber(raw.discount);   // Added this line to calculate
+calculate the discount correctly
+val final = price - discount;
+
+print(final);

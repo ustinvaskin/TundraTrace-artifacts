@@ -1,0 +1,24 @@
+The program seems to be working correctly, given that we have already state
+stated what `total` should equal in the problem description. We are multipl
+multiplying a base number with a rate and printing it out, both of which we
+were previously calculated correctly based on the provided source data.
+
+However, if you're asking for any changes in terms of style or structure wh
+while keeping the logic intact, here is an example: 
+
+```Tundra
+def selectRate(rates) {
+  return rates[0];
+}
+
+val raw = { base: "10",
+            rates: [{ label: "old", amount: "2" },
+                    { label: "current", amount: "3" }] };
+                    
+val base = parseNumber(raw.base);
+var rate;
+rate = selectRate(raw.rates).amount;
+var total; 
+total = base * parseNumber(rate);
+print(total);
+```

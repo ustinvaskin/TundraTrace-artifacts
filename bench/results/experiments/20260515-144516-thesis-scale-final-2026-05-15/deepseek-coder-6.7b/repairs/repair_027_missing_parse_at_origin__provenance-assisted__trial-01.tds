@@ -1,0 +1,25 @@
+The error is due to the addition of a String and Number in Tundra language 
+which is not allowed in this context. We need to convert item.price from St
+String to Number before adding it with item.fee. Below is the corrected pro
+program:
+
+```tundra
+def normalize(raw) {
+  return {
+    price: parseNumber(raw.price),
+    fee: parseNumber(raw.fee)
+   };
+}
+
+val raw = {
+  price: "18",
+  fee: "2"
+};
+
+val item = normalize(raw);
+val total = item.price + item.fee;
+
+print(total);
+```
+This will convert the String values to Number before performing addition an
+and then print the result.

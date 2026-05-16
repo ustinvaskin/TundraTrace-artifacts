@@ -1,0 +1,20 @@
+The problem with your code is that you are adding a number (the "fee") to a
+a string (account.billing.previous), which will concatenate these two value
+values and not perform arithmetic addition as expected. 
+
+You need to convert the strings to numbers before performing the arithmetic
+arithmetic operation. So, it should be something like this:
+
+val account = {
+  name: "Ada",
+  billing: {
+    current: "30",
+    previous: "12"
+   }
+};
+
+var charge = parseNumber(account.billing.current);
+val fee = 5;
+var total = charge + fee;
+
+print(total);

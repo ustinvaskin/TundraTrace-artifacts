@@ -1,0 +1,36 @@
+The bug is that after every inner loop iteration, it's setting `total` to b
+be equal to the current `entry.amount`, which means `total` will only ever 
+store the last value in each sub-group of entries. Instead, you should add 
+`entry.amount` to `total` rather than just assigning a new value to `total`
+`total`. 
+
+Here is the fixed Tundra code:
+
+```tundra
+val groups = [
+  {
+    name: "north",
+    entries: [
+      { amount: 2 },
+      { amount: 3 }
+    ]
+  },
+  {
+    name: "south",
+    entries: [
+      { amount: 4 }
+    ]
+  }
+];
+
+var total = 0;
+for (group in groups) {
+  for (entry in group.entries) {
+    total = total + entry.amount;
+  }
+}
+
+print(total);
+```
+This code will now correctly calculate the sum of all `entry.amount`s and p
+print out the expected output: 9.

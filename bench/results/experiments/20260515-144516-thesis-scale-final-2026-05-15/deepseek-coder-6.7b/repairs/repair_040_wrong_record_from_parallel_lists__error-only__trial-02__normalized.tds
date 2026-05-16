@@ -1,0 +1,13 @@
+def buildSelected(names, scores) {
+  return {
+    name: names[1],
+    score: scores[0]
+  };
+}
+
+val names = ["Ada", "Bea"];
+val scores = [10, 20]; // changed string to int here.
+
+val selected = buildSelected(names, scores);
+var total = parseInt(selected.score) + 1; // added parseInt function
+print(total);

@@ -1,0 +1,31 @@
+The program seems to be almost correct, but there's a small bug. The select
+selectRate function is not selecting from the array based on the label valu
+value of each object in the rates array. It only returns the first element 
+of the rates array which has label "old" and amount "2". To fix this issue,
+issue, we should change the implementation of the selectRate to iterate ove
+over all elements of the rates array until it finds an element with a match
+matching label (e.g., "current"). Here is the corrected code:
+
+```tundra
+def selectRate(rates, targetLabel) {
+  for rate in rates {
+    if rate.label == targetLabel {
+      return rate;
+    }
+  }
+}
+
+val raw = {
+  base: "10",
+  rates: [
+    { label: "old", amount: "2" },
+    { label: "current", amount: "3" }
+  ]
+};
+
+val base = parseNumber(raw.base);
+val rate = parseNumber(selectRate(raw.rates, "current").amount);
+val total = base * rate;
+
+print(total);
+```

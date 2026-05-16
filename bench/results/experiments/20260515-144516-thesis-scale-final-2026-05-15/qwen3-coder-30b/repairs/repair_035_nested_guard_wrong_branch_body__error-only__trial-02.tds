@@ -1,0 +1,16 @@
+val request = {
+  enabled: true,
+  priority: 9
+};
+
+if (request.enabled) {
+  if (request.priority > 5) {
+    print("skip");
+  } else {
+    print("queue");
+  }
+} else {
+  print("disabled");
+}
+
+print("apply");

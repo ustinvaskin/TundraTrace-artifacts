@@ -1,0 +1,22 @@
+There are two problems with your code. One is in the assignment of 'adjustm
+'adjustment', and one in the calculation of 'final'. Here's the corrected v
+version:
+
+```tundra
+def buildAdjustment(raw) {
+  return {
+    amount: parseNumber(raw.price),
+    discount: parseNumber(raw.discount)
+  };
+}
+
+val raw = {
+  price: "50",
+  discount: "8"<｜begin▁of▁sentence｜>,
+};
+
+val adjustment = buildAdjustment(raw);
+val final = adjustment.amount - adjustment.discount;
+
+print(final);
+```

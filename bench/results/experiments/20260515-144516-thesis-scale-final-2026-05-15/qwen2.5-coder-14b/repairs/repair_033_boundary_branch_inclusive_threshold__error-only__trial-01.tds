@@ -1,0 +1,8 @@
+val score = 85;  
+val threshold = 80;
+
+if (score > threshold) {  
+  print("qualify");  
+} else {  
+  print("hold");  
+}

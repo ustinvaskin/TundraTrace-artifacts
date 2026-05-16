@@ -1,0 +1,3 @@
+def raw { base: "6", adjustment: "2" }
+var pair = makePair(raw) 
+print(pair.base + pair.adjustment)

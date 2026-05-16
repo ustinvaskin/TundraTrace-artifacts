@@ -1,0 +1,38 @@
+def readAmount(raw)  {
+  return raw.invoice.amount;
+}
+
+def wrapLine(raw)  {
+  return {
+    charge: parseNumber(readAmount(raw))
+   };
+}
+
+def parseNumber(s) {
+  var result = 0;
+  for (var i = 0; i < s.length; i++) {
+    if (i == 0 && s[i] == '-") continue; // handle negative numbers
+    result = result * 10 + parseDigit(s[i]);
+  }
+  return (s[0] == '-') ? -result : result;
+}
+
+def parseDigit(c) {
+  if ("0" <= c && c <= "9") return c.charCodeAt(0) - "0".charCodeAt(0);
+  throw new Error("Invalid number");
+}
+
+val raw = {
+  invoice: {
+    amount: "-40" // to test negative numbers, uncomment and run the progra
+program again with this value
+   }
+};
+
+val line = wrapLine(raw);
+val lines = [line];
+val subtotal = lines[0].charge;
+val fee = 2;
+val total = subtotal + fee;
+
+print(total);

@@ -1,0 +1,26 @@
+Here is the corrected Tundra source code for your problem:
+
+```tundra
+def normalize(raw) {
+  return {
+    previousLevel: raw["previousLevel"],
+    currentLevel: raw["currentLevel"]
+   };
+}
+
+val raw = {
+  "previousLevel": "low",
+  "currentLevel": "high"
+};
+
+val normalized = normalize(raw);
+if (normalized.previousLevel == "high") {
+  print("alert");
+} else {
+  print("ok");
+}
+```
+This corrected code takes the raw data, normalizes it by returning only cur
+current and previous levels of water level, then checks if the normalized '
+'previousLevel' field is equal to "high". If so, it prints "alert"; otherwi
+otherwise, it prints "ok". This should be the expected output.

@@ -28,6 +28,7 @@ bench/tasks/pilot/           frozen 36-task final benchmark inventory
 bench/prompts/v2/            frozen final prompt templates
 bench/scripts/               prompt generation, scoring, audit, and summary tools
 bench/results/final/         frozen final-study outputs
+bench/results/experiments/   frozen prompts and repair outputs from the final run
 bench/results/qualitative/   final qualitative audit labels
 bench/results/curated/       final human-readable result summaries
 docs/                        methodology and reproduction notes
@@ -124,6 +125,7 @@ PY
 - scoring and normalization pipeline;
 - paired-bootstrap helper;
 - final combined result files;
+- frozen prompts and repair outputs from the final run;
 - final manifest and summary;
 - final qualitative audit labels;
 - trace-leakage rubric;

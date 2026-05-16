@@ -1,0 +1,9 @@
+val raw = {
+  label: "widgets",
+  count: "6"
+};
+
+val count = parseNumber(raw.count);
+val total = count + 4;
+
+print(total);

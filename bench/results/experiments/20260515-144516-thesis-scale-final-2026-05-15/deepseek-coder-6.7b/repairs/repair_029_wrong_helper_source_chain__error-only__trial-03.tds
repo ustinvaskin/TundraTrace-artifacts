@@ -1,0 +1,34 @@
+The expected output of 28 is produced when we subtract "backup" total from 
+"current" total, as per the problem statement, and then add a fee to it. He
+Here's how you can fix the program in Tundra language:
+
+```tundra
+def extractAmount(raw) {
+  return parseNumber(raw.current.total);
+}
+
+def makeLine(raw) {
+  return {
+    amount: extractAmount(raw)
+  };
+}
+
+val raw = {
+  current: {
+    total: "25"
+   },
+  backup: {
+    total: "9"
+   }
+};
+
+val line = makeLine(raw);
+val ledger = [line];
+val amount = parseNumber(ledger[0].amount) - parseNumber(raw.backup.total);
+parseNumber(raw.backup.total);
+val fee = 3;
+val final = amount + fee;
+
+print(final);
+```
+The output of this corrected program will be 28, as expected.

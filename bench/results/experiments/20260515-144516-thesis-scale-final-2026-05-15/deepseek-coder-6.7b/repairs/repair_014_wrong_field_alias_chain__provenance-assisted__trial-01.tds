@@ -1,0 +1,23 @@
+The error is due to incorrect assignment of a value from one record to anot
+another. The 'selected' object should directly take the 'points', which com
+comes from profile.score, without any other fields. Therefore, it should lo
+look like this:
+
+```Tundra
+val raw = {
+  profile: {
+    name: "Ada",
+    score: 12
+   }
+};
+
+val profile = raw.profile;
+val selected = profile.score; // Directly use the value from 'score' field 
+of the profile record
+
+print(selected);
+```
+This will print out `12` which is expected as per the program requirements.
+requirements. The Tundra language uses dot notation to access fields, so we
+we only need to write `profile.score` instead of trying to put it inside an
+another object with 'points' key.

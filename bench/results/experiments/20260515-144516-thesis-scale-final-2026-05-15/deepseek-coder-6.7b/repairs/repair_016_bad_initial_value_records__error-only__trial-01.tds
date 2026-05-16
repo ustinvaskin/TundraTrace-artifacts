@@ -1,0 +1,21 @@
+The problem with your code is that you are trying to access a property of a
+an object using dot notation, which doesn't work on numbers in Tundra. You 
+need to use bracket notation instead like `fee['amount']`. Here is the corr
+corrected program:
+
+```Tundra
+val fees = [
+  { label: "base", amount: 2 },
+  { label: "service", amount: 5 },
+  { label: "tax", amount: 1 }
+];
+
+var total = 0;
+for (fee in fees) {
+  total = total + fee['amount'];
+}
+
+print(total);
+```
+This program will now correctly add up all the amounts from the `fees` list
+list and print out the result. The expected output is 8.

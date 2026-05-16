@@ -1,0 +1,33 @@
+The bug is that the interpreter doesn'<｜begin▁of▁sentence｜> expect a Numb
+Number when it expects a String, or vice versa. This happens because the fi
+field `raw.invoice.amount` is initially stored as a string "40" and not a n
+number 40. Therefore, we need to parse this string into a number using the 
+function `parseNumber()` in order to perform addition operation.
+
+Here's how you can modify your program:
+
+```tundra
+def readAmount(raw) {
+  return parseNumber(raw.invoice.amount);
+}
+
+def wrapLine(raw) {
+  return {
+    charge: readAmount(raw)
+   };
+ }
+
+val raw = {
+  invoice: {
+    amount: "40"
+   }
+};
+
+val line = wrapLine(raw);
+val lines = [line];
+val subtotal = parseNumber(lines[0].charge); // Convert string to number
+val fee = 2;
+val total = subtotal + fee;
+
+print(total);
+```

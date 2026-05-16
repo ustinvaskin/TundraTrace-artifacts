@@ -1,0 +1,13 @@
+def ratio(numerator, denominator) {
+  return numerator / denominator;
+}
+
+val raw = {
+  numerator: "20",
+  denominator: "5"
+};
+
+val numerator = parseNumber(raw.numerator);
+val denominator = parseNumber(raw.denominator);
+val result = ratio(numerator, denominator); // corrected line
+print(result);

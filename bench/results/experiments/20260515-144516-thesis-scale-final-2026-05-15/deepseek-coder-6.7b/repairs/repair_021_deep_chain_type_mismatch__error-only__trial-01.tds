@@ -1,0 +1,48 @@
+The program is trying to perform addition operation between two different d
+data types, a string ("40") and a number (2). We need to convert the string
+string into a number before performing arithmetic operations. Tundra does n
+not have built-in functions like parseInt(), parseFloat() etc., so we will 
+write our own function to achieve this.
+
+Here is the corrected program:
+
+```tundra
+def readAmount(raw)  {
+  return raw.invoice.amount;
+}
+
+def wrapLine(raw)  {
+  return {
+    charge: parseNumber(readAmount(raw))
+   };
+}
+
+def parseNumber(s) {
+  var result = 0;
+  for (var i = 0; i < s.length; i++) {
+    if (i == 0 && s[i] == '-") continue; // handle negative numbers
+    result = result * 10 + parseDigit(s[i]);
+  }
+  return (s[0] == '-') ? -result : result;
+}
+
+def parseDigit(c) {
+  if ("0" <= c && c <= "9") return c.charCodeAt(0) - "0".charCodeAt(0);
+  throw new Error("Invalid number");
+}
+
+val raw = {
+  invoice: {
+    amount: "-40" // to test negative numbers, uncomment and run the progra
+program again with this value
+   }
+};
+
+val line = wrapLine(raw);
+val lines = [line];
+val subtotal = lines[0].charge;
+val fee = 2;
+val total = subtotal + fee;
+
+print(total);
+```

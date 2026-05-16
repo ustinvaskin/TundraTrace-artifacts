@@ -1,0 +1,50 @@
+You are given a program written in Tundra, a small programming language.
+The program has a bug.
+
+Fix the program so that it produces the expected output.
+
+Output contract:
+- Return only raw Tundra source code.
+- Do not use Markdown fences.
+- Do not write explanations, headings, commentary, or "Here is..." text.
+- The entire response must be directly executable by the Tundra interpreter.
+- Do not include comments unless they already appear in the program.
+
+Tundra reminders:
+- Use val for immutable bindings and var for mutable bindings.
+- Use semicolons after statements.
+- Records use { field: value, other: value }.
+- Record fields use commas, not semicolons.
+- Lists use [a, b, c].
+- Field access uses object.field.
+- Indexing uses list[index].
+- print(value) prints a value.
+- parseNumber(value) expects a String argument and returns a Number.
+- Do not use JavaScript, Python, or Java built-ins such as Number(), parseInt(), parseFloat(), int(), or Integer.parseInt().
+
+Program:
+def normalize(raw) {
+  return {
+    price: raw.price,
+    fee: parseNumber(raw.fee)
+  };
+}
+
+val raw = {
+  price: "18",
+  fee: "2"
+};
+
+val item = normalize(raw);
+val total = item.price + item.fee;
+
+print(total);
+
+Runtime error or observed failure:
+TypeError: Cannot add String and Number.
+Failing expression: item.price + item.fee
+Left value: "18" : String
+Right value: 2 : Number
+
+Expected output:
+20

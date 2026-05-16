@@ -1,0 +1,33 @@
+The error is caused because the fee and price are being treated as strings,
+strings, while they should be numbers. To fix this, you need to convert the
+them from strings to numbers using the parseNumber function. Here's how you
+you can modify your program:
+
+```tundra
+def normalizeFee(raw)  {
+  return parseNumber(raw.fee);
+}
+
+def normalizePrice(raw)  {
+  return parseNumber(raw.price);
+}
+
+def makeItem(raw)  {
+  return {
+    price: normalizePrice(raw),
+    fee: normalizeFee(raw)
+   };
+}
+
+val raw = {
+  price: "32",
+  fee: "4"
+};
+
+val item = makeItem(raw);
+val total = item.price + item.fee;
+
+print(total);
+```
+This program will now correctly add the numbers represented by the strings 
+in raw, and print the result as expected (36).

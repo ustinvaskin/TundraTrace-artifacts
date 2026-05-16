@@ -1,0 +1,28 @@
+The problem here is that there seems to be a misunderstanding of what "prio
+"priority". In this context, we interpret it as indicating whether or not t
+the request should be prioritized. Therefore, if priority is less than or e
+equal to 5 (i.e., `request.priority <= 5`), then it's not considered high p
+priority and the expected output would be 'queue', otherwise 'apply'.
+
+Here is the corrected Tundra program:
+
+```tundra
+val request = {
+  enabled: true,
+  priority: 9
+};
+
+if (request.enabled) {
+  if (request.priority <= 5) {
+    print("queue");
+  } else {
+    print("apply");
+  }
+} else {
+  print("disabled");
+}
+```
+This program will output 'apply' when run, as the priority of 9 is greater 
+than 5 and request is enabled. If `request.priority` was less or equal to 5
+5 and `request.enabled` were true, it would output 'queue'. If `request.ena
+`request.enabled` were false, it would print 'disabled'.

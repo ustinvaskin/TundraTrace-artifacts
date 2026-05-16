@@ -1,0 +1,21 @@
+The bug in this code is that you are resetting the value of 'total' inside 
+the loop causing it to always contain the amount of the last item. To fix i
+it, move the line "var total = 0;" outside the loop so it only runs once be
+before the start of each iteration. Also, if you want to accumulate totals 
+correctly across all iterations, keep the initialization of 'total' inside 
+the loop and directly add amounts in the following line:
+
+```tundra
+val items = [
+  { amount: 2 },
+  { amount: 5 },
+  { amount: 7 }
+];
+
+var total = 0;
+for (item in items) {
+  total = total + item.amount;
+}
+
+print(total);
+```

@@ -8,7 +8,7 @@ authors:
 abstract: >-
   Artifacts for TundraTrace, including the interpreter source, runtime-evidence
   examples, benchmark tasks, prompt templates, scoring scripts, final study
-  outputs, and audit documentation.
+  outputs, frozen prompt/repair files, and audit documentation.
 keywords:
   - program repair
   - benchmark

@@ -1,0 +1,22 @@
+The issue with your code is that you're assigning `item.cost` to the variab
+variable `total` in every iteration of the loop, so by the time you get to 
+the end of the array, `total` will be just the last item's cost and not the
+their total sum. 
+
+We need to accumulate the total costs instead of replacing it with each new
+new value from `item.cost`:
+
+```tundra
+val items = [
+  { name: "a", cost: 2 },
+  { name: "b", cost: 3 },
+  { name: "c", cost: 4 }
+];
+
+var total = 0;
+for (item in items) {
+  total += item.cost;
+}
+
+print(total);
+```

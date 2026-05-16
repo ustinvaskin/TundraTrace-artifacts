@@ -1,0 +1,26 @@
+The program is correct and will produce the expected result "B". The bug wa
+was that even though loop iteration was happening over all events, `lastApp
+`lastApproved` variable was not updated when `approved` for an event was fa
+false. 
+
+Here's the corrected code:
+
+```tundra
+val events = [
+   { id: "A", approved: true },
+   { id: "B", approved: true },
+   { id: "C", approved: false }
+];
+
+var lastApproved = "none";
+for(event in events) {
+  if (event.approved){
+    lastApproved = event.id;
+  }
+}
+print(lastApproved);
+```
+This code will now update `lastApproved` to the id of the most recent appro
+approved event, even when a non-approved event occurs later in the list. Th
+The final value of `lastApproved` would be "B", as it's the last event with
+with `approved: true` and before an event with `approved: false` occurs.

@@ -1,0 +1,34 @@
+The program is producing incorrect output because it's not updating `lastMa
+`lastMatch` correctly. We need to update `lastMatch` only when we find a ma
+matching item and this needs to be done outside of the if-statement since o
+otherwise, even non-matching items would cause the last match value in `las
+`lastMatch` to be updated.
+
+So, here is the corrected program:
+
+```tundra
+val items = [
+  { id: 4, matched: true },
+  { id: 5, matched: false },
+  { id: 7, matched: true }
+];
+
+var lastMatch = "none";
+for(item in items) {
+  if(item.matched) {
+    print(item.id);
+    lastMatch = item.id; // Update last match here outside the if-statement
+if-statement
+  }
+}
+
+print(lastMatch);
+```
+This program will output:
+4
+7
+7
+The loop first prints `4` and then `7` because it finds that the items with
+with ids `4` and `7` are matching. The last print statement at the end outp
+outputs the value of `lastMatch`, which is updated to be the id of the last
+last matched item in the list i.e., `7`.

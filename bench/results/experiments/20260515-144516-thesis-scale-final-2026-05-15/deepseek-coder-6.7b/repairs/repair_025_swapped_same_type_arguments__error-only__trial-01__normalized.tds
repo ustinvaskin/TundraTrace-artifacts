@@ -1,0 +1,19 @@
+def encodeScore(base, adjustment) {
+  return base * 10 + adjustment;
+}
+
+val raw = {
+  base: "7",
+  adjustment: "3"
+};
+
+var base = 0; //initialize as ints so we can use math operations on them. I
+It's not necessary for Tundra to know the types, but this is just good codi
+coding practice.
+var adjustment = 0;  
+
+base = parseNumber(raw.base);  //parseNumber will convert string to number
+adjustment = parseNumber(raw.adjustment); //parseNumber will convert string
+string to number
+val code = encodeScore(base, adjustment);
+print(code);

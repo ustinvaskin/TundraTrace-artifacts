@@ -1,0 +1,7 @@
+The program is correct and it should work as expected. It sums the total va
+value of the first item in both groups and adds two to it, which results in
+in 30 being printed out. The function `chooseCurrent` correctly returns the
+the first element from the list 'groups'. And `parseNumber()` converts a st
+string number into an actual numeric type that can be used for mathematical
+mathematical operations. So there doesn't seem to be any bug in the provide
+provided Tundra code.

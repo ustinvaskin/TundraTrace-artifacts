@@ -1,0 +1,9 @@
+```tundra
+val raw = {
+  price: "10"
+};
+
+val numeric = parseNumber(raw.price);
+val total = numeric + 5;
+print(total);
+```

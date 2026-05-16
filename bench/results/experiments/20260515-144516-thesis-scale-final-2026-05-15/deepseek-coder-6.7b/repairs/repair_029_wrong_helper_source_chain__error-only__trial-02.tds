@@ -1,0 +1,34 @@
+Here is the corrected Tundra code:
+
+```tundra
+def extractAmount(raw) {
+  return parseNumber(raw.current.total);
+}
+
+def makeLine(raw) {
+  return {
+    amount: extractAmount(raw)
+  };
+}
+
+val raw = {
+  current: {
+    total: "25"
+  },
+  backup: {
+    total: "9"
+  }
+};
+
+val line = makeLine(raw);
+val ledger = [line];
+val amount = parseNumber(ledger[0].amount);
+val fee = 3;
+val final = amount + fee;
+
+print(final);
+```
+The error in the initial code was due to `extractAmount` function returning
+returning `raw.backup.total` instead of `raw.current.total`, which is what 
+we wanted as per our requirement. I have corrected this by modifying that l
+line in `extractAmount` to return raw's current total value.

@@ -1,0 +1,15 @@
+The code is running correctly based on the provided information. The compar
+comparison between two identical numbers (score and threshold are both 80) 
+results in false, so "hold" should be printed. There's no bug or error rela
+related to Tundra itself. Here it is again for reference:
+
+```tundra
+val score = 80;
+val threshold = 80;
+
+if (score > threshold) {
+  print("qualify");
+} else {
+  print("hold");
+}
+```

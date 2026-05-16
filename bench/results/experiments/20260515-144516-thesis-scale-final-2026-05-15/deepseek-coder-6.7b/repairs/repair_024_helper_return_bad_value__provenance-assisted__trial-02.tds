@@ -1,0 +1,29 @@
+The error is occurring due to the fact that `parseNumber` function expects 
+a String argument but it's being given a Number from `loadCount` function, 
+which in turn extracts string "label" from record raw. 
+
+To fix this problem we need to ensure that `count` variable contains a nume
+numeric value and not a string. The issue arises because the count is curre
+currently stored as a String ("6") instead of a Number (6). We will parse i
+it into a number before adding 4.
+
+So, the corrected Tundra code would be:
+
+```tundra
+def loadCount(raw) {
+  return raw.label;
+}
+
+val raw = {
+  label: "widgets",
+  count: "6"
+};
+
+val count = parseNumber(loadCount(raw));
+val total = count + 4;
+
+print(total);
+```
+This will print `10` as the output. The function `parseNumber` is used to c
+convert String into Number, and then this Number value is added 4 in order 
+to achieve expected result.

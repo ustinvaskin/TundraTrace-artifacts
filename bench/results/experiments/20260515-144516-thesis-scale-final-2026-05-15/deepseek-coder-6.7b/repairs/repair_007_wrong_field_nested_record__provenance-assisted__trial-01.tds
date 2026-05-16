@@ -1,0 +1,19 @@
+The error is because the property in the record 'report' is named 'score', 
+not 'points'. So, you should be using `report.user.score` instead of `repor
+`report.user.points`. Here's the corrected code:
+
+```tundra
+val report = {
+  user: {
+    name: "Ada",
+    score: 10
+  },
+  bonus: 2
+};
+
+val total = report.user.score + report.bonus;
+print(total);
+```
+This program calculates the sum of 'score' and 'bonus', then prints it out.
+out. The expected output is 12, as that's what `report.user.score` (which i
+is 10) plus `report.bonus` (which is 2) equals.

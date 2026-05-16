@@ -1,0 +1,27 @@
+The problem in this code is that it's adding a number (the "charge") to ano
+another number (the "fee"). But we need to add them to get the correct tota
+total. So, let's change `total = charge + fee;` into `total = parseNumber(a
+parseNumber(account.billing.current) + fee;`.
+
+This code snippet converts the string account.billing.current into a number
+number before adding it with the "fee". The result of this addition is then
+then assigned to variable "total", which will be printed out at the end. Th
+This should solve the problem and give you the expected output of 35.
+
+Here's the corrected Tundra code:
+
+```tundra
+val account = {
+  name: "Ada",
+  billing: {
+    current: "30",
+    previous: "12"<｜begin▁of▁sentence｜>
+   }
+};
+
+val charge = parseNumber(account.billing.previous);
+val fee = 5;
+val total = parseNumber(account.billing.current) + fee; // change here
+
+print(total);
+```

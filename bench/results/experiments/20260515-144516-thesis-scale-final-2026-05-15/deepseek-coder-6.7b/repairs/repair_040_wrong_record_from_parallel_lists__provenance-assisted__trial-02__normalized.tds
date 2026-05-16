@@ -1,0 +1,14 @@
+def buildSelected(names, scores) {
+    return {
+        name: names[0],
+        score: scores[1]
+    };
+}
+
+val names = ["Ada", "Bea"];
+val scores = [10, 20];
+
+val selected = buildSelected(names, scores);
+val total = parseNumber(selected.score) + 1;
+
+print(total);

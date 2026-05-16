@@ -1,0 +1,54 @@
+You are given a program written in Tundra, a small programming language.
+The program has a bug.
+
+Fix the program so that it produces the expected output.
+
+Output contract:
+- Return only raw Tundra source code.
+- Do not use Markdown fences.
+- Do not write explanations, headings, commentary, or "Here is..." text.
+- The entire response must be directly executable by the Tundra interpreter.
+- Do not include comments unless they already appear in the program.
+
+Tundra reminders:
+- Use val for immutable bindings and var for mutable bindings.
+- Use semicolons after statements.
+- Records use { field: value, other: value }.
+- Record fields use commas, not semicolons.
+- Lists use [a, b, c].
+- Field access uses object.field.
+- Indexing uses list[index].
+- print(value) prints a value.
+- parseNumber(value) expects a String argument and returns a Number.
+- Do not use JavaScript, Python, or Java built-ins such as Number(), parseInt(), parseFloat(), int(), or Integer.parseInt().
+
+Program:
+def buildSelected(names, scores) {
+  return {
+    name: names[1],
+    score: scores[0]
+  };
+}
+
+val names = ["Ada", "Bea"];
+val scores = ["10", "20"];
+
+val selected = buildSelected(names, scores);
+val total = parseNumber(selected.score) + 1;
+
+print(total);
+
+Runtime error or observed failure:
+The program runs but produces the wrong output.
+
+Value provenance:
+- total came from parseNumber(selected.score) + 1
+- selected.name came from names[1]
+- selected.score came from scores[0]
+- names[1] was string "Bea"
+- scores[0] was string "10"
+- scores[1] was string "20"
+- the selected record should use aligned index 1 values
+
+Expected output:
+21

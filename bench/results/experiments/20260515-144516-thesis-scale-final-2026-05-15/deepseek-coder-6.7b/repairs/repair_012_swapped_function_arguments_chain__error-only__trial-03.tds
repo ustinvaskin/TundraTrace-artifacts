@@ -1,0 +1,27 @@
+Based on the information provided, it appears that the main issue is in how
+how we're applying the discount and parsing our values because of this we e
+end up with negative result. The correct logic should be to apply the disco
+discount first, then subtract it from price. 
+
+Here is the corrected Tundra code:
+
+```tundra
+def applyDiscount(price, discount) {
+  return price - discount;
+}
+
+val raw = {
+  price: "20",
+  discount: "5"
+};
+
+val price = parseNumber(raw.price);
+val discount = parseNumber(raw.discount);
+val final = applyDiscount(price, discount); // corrected to first subtract 
+the discount from the price
+print(final);
+```
+This code will correctly print out 15, assuming that we're dealing with int
+integer numbers and not floating point ones (since Tundra doesn't have buil
+built-in float type). If you were dealing with floats, you would need to us
+use a different approach like multiplying by decimal equivalents.

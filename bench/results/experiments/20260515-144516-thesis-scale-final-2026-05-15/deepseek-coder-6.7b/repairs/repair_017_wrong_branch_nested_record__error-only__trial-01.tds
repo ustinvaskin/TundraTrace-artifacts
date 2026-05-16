@@ -1,0 +1,35 @@
+There is no bug in this Tundra code, as it is supposed to work properly and
+and should return "review" if user score is greater than passMark. The give
+given code is correct according to the provided information about the progr
+programming language specifications. 
+
+Here is the exact same program written in a format which includes comments 
+for clarity:
+
+```tundra
+val report = {                                                 // Define 'r
+'report' as record with two fields: 
+    user: {                                                      // - A nes
+nested record named 'user' containing two fields:
+        name: "Ada",                                             //   - a S
+String field called 'name',
+        score: 68                                                  //   - a
+a Number field called 'score'.
+    },
+    passMark: 70                                                   // - A N
+Number field called 'passMark'.
+};
+
+if (report.user.score > report.passMark) {                        // If the
+the user's score is greater than the pass mark,
+    print("review");                                             //   then 
+print "review".
+} else {                                                          // Otherw
+Otherwise, 
+    print("pass");                                                //     pr
+print "pass".
+}
+```
+
+You can copy and run this code in your Tundra interpreter to get the expect
+expected output.

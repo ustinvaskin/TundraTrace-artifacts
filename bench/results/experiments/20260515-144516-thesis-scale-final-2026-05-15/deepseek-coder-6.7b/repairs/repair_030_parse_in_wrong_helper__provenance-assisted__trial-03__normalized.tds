@@ -1,0 +1,24 @@
+def normalizeFee(raw) {
+  return parseNumber(raw.fee);
+}
+
+def normalizePrice(raw) {
+  return parseNumber(raw.price);
+}
+
+def makeItem(raw) {
+  return {
+    price: normalizePrice(raw),
+    fee: normalizeFee(raw)
+   };
+}
+
+val raw = {
+  price: "32",
+  fee: "4"
+};
+
+val item = makeItem(raw);
+val total = item.price + item.fee;
+
+print(total);

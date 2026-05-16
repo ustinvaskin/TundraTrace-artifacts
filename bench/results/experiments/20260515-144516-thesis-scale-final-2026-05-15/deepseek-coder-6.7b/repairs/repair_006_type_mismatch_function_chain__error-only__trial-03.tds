@@ -1,0 +1,28 @@
+The program is failing because it's trying to add a string (which is what `
+`subtotal` is) and a number. In Tundra, the + operator works differently th
+than in JavaScript or Python. It concatenates strings when used with other 
+strings instead of adding numbers. 
+
+You need to convert the price from a string to a number before performing a
+addition. Here's the corrected code:
+
+```tundra
+def getPriceText(raw) {
+  return raw.price;
+}
+
+val raw = {
+  price: "10"
+};
+
+val item = {
+  cost: parseNumber(getPriceText(raw))
+};
+
+val cart = [item];
+val subtotal = cart[0].cost;
+val fee = 5;
+val total = subtotal + fee;
+
+print(total);
+```

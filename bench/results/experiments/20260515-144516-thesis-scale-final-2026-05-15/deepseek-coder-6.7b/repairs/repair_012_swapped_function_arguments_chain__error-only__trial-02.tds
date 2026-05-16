@@ -1,0 +1,27 @@
+The main problem with your code is that it's subtracting discount from pric
+price instead of applying a discount to a price (which would be equivalent 
+to subtracting the percentage discount from 100 and then multiplying the re
+result by price). So, you need to adjust the order of operations in applyDi
+applyDiscount function.
+
+Here is the corrected code:
+
+```tundra
+def applyDiscount(price, discount) {
+  return (1 - discount/100) * price;
+}
+
+val raw = {
+  price: "20",
+  discount: "5"
+};
+
+val price = parseNumber(raw.price);
+val discount = parseNumber(raw.discount);
+val final = applyDiscount(price, discount);
+print(final);
+```
+This code subtracts the percentage of discount from 100 and then multiplies
+multiplies it by the original price to give a new price that represents a d
+discounted version of the original price. The expected output is now 15 as 
+you wanted.

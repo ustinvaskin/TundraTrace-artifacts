@@ -1,0 +1,19 @@
+The error in the code is due to trying to apply `parseNumber` on `numeric` 
+which is already a number. The `parseNumber` function expects a string argu
+argument, but here we're providing a numeric value as an input. 
+
+Let's fix this by converting `numeric` back into a string before passing it
+it to the `parseNumber()` again:
+
+```tundra
+val raw = { price: "10" };
+val numeric = parseNumber(raw.price);
+val total = parseNumber(String(numeric)) + 5;  // Convert numeric back into
+into string before passing it to the function
+print(total);
+```
+This code will convert `numeric` back into a string using `String()` constr
+constructor and then it should pass that string to the `parseNumber()` with
+without causing any TypeError. The result of adding 5 to `numeric` (which i
+is now converted from string back to number) is stored in `total`, which wi
+will be printed out as expected.

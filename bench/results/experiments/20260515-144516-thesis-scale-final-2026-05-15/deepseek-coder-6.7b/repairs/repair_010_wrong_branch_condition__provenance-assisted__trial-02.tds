@@ -1,0 +1,23 @@
+The problem in the provided Tundra code is that it should print "review", b
+but it prints "pass". The condition score > threshold should have been fals
+false. This means the score (72) is not greater than threshold (80), so the
+the program has to execute the else branch and prints "pass" instead of "re
+"review". 
+
+Here's how we can fix the code:
+
+```tundra
+val score = 72;
+val threshold = 80;
+
+if(score > threshold) {
+  print("review");
+} else {
+  print("pass");
+}
+```
+This program should now correctly print "review" when run, as the condition
+condition `score > threshold` is false. The score of 72 is not greater than
+than the threshold of 80. Therefore, it will execute the if branch and prin
+prints "review". If the condition was true (e.g., if score was 90), then it
+it would print "pass" instead.

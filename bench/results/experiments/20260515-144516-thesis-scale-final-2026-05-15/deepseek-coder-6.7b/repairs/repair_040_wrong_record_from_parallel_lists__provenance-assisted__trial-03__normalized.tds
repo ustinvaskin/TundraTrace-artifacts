@@ -1,0 +1,16 @@
+def buildSelected(names, scores) {
+  return {
+    name: names[1],
+    score: parseNumber(scores[0]) // Converting the first element of scores
+scores to integer
+   };
+}
+
+val names = ["Ada", "Bea"];
+val scores = ["10", "20"];
+
+val selected = buildSelected(names, scores);
+val total = selected.score + 1;  // No need for parseNumber here as the sco
+score is already an integer
+
+print(total);

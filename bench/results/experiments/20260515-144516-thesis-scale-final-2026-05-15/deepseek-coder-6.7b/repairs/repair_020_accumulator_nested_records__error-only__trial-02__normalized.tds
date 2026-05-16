@@ -1,0 +1,24 @@
+val groups = [
+  {
+    name: "north",
+    entries: [
+      { amount: 2 },
+      { amount: 3 }
+     ]
+   },
+   {
+    name: "south",
+    entries: [
+      { amount: 4 }
+     ]
+   }
+];
+
+var total = 0;
+for(group in groups) {
+  for(entry in group.entries) {
+    total = total + entry.amount;
+   }
+}
+
+print(total);

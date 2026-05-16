@@ -1,0 +1,132 @@
+{
+  "total_runs": 432,
+  "passed": 323,
+  "by_model": {
+    "qwen2.5-coder:14b": {
+      "total": 432,
+      "passed": 323
+    }
+  },
+  "by_condition": {
+    "error-only": {
+      "total": 216,
+      "passed": 147
+    },
+    "provenance-assisted": {
+      "total": 216,
+      "passed": 176
+    }
+  },
+  "by_scoring_mode": {
+    "strict": {
+      "total": 216,
+      "passed": 157
+    },
+    "normalized": {
+      "total": 216,
+      "passed": 166
+    }
+  },
+  "by_failure_label": {
+    "passed": {
+      "total": 323,
+      "passed": 323
+    },
+    "syntax_error": {
+      "total": 35,
+      "passed": 0
+    },
+    "wrong_output": {
+      "total": 54,
+      "passed": 0
+    },
+    "runtime_error_after_patch": {
+      "total": 6,
+      "passed": 0
+    },
+    "test_setup_error": {
+      "total": 14,
+      "passed": 0
+    }
+  },
+  "by_evidence_type": {
+    "value_provenance": {
+      "total": 288,
+      "passed": 213
+    },
+    "branch_behavior": {
+      "total": 72,
+      "passed": 39
+    },
+    "final_value_history": {
+      "total": 72,
+      "passed": 71
+    }
+  },
+  "by_trace_leakage_risk": {
+    "low": {
+      "total": 180,
+      "passed": 165
+    },
+    "medium": {
+      "total": 240,
+      "passed": 158
+    },
+    "high": {
+      "total": 12,
+      "passed": 0
+    }
+  },
+  "by_condition_evidence_type": {
+    "error-only / value_provenance": {
+      "total": 144,
+      "passed": 94
+    },
+    "provenance-assisted / value_provenance": {
+      "total": 144,
+      "passed": 119
+    },
+    "error-only / branch_behavior": {
+      "total": 36,
+      "passed": 17
+    },
+    "provenance-assisted / branch_behavior": {
+      "total": 36,
+      "passed": 22
+    },
+    "error-only / final_value_history": {
+      "total": 36,
+      "passed": 36
+    },
+    "provenance-assisted / final_value_history": {
+      "total": 36,
+      "passed": 35
+    }
+  },
+  "by_scoring_mode_evidence_type": {
+    "strict / value_provenance": {
+      "total": 144,
+      "passed": 104
+    },
+    "normalized / value_provenance": {
+      "total": 144,
+      "passed": 109
+    },
+    "strict / branch_behavior": {
+      "total": 36,
+      "passed": 18
+    },
+    "normalized / branch_behavior": {
+      "total": 36,
+      "passed": 21
+    },
+    "strict / final_value_history": {
+      "total": 36,
+      "passed": 35
+    },
+    "normalized / final_value_history": {
+      "total": 36,
+      "passed": 36
+    }
+  }
+}

@@ -1,0 +1,36 @@
+The error is due to trying to add a String and Number together directly in 
+Tundra, which doesn't support this operation implicitly like JavaScript doe
+does. We need to convert the price into a number before adding it with fee.
+fee. Here is how you can modify your code:
+
+```
+def normalizeFee(raw)  {
+  return parseNumber(raw.fee);
+}
+
+def normalizePrice(raw)  {
+  return parseNumber(raw.price);
+}
+
+def makeItem(raw)  {
+  return {
+    price: normalizePrice(raw),
+    fee: normalizeFee(raw)
+   };
+}
+
+val raw = {
+  price: "32",
+  fee: "4"
+};
+
+val item = makeItem(raw);
+val total = item.price + item.fee;
+
+print(total);
+```
+This code now correctly converts the String price and fee into Numbers befo
+before adding them together, so that you don't get a TypeError. It will pri
+print "36" as expected. This way of conversion from string to number is don
+done using `parseNumber` function in Tundra language which does not have bu
+built-in functions like JavaScript's parseInt or parseFloat.

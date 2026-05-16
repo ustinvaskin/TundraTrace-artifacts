@@ -1,0 +1,33 @@
+The problem with this code is that it's trying to add a number and a string
+string together, which Tundra doesn't support directly. It needs to convert
+convert these two values into numbers before addition. The parseNumber func
+function does the job but here we have "11" in quotes so it has to be given
+given as an argument of type String not Number.
+
+Here is the corrected code:
+
+```Tundra
+def chooseCurrent(groups)  {
+  return groups[0].items[0];
+}
+
+val groups = [
+  {
+    name: "archive",
+    items: [
+      { total: "11" }
+     ]
+   },
+  {
+    name: "current",
+    items: [
+       { total: "27" }
+     ]
+   }
+];
+
+val item = chooseCurrent(groups);
+val total = parseNumber(item.total) + 2;
+
+print(total);
+```

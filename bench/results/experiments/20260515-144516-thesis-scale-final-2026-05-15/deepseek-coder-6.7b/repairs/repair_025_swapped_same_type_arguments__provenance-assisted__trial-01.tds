@@ -1,0 +1,25 @@
+The issue lies in the order of multiplication and addition. In the original
+original program, it's multiplying `base` by 10 first before adding `adjust
+`adjustment`. But according to your expected output calculation (which is "
+"7 * 10 + 3"), we should add `adjustment` to `base*10` instead.
+
+Here is the corrected program:
+```tundra
+def encodeScore(base, adjustment) {
+  return base + base * adjustment;
+}
+
+val raw = {
+  base: "7",
+  adjustment: "3"
+};
+
+val base = parseNumber(raw.base);
+val adjustment = parseNumber(raw.adjustment);
+val code = encodeScore(base, adjustment);
+
+print(code);
+```
+In this corrected version of the program, we first multiply `base` by `adju
+`adjustment` (which gives us the additional score to add to our base), then
+then add that product to `base`. This will give us the expected output 73.

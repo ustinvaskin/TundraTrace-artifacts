@@ -1,0 +1,17 @@
+The problem in the given program is that there isn't a 'score' property in 
+the user object but an 'points' one. In Tundra, you need to refer correctly
+correctly to the properties of your objects to avoid errors like this one. 
+Here is the corrected source code :
+
+```Tundra
+val report = {
+  user: {
+    name: "Ada",
+    score: 10
+  },
+  bonus: 2
+};
+
+val total = report.user.score + report.bonus;
+print(total);
+```

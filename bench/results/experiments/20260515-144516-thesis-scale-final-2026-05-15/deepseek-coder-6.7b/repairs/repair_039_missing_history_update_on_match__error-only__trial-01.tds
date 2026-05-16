@@ -1,0 +1,30 @@
+The current logic of assigning lastMatch value is wrong because it's assign
+assigned with "none" string even if no match found in items list. So, I wil
+will modify this part and add a new variable to store the id of latest matc
+matched item. Then print that id instead of using "lastMatch". Here is corr
+corrected Tundra source code:
+
+```tundra
+val items = [
+  { id: 4, matched: true },
+  { id: 5, matched: false },
+  { id: 7, matched: true }
+];
+
+var latestMatchedId = 0; // initialize it with a dummy value
+for(item in items) {
+  if(item.matched) {
+    print(item.id); # this will output the id of each match item.
+    latestMatchedId = item.id; # update the variable with current matched i
+item's id
+  }
+}
+
+print(latestMatchedId); # it will always print the latest matched item's id
+id even if no match found in items list
+```
+This program works correctly and produces expected output: "4", "7", "7". A
+As you can see, it prints all IDs of matched items from 'items', then again
+again it prints the last matched item's ID. The idea is to keep track of th
+the latest matched item's id. If no match exists in the list, this variable
+variable will still contain a valid value that can be printed out later.

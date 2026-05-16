@@ -1,0 +1,29 @@
+The problem is that the index in the array `rows` starts at zero, not one. 
+So when we use `rows[2]`, it refers to the third element in the list, which
+which is not what we intended - we want the record with label "target". 
+
+To fix this, you can change the code to find the selected row by iterating 
+over all rows and looking for a match on the 'label' field. Here is how you
+you could do it:
+
+```tundra
+val rows = [
+  { label: "low", value: 10 },
+  { label: "target", value: 20 },
+  { label: "high", value: 30 }
+];
+
+var selected = null;
+for (var i = 0; i < rows.length; i++) {
+  if (rows[i].label == "target") {
+    selected = rows[i];
+    break;
+  }
+}
+print(selected.value);
+```
+
+This program uses a for loop to iterate over all the records in `rows` and 
+checks each one's 'label'. When it finds a record with label "target", it a
+assigns that record to `selected` and exits the loop. Finally, it prints ou
+out the value of the selected record. It should now correctly output 20.

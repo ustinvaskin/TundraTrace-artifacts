@@ -1,0 +1,23 @@
+def readAmount(raw) {
+  return parseNumber(raw.invoice.amount);
+}
+
+def wrapLine(raw) {
+  return {
+    charge: readAmount(raw)
+  };
+}
+
+val raw = {
+  invoice: {
+    amount: "40"
+  }
+};
+
+val line = wrapLine(raw);
+val lines = [line];
+val subtotal = lines[0].charge;
+val fee = 2;
+val total = subtotal + fee;
+
+print(total);

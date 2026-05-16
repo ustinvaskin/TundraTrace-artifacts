@@ -1,0 +1,17 @@
+def selectRate(rates) {
+    return rates[0];
+}
+
+val raw = {
+    base: "10",
+    rates: [
+        { label: "old", amount: "2" },
+        { label: "current", amount: "3" }
+    ]
+};
+
+val base = parseNumber(raw.base);
+val rate = parseNumber(selectRate(raw.rates).amount);
+val total = base * rate;
+
+print(total);

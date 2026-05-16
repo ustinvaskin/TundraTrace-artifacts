@@ -1,0 +1,14 @@
+def encodeScore(base, adjustment) {
+  return base + base * adjustment;
+}
+
+val raw = {
+  base: "7",
+  adjustment: "3"
+};
+
+val base = parseNumber(raw.base);
+val adjustment = parseNumber(raw.adjustment);
+val code = encodeScore(base, adjustment);
+
+print(code);

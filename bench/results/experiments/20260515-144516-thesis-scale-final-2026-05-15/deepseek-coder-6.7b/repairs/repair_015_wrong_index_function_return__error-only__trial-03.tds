@@ -1,0 +1,27 @@
+The problem in the provided program is that it's trying to access a list el
+element at an index that doesn't exist, specifically the fourth (index=3) e
+element. The length of this "scores" list is only three elements long.
+
+To fix the bug, you should change the line:
+```Tundra
+return scores[3];
+```
+to 
+```Tundra
+return scores[2]; // indexing starts at 0, so third element has an index of
+of 2.
+```
+Entire corrected code is as follows:
+```Tundra
+def chooseBest(scores) {
+  return scores[2];
+}
+
+val row = {
+  name: "Ada",
+  scores: [7, 8, 9]
+};
+
+val best = chooseBest(row.scores);
+print(best); // This will print '9' as the expected output.
+```

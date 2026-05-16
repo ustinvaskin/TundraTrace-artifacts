@@ -1,0 +1,25 @@
+The error in your program is due to trying to add together a String ("12") 
+and a Number (3). To fix this, you need to convert the String representatio
+representation of the score ("12") into a Number before adding it with the 
+bonus. You can use parseNumber() function for that. 
+
+Here's the corrected program:
+
+```tundra
+val raw = {
+  user: {
+    score: 12,
+    scores: [10, 11, 12],
+    scoreText: "12"
+   },
+  bonus: 3
+};
+
+val profile = raw.user;
+val total = parseNumber(profile.scoreText) + raw.bonus;
+print(total);
+```
+
+This program should now output `15` as expected because it correctly adds t
+the numeric value of "12" (converted from String to Number by parseNumber()
+parseNumber()) with 3, resulting in 15.

@@ -1,0 +1,19 @@
+Here's how you can fix it in Tundra programming language. In this case, we 
+should convert strings to numbers before arithmetic operations using parseN
+parseNumber function. 
+
+```tundra
+val account = {
+  name: "Ada",
+  billing: {
+    current: "30",
+    previous: "12"
+  }
+};
+
+val charge = parseNumber(account.billing.previous);
+val fee = 5;
+val total = charge + fee;
+
+print(total);
+```

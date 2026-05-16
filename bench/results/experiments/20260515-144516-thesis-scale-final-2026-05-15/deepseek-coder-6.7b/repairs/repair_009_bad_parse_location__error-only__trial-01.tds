@@ -1,0 +1,20 @@
+The issue is that `parseNumber` function takes a String argument but it's r
+receiving a Number as the result of another operation (in this case, parsin
+parsing the "price" field of the raw record).
+
+Here is the corrected program:
+
+```tundra
+val raw = {
+  price: "10"
+};
+
+val numeric = parseNumber(raw.price);
+val total = numeric + 5;
+print(total);
+```
+
+In this code, `parseNumber` is used to convert the String representation of
+of a number ("10") into an actual Number data type (10), which can then be 
+added with other numbers in subsequent operations. The result is printed us
+using print(), resulting in "15" being outputted as expected.

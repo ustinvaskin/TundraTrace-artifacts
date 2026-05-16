@@ -1,0 +1,36 @@
+The problem is that the program doesn't keep track of the most recent match
+matched id. It only prints them and leaves `lastMatch` as "none". To fix th
+this, we need to change it so that whenever a match occurs, `lastMatch` get
+gets updated with the new item id. We also need an extra condition for when
+when no matches are found in the list.
+
+Here is the corrected code:
+
+```tundra
+val items = [
+  { id: 4, matched: true },
+  { id: 5, matched: false },
+  { id: 7, matched: true }
+];
+
+var lastMatch = "none";
+for(item in items) {
+  if (item.matched) {
+    print(item.id);
+    lastMatch = toString(item.id); // convert the number to string before a
+assigning it to lastMatch
+  }
+}
+
+if (lastMatch == "none") {
+  print("No matches found");
+} else {
+  print(parseNumber(lastMatch)); // if there is a match, parse back the num
+number from the string
+}
+```
+This program now prints each matched id once and then either the last match
+matched id or "No matches found" if no items were matched. The function `pa
+`parseNumber()` is used to convert the stored string value of an item id ba
+back into its numerical form for printing at the end, as per Tundra's requi
+requirements.

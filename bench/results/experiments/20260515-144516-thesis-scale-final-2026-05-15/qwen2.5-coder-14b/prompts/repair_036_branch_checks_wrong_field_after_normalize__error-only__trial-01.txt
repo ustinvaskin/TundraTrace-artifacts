@@ -1,0 +1,49 @@
+You are given a program written in Tundra, a small programming language.
+The program has a bug.
+
+Fix the program so that it produces the expected output.
+
+Output contract:
+- Return only raw Tundra source code.
+- Do not use Markdown fences.
+- Do not write explanations, headings, commentary, or "Here is..." text.
+- The entire response must be directly executable by the Tundra interpreter.
+- Do not include comments unless they already appear in the program.
+
+Tundra reminders:
+- Use val for immutable bindings and var for mutable bindings.
+- Use semicolons after statements.
+- Records use { field: value, other: value }.
+- Record fields use commas, not semicolons.
+- Lists use [a, b, c].
+- Field access uses object.field.
+- Indexing uses list[index].
+- print(value) prints a value.
+- parseNumber(value) expects a String argument and returns a Number.
+- Do not use JavaScript, Python, or Java built-ins such as Number(), parseInt(), parseFloat(), int(), or Integer.parseInt().
+
+Program:
+def normalize(raw) {
+  return {
+    previousLevel: raw.previousLevel,
+    currentLevel: raw.currentLevel
+  };
+}
+
+val raw = {
+  previousLevel: "low",
+  currentLevel: "high"
+};
+
+val normalized = normalize(raw);
+if (normalized.previousLevel == "high") {
+  print("alert");
+} else {
+  print("ok");
+}
+
+Runtime error or observed failure:
+The program runs but produces the wrong output.
+
+Expected output:
+alert

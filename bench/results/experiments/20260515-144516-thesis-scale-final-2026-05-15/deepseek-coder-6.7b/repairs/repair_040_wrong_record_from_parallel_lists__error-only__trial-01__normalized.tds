@@ -1,0 +1,12 @@
+def buildSelected(names, scores) {
+  return {
+    name: names[0],
+    score: parseNumber(scores[0]) + 1
+  };
+}
+
+val names = ["Ada", "Bea"];
+val scores = ["10", "20"];
+
+val selected = buildSelected(names, scores);
+print(selected.score); // output should be 11 instead of 21

@@ -1,0 +1,13 @@
+val account = {
+  name: "Ada",
+  billing: {
+    current: "30",
+    previous: "12"<｜begin▁of▁sentence｜>
+   }
+};
+
+val charge = parseNumber(account.billing.previous);
+val fee = 5;
+val total = parseNumber(account.billing.current) + fee; // change here
+
+print(total);

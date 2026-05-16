@@ -1,0 +1,5 @@
+The code you provided is correct and should work as expected. The variable 
+"rows" is a list of records with fields 'label' and 'value'. In line 5, we 
+are selecting the third element from this list which corresponds to { label
+label: "high", value: 30 }. Then in line 6, we print the value (20) associa
+associated with that record.

@@ -1,0 +1,18 @@
+The provided Tundra source code is correct and should provide the expected 
+output "qualify". It compares a score to a threshold, if the score is great
+greater than the threshold it prints "qualify", otherwise it prints "hold".
+"hold". The score being 80 and the threshold also being 80 means that the c
+condition `(score > threshold)` will be false. Therefore, it should print "
+"hold" instead of "qualify".
+
+Here's the source code again:
+```tundra
+val score = 80;
+val threshold = 80;
+
+if (score > threshold) {
+  print("qualify");
+} else {
+  print("hold");
+}
+```

@@ -1,0 +1,15 @@
+The error in your program is due to trying to add a `String` (i.e., "6") to
+to a `Number` (i.e., 4). You can solve this issue by converting the second 
+value from string to number using `parseNumber()` function. Here's how you 
+can fix it:
+
+```tundra
+val raw = ["4", "6", "8"];
+
+val first = parseNumber(raw[0]);
+val second = parseNumber(raw[1]); // convert the string to number here
+val third = parseNumber(raw[2]);
+
+val total = first + second + third;
+print(total);
+```

@@ -1,0 +1,25 @@
+The error is due to attempting to add a String and Number in Tundra, which 
+the language doesn't support directly. To resolve this, we need to parse th
+the numbers from Strings before performing arithmetic operations. Here is t
+the corrected code:
+
+```tundra
+def normalize(raw) {
+  return {
+    price: parseNumber(raw.price),
+    fee: parseNumber(raw.fee)
+  };
+}
+
+val raw = {
+  price: "18",
+  fee: "2"
+};
+
+val item = normalize(raw);
+val total = item.price + item.fee;
+print(total);
+```
+
+In the corrected code, we use parseNumber() function to convert strings int
+into numbers before adding them together.

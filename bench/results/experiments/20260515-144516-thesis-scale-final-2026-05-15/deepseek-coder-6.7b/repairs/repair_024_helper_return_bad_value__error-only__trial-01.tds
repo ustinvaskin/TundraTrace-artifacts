@@ -1,0 +1,23 @@
+The runtime error is caused because the `parseNumber` function expects a st
+string argument, but it's receiving an integer instead. To fix this bug, we
+we need to convert the count field from raw object into number before parsi
+parsing it. Here is the corrected program: 
+
+```tundra
+def loadCount(raw) {
+  return raw.label;
+}
+
+val raw = {
+  label: "widgets",
+  count: "6"
+};
+
+val count = loadCount(raw);
+var total = parseNumber(raw.count) + 4;
+
+print(total);
+```
+This program will correctly convert the `raw` object's `count` field into a
+a number before adding 4 to it, so you should now get the expected output o
+of `10` printed on your console.

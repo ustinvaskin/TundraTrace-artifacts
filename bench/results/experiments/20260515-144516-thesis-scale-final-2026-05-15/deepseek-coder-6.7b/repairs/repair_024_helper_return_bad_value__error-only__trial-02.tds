@@ -1,0 +1,27 @@
+The problem with this program is that it's trying to convert the count fiel
+field of the raw object into a number using `parseNumber`, but "widgets" (t
+(the string representation of count in your code) isn't a valid number. The
+The `parseNumber` function expects a numeric String like "123", not a label
+label such as "widgets".
+
+Here is the corrected version:
+
+```Tundra
+def loadCount(raw) {
+  return raw.count;
+}
+
+val raw = {
+  label: "widgets",
+  count: "6"
+};
+
+var count = loadCount(raw);
+var total = parseNumber(count) + 4;
+
+print(total);
+```
+In this code, we've fixed the `loadCount` function to return raw.count inst
+instead of raw.label. Now it correctly extracts the number string from the 
+record and uses it in the parsing operation. This will give you the output 
+10.

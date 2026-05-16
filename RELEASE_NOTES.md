@@ -12,6 +12,7 @@ Initial public artifact release for:
 - Frozen `v2` prompt templates
 - Scoring, audit, summary, and paired-bootstrap scripts
 - Final combined result files, manifest, and summary
+- Frozen prompts and repair outputs from the final run
 - Final qualitative evidence-use audit labels
 - Failure taxonomy, trace-leakage rubric, evidence-use audit rubric, and final-run reproduction check
 

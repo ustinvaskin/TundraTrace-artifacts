@@ -1,0 +1,18 @@
+Here is a direct Tundra source code to fix your issue:
+
+```tundra
+val events = [
+  { id: "A", approved: true },
+  { id: "B", approved: true },
+  { id: "C", approved: false }
+];
+
+var lastApproved = "none";
+for event in events {
+  if (event.approved) {
+    lastApproved = event.id;
+  }
+}
+
+print(lastApproved);
+```

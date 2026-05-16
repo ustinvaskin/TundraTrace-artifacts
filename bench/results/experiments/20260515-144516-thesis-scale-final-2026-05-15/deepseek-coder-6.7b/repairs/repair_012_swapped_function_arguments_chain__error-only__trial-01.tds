@@ -1,0 +1,21 @@
+Tundra uses a minimalistic approach to programming and requires semicolons 
+at the end of statements. Also, field access in records is done using objec
+object.field instead of object[field]. The corrected version of your progra
+program would look like this:
+
+```tundra
+def applyDiscount(price, discount) {
+  return price - discount;
+}
+
+val raw = {
+  price: "20",
+  discount: "5"
+};
+
+val price = parseNumber(raw.price);
+val discount = parseNumber(raw.discount);
+val final = applyDiscount(price, discount);
+print(final);
+```
+This program should now give the expected output of `15`.

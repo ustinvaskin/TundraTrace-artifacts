@@ -1,0 +1,27 @@
+The program is trying to calculate a subtotal by multiplying quantities wit
+with their respective prices and then summing all of these up for each item
+item in the order. The quantity field is being used as both quantity and pr
+price when calculating the subtotal, which causes it to be calculated incor
+incorrectly. 
+
+Here's the corrected program:
+
+```tundra
+val order = {
+  lines: [
+    { sku: "A", quantity: "2", unitPrice: "5" },
+    { sku: "B", quantity: "1", unitPrice: "4" }
+   ]
+};
+
+val first = order.lines[0];
+val second = order.lines[1];
+val subtotal = parseNumber(first.quantity) * parseNumber(first.unitPrice) +
++ parseNumber(second.quantity) * parseNumber(second.unitPrice);
+
+print(subtotal);
+```
+This program will correctly calculate the total cost of items in the order 
+by multiplying each item's quantity with its unit price and summing all tho
+those up. The expected output is 14, as it should be the subtotal for this 
+order.

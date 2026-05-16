@@ -1,0 +1,26 @@
+The error is because you're trying to add a String and Number in Tundra whi
+which causes TypeError. You need to ensure that both sides of the '+' opera
+operation are Numbers before attempting any addition operation. In your cas
+case, `item.price` is a string and should be converted to number using pars
+parseNumber function while adding it with item.fee.
+
+Here's how you can fix the code:
+
+```tundra
+def normalize(raw)  {
+  return {
+    price: parseNumber(raw.price),
+    fee: parseNumber(raw.fee)
+   };
+}
+
+val raw = {
+  price: "18",
+  fee: "2"
+};
+
+val item = normalize(raw);
+val total = item.price + item.fee;
+
+print(total);
+```

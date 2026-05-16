@@ -1,0 +1,29 @@
+The bug in your program is that you are trying to parse a numeric string an
+and then add one. The problem here is that "parseNumber()" function isn't d
+defined in Tundra, so it won't work as expected. 
+
+However, since the original values of 'scores[0]' were strings and we need 
+them parsed into numbers for arithmetic operations, we can use the built-in
+built-in `to_number` function in Tundra that converts a string to a number:
+number:
+
+```tundra
+def buildSelected(names, scores)  {
+  return  {
+    name: names[1],
+    score: to_number(scores[0])
+   };
+}
+
+val names  = ["Ada", "Bea"];
+val scores = [10, 20];
+
+val selected = buildSelected(names, scores);
+val total    = selected.score + 1;
+
+print(total);
+```
+This code works correctly because `to_number` converts a string to a number
+number and the rest of your program is properly manipulating that numeric v
+value for addition. The output of this script should be 21, which matches w
+with the expected result.

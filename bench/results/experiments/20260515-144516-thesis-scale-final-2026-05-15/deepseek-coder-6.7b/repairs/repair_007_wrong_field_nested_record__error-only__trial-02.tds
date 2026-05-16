@@ -1,0 +1,16 @@
+The error in the program is because the record does not have a 'points' att
+attribute. The correct attribute name should be 'score'. Here is the correc
+corrected version of your Tundra code:
+
+```tundra
+val report = {
+  user: {
+    name: "Ada",
+    score: 10
+  },
+  bonus: 2
+};
+
+val total = report.user.score + report.bonus;
+print(total);
+```

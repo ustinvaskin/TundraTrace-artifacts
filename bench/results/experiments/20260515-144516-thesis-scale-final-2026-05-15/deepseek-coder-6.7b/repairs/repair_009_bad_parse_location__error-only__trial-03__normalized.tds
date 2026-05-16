@@ -1,0 +1,8 @@
+val raw = {
+  price: "10"
+};
+
+val numeric = parseInt(raw.price); // Using parseInt instead of parseNumber
+parseNumber
+val total = numeric + 5;
+print(total);

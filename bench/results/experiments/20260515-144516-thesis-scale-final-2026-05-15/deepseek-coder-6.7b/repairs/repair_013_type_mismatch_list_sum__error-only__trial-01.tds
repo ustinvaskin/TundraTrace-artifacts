@@ -1,0 +1,15 @@
+The problem in the original program is that `parseNumber()` expects a strin
+string as input but the elements of the list are not strings, they're numbe
+numbers. To fix it, we should convert these numbers to strings before parsi
+parsing them to numbers. Here's the corrected code:
+
+```tundra
+val raw = ["4", "6", "8"];
+
+val first = parseNumber(raw[0]);
+val second = parseNumber(raw[1]);
+val third = parseNumber(raw[2]);
+
+val total = first + second + third;
+print(total);
+```

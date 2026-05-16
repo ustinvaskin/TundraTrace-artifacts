@@ -1,0 +1,22 @@
+The bug in the program lies in the order of parameters being passed to `app
+`applyDiscount` function. The discount should be subtracted from the price,
+price, but currently it's being applied as if the first parameter was the o
+original price and second one was the discount. 
+
+Here is the corrected code:
+
+```tundra
+def applyDiscount(price, discount) {
+  return price - discount;
+}
+
+val raw = {
+  price: "20",
+  discount: "5"
+};
+
+val price = parseNumber(raw.price);
+val discount = parseNumber(raw.discount);
+val final = applyDiscount(price, discount); // Corrected here.
+print(final);
+```

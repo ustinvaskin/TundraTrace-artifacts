@@ -1,0 +1,19 @@
+val report = {
+  user: {
+    name: "Ada",
+    score: 68
+  },
+  passMark: 70, // changing the pass mark here will change outcomes.
+};
+
+if (report.user.score > report.passMark) {
+  if(report.user.score > 90){
+     print("outstanding");
+  } else if(report.user.score >= 80){
+     print("excellent");
+  } else{
+    print("poor");  
+  }
+} else {
+  print("pass");
+}

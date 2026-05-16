@@ -1,0 +1,39 @@
+The error is due to trying to add two different types of values together - 
+a Number and a String. The 'parseNumber' function returns a string, but we 
+need it to return a number for the calculation to work properly. 
+
+Here's how you can fix this bug:
+
+```tundra
+val raw = ["4", "6", "8"];
+
+val first = parseNumber(raw[0]); // Change raw[0] to raw[0] fromString()
+val second = parseNumber(raw[1]); 
+val third = parseNumber(raw[2]); 
+
+val total = first + second + third;
+print(total);
+```
+
+The 'fromString' function is used for converting string values into numbers
+numbers. Note that the Tundra programming language does not have a built-in
+built-in 'fromString' function, but it can be defined as follows:
+
+```tundra
+function fromString (s) { 
+    var result = 0;
+    val chars = s.split("");
+    for(var i=0;i<chars.length;++i){
+        result += parseNumber(chars[i]);
+    }
+return result;
+}
+```
+Now, with this 'fromString' function, the original code will work fine. 
+
+Please note that you need to implement a string split and number parsing fu
+functionality yourself because Tundra doesn't support these operations by d
+default like some other languages do. The above implementation assumes ASCI
+ASCII characters which are converted into numbers (i.e., '1' -> 1, '2' -> 2
+2 etc.) as strings in this language don't have numerical values associated 
+with them natively.

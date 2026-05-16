@@ -1,0 +1,43 @@
+def parseNumber(str) {
+    var i = 0;
+    while (i < str.length && ((str[i] < '0' || str[i] > '9') && str[i] != '
+'-')) {
+        i += 1;
+    }
+    
+    if (i == str.length) {
+      return 0;
+    } else {
+        var negative = false;
+        if (str[i] == '-') {
+            negative = true;
+            i += 1;
+        }
+        
+        var num = 0;
+        while (i < str.length && str[i] >= '0' && str[i] <= '9') {
+            num *= 10;
+            num += parseInt(str[i]);
+            i += 1;
+        }
+        
+        return negative ? -num : num;
+    }
+}
+
+def normalize(raw)  {
+  return {
+    price: raw.price,
+    fee: parseNumber(raw.fee)
+   };
+}
+
+val raw = {
+  price: "18",
+  fee: "2"
+};
+
+val item = normalize(raw);
+val total = item.price + item.fee;
+
+print(total);

@@ -1,0 +1,20 @@
+The bug in this Tundra script is that it selects the third row, which has a
+an index of 2 because arrays are zero-indexed in most languages (including 
+Tundra), rather than one-indexed as common English language might suggest. 
+The 'target' value is actually at index 1 in the array.
+
+Correcting this bug would mean changing `rows[2]` to `rows[1]`. Here is the
+the corrected program:
+
+```Tundra
+val rows = [
+  { label: "low", value: 10 },
+  { label: "target", value: 20 },
+  { label: "high", value: 30 }
+];
+
+val selected = rows[1];
+print(selected.value);
+```
+This script now correctly selects the 'target' record from the array and pr
+prints its `value`, which should be 20 as expected.

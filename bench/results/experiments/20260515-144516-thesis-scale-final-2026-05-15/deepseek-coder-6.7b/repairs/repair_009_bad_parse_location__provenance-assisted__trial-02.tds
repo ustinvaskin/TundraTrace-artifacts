@@ -1,0 +1,17 @@
+The issue here is that `parseNumber` function expects a String argument but
+but it's getting a Number value. To fix this, we need to convert the number
+number back into a string before passing it to `parseNumber` again. Here is
+is the corrected code:
+
+```tundra
+val raw = {
+  price: "10"
+};
+
+val numeric = parseNumber(raw.price);
+val total = parseNumber("" + (numeric + 5));
+print(total);
+```
+In this fixed version, `"" + (numeric + 5)` converts the number back into a
+a string before passing it to `parseNumber`. The result is that we get the 
+expected output of 15 when running this corrected code.

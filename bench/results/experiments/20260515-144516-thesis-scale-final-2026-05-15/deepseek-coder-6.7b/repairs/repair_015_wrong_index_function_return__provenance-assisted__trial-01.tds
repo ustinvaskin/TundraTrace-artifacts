@@ -1,0 +1,21 @@
+The program is trying to access the fourth element of a list (index 3) whic
+which has only three elements. In programming languages that use zero based
+based indexing (like Tundra), indexes start from 0, so the third element wi
+will have an index of 2 not 3. Therefore, we need to correct our chooseBest
+chooseBest function as follows:
+
+```Tundra
+def chooseBest(scores) {
+  return scores[2];
+}
+
+val row = {
+  name: "Ada",
+  scores: [7, 8, 9]
+};
+
+val best = chooseBest(row.scores);
+print(best);
+```
+This program should now correctly print '9' which is the third element in r
+row.scores list as per zero-based indexing.

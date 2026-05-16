@@ -1,0 +1,31 @@
+The issue here is that the "amount" field of raw object is a string, not a 
+number. To fix this, you need to convert it into a number using parseNumber
+parseNumber function in Tundra. Here's how your fixed code should look like
+like:
+
+```tundra
+def readAmount(raw) {
+  return parseNumber(raw.invoice.amount);
+}
+
+def wrapLine(raw) {
+  return {
+    charge: readAmount(raw)
+   };
+}
+
+val raw = {
+  invoice: {
+    amount: "40"
+  }
+};
+
+val line = wrapLine(raw);
+val lines = [line];
+val subtotal = parseNumber(lines[0].charge); // Convert string to number he
+here.
+val fee = 2;
+val total = subtotal + fee;
+
+print(total);
+```

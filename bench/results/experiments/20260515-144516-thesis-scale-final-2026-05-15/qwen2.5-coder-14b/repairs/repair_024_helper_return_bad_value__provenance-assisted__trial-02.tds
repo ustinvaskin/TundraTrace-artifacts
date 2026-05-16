@@ -1,0 +1,15 @@
+```tundra
+def loadCount(raw) {
+  return raw.count;
+}
+
+val raw = {
+  label: "widgets",
+  count: "6"
+};
+
+val count = loadCount(raw);
+val total = parseNumber(count) + 4;
+
+print(total);
+```

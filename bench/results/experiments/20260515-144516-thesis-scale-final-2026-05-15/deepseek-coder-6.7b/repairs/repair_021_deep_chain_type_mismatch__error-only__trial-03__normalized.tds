@@ -1,0 +1,20 @@
+def readAmount(raw) {
+  return parseNumber(raw.invoice.amount);
+}
+
+def wrapLine(raw) {
+  return {charge: readAmount(raw)};
+}
+
+val raw = {
+  invoice: {amount: "40"}
+};
+
+val line = wrapLine(raw);
+val lines = [line];
+var subtotal = parseNumber(lines[0].charge); // Use var because we're chang
+changing its value later.
+val fee = 2;
+val total = subtotal + fee;
+
+print(total);

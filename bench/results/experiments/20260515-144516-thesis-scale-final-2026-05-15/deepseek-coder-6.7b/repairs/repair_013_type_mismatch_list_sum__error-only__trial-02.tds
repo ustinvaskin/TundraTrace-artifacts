@@ -1,0 +1,17 @@
+The issue here is that the 'second' variable is a string, not a number, so 
+when you try to add it to other numbers, an error occurs. You need to conve
+convert this string into a number before performing addition. Here is the c
+corrected code: 
+
+```tundra
+val raw = ["4", "6", "8"];
+
+val first = parseNumber(raw[0]);
+val second = parseNumber(raw[1]);
+val third = parseNumber(raw[2]);
+
+val total = first + second + third;
+print(total);
+```
+This corrected code will convert the 'second' and 'third' values to numbers
+numbers before performing addition, thus preventing a TypeError.

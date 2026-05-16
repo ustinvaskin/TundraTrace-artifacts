@@ -1,0 +1,18 @@
+The error is caused because the 'report' record does not have a field calle
+called 'points'. The correct field to use here is 'score', so we need to ch
+change that in the expression. Here is the corrected Tundra code:
+
+```tundra
+val report = {
+  user: {
+    name: "Ada",
+    score: 10
+  },
+  bonus: 2
+};
+
+val total = report.user.score + report.bonus;
+print(total);
+```
+This corrected program will now correctly calculate the total as expected, 
+resulting in an output of 12 when run with a Tundra interpreter.

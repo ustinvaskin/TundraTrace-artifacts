@@ -1,0 +1,21 @@
+Here is the corrected Tundra program:
+
+```tundra
+val items = [
+   { amount: 2 },
+   { amount: 5 },
+   { amount: 7 }
+];
+
+var total = 0;
+for(item in items) {
+  total = total + item.amount;
+}
+
+print(total);
+```
+This program will add up all the 'amount' fields from each record in the 'i
+'items' list and print out the result, which should be 14. The previous bug
+bug was that it resetting `total` to zero within the loop before adding eac
+each new item. That line has been removed so that `total` keeps accumulatin
+accumulating its total sum of amounts across all items.

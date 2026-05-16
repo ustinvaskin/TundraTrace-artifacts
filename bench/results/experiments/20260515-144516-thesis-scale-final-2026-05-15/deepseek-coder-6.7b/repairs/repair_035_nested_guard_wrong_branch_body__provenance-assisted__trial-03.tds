@@ -1,0 +1,26 @@
+The issue with the program is that it should print "apply", not "skip". The
+The condition `request.priority > 5` is evaluating to `true`, so the progra
+program is executing the inner true branch and printing "skip". 
+
+Here's the corrected Tundra source code:
+
+```tundra
+val request = {
+  enabled: true,
+  priority: 9
+};
+
+if (request.enabled) {
+  if (request.priority > 5) {
+    print("apply");
+  } else {
+    print("queue");
+  }
+} else {
+  print("disabled");
+}
+```
+This Tundra program should now correctly print "apply" when run, assuming t
+that `request.enabled` is `true` and `request.priority` is `9`. If `request
+`request.enabled` were false or if `request.priority` was less than or equa
+equal to 5, the corresponding message would be printed instead.

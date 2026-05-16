@@ -1,0 +1,61 @@
+You are given a program written in Tundra, a small programming language.
+The program has a bug.
+
+Fix the program so that it produces the expected output.
+
+Output contract:
+- Return only raw Tundra source code.
+- Do not use Markdown fences.
+- Do not write explanations, headings, commentary, or "Here is..." text.
+- The entire response must be directly executable by the Tundra interpreter.
+- Do not include comments unless they already appear in the program.
+
+Tundra reminders:
+- Use val for immutable bindings and var for mutable bindings.
+- Use semicolons after statements.
+- Records use { field: value, other: value }.
+- Record fields use commas, not semicolons.
+- Lists use [a, b, c].
+- Field access uses object.field.
+- Indexing uses list[index].
+- print(value) prints a value.
+- parseNumber(value) expects a String argument and returns a Number.
+- Do not use JavaScript, Python, or Java built-ins such as Number(), parseInt(), parseFloat(), int(), or Integer.parseInt().
+
+Program:
+def getPriceText(raw) {
+  return raw.price;
+}
+
+val raw = {
+  price: "10"
+};
+
+val item = {
+  cost: getPriceText(raw)
+};
+
+val cart = [item];
+val subtotal = cart[0].cost;
+val fee = 5;
+val total = subtotal + fee;
+
+print(total);
+
+Runtime error or observed failure:
+TypeError: Cannot add String and Number.
+Failing expression: subtotal + fee
+Left value: "10" : String
+Right value: 5 : Number
+
+Value provenance:
+- total came from subtotal + fee
+- subtotal came from cart[0].cost
+- cart[0].cost came from field cost
+- cost came from getPriceText(raw)
+- getPriceText returned raw.price
+- raw.price was string "10"
+- fee was number 5
+
+Expected output:
+15

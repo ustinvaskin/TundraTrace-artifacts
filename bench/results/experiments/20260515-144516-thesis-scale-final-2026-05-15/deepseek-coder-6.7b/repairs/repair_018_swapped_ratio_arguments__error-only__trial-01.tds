@@ -1,0 +1,29 @@
+The problem with this program is that it tries to divide by zero which will
+will cause a runtime error. The denominator value in raw record has been sw
+swapped from its intended role as the numerator to the denominator in the `
+`ratio` function definition. 
+
+Here's the corrected Tundra code:
+
+```Tundra
+def ratio(numerator, denominator) {
+  return denominator / numerator;
+}
+
+val raw = {
+  numerator: "20",
+  denominator: "5"
+};
+
+val numerator = parseNumber(raw.denominator);
+val denominator = parseNumber(raw.numerator);
+val result = ratio(numerator, denominator);
+print(result);
+```
+
+The output of this program will be 4 because the code now correctly calcula
+calculates and prints the ratio using the values in the raw record. The div
+division operation was corrected to operate properly by switching the opera
+operands (denominator/numerator rather than numerator/denominator). This en
+ensures that a valid result is calculated, preventing runtime errors from o
+occurring.

@@ -1,0 +1,28 @@
+This Tundra program seems to correctly handle logic, however there is a syn
+syntax issue in the if-else statement that results in it not behaving as ex
+expected. The problem lies within the 'score' field of the user record (rep
+(report.user.score), which should be compared against the passMark value st
+stored inside report object. 
+
+Here is the corrected Tundra code:
+
+```tundra
+val report = {
+  user: {
+    name: "Ada",
+    score: 68
+  },
+  passMark: 70
+};
+
+if (report.user.score > report.passMark) {
+  print("review");
+} else {
+  print("pass");
+}
+```
+
+This program will compare the user's score with the passing mark and it sho
+should give expected output as "review" since, the score of the user (68) i
+is greater than the pass mark (70). It won't run into any runtime errors or
+or observe a failure.

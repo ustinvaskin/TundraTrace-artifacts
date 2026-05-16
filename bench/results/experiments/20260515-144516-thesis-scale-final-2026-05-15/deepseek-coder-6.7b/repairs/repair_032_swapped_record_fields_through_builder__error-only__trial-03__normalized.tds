@@ -1,0 +1,1 @@
+def raw { base: "6", adjustment: "2" }

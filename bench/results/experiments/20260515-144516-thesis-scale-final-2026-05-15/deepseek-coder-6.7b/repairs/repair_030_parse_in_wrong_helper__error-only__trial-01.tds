@@ -1,0 +1,34 @@
+The problem lies in the fact that you're trying to add a string and a numbe
+number together directly, which JavaScript does not support. To fix this is
+issue, we need to parse both `item.price` and `item.fee` as numbers before 
+adding them together. Here is your corrected Tundra code:
+
+```tundra
+def normalizeFee(raw) {
+  return parseNumber(raw.fee);
+}
+
+def normalizePrice(raw) {
+  return parseNumber(raw.price);
+}
+
+def makeItem(raw) {
+  return {
+    price: normalizePrice(raw),
+    fee: normalizeFee(raw)
+  };
+}
+
+val raw = {
+  price: "32",
+  fee: "4"
+};
+
+val item = makeItem(raw);
+val total = item.price + item.fee;
+
+print(total);
+```
+
+This will now give the expected output of `36`, because it is correctly par
+parsing both strings to numbers before adding them together.

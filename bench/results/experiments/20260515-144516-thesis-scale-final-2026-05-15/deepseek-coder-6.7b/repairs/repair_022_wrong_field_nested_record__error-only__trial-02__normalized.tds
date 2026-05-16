@@ -1,0 +1,13 @@
+val account = {
+  name: "Ada",
+  billing: {
+    current: "30",
+    previous: "12"
+  }
+};
+
+val charge = parseNumber(account.billing.previous);
+val fee = 5;
+val total = charge + fee;
+
+print(total);

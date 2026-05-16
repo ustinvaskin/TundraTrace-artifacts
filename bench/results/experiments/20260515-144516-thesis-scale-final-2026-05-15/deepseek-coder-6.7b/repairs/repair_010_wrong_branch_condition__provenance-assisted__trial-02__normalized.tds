@@ -1,0 +1,8 @@
+val score = 72;
+val threshold = 80;
+
+if(score > threshold) {
+  print("review");
+} else {
+  print("pass");
+}

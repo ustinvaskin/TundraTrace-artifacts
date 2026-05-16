@@ -1,0 +1,55 @@
+The error is due to the attempt to concatenate a string with a number, whic
+which Tundra does not support. We need to convert the price and fee from st
+strings to numbers before performing the addition operation. Here's how we 
+can fix this program:
+
+```Tundra
+def parseNumber(str) {
+    var i = 0;
+    while (i < str.length && ((str[i] < '0' || str[i] > '9') && str[i] != '
+'-')) {
+        i += 1;
+    }
+    
+    if (i == str.length) {
+      return 0;
+    } else {
+        var negative = false;
+        if (str[i] == '-') {
+            negative = true;
+            i += 1;
+        }
+        
+        var num = 0;
+        while (i < str.length && str[i] >= '0' && str[i] <= '9') {
+            num *= 10;
+            num += parseInt(str[i]);
+            i += 1;
+        }
+        
+        return negative ? -num : num;
+    }
+}
+
+def normalize(raw)  {
+  return {
+    price: raw.price,
+    fee: parseNumber(raw.fee)
+   };
+}
+
+val raw = {
+  price: "18",
+  fee: "2"
+};
+
+val item = normalize(raw);
+val total = item.price + item.fee;
+
+print(total);
+```
+This code first defines a parseNumber function, which can convert strings t
+to numbers by iterating through the string and building up an integer value
+value from its characters. This is essentially reimplementing JavaScript's 
+built-in `parseInt` functionality in Tundra. Then it normalizes the raw dat
+data into a price and fee, adds them together, and prints out the result.

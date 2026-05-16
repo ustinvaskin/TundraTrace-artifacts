@@ -1,0 +1,20 @@
+The issue with your program is that you're not correctly referencing the 'a
+'amount' field in each iteration of your for loop. Here is the corrected co
+code:
+
+```tundra
+val fees = [
+   { label: "base", amount: 2 },
+   { label: "service", amount: 5 },
+   { label: "tax", amount: 1 }
+];
+
+var total = 0;
+for (fee in fees) {
+  total = total + fee.amount;
+}
+
+print(total);
+```
+This will correctly calculate and print the sum of all 'amount' values in y
+your `fees` list, which should be 8.

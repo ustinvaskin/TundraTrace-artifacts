@@ -1,0 +1,18 @@
+The issue is with the comparison used in your if-else statement. Since both
+both `score` and `threshold` are equal to 80, the condition `(score > thres
+threshold)` evaluates as false causing the program to print "hold". 
+
+Here's the corrected Tundra source code:
+```tundra
+val score = 80;
+val threshold = 80;
+if (score > threshold) {
+  print("qualify");
+} else {
+  print("hold");
+}
+```
+The output of this program will be "qualify" as expected. It's comparing tw
+two numbers, not their references or a condition on them. The scores are eq
+equal and the comparison operation is correct, causing the if statement to 
+execute when it should. As a result, "qualify" is printed out.

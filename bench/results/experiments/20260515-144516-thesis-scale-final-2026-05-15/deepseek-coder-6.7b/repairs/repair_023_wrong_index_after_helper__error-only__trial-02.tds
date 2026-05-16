@@ -1,0 +1,32 @@
+The bug in this Tundra-based program is that all fields are being treated a
+as strings by parseNumber function, which expects a Number type argument bu
+but gets String type from them due to double quotes around "2" and "3". 
+
+We have to modify the code so it correctly parses these values into numbers
+numbers.
+
+Corrected Program:
+```tundra
+def selectRate(rates) {
+  return rates[0];
+}
+
+val raw = {
+  base: "10",
+  rates: [
+    { label: "old", amount: "2" },
+    { label: "current", amount: "3" }
+  ]
+};
+
+val base = parseNumber(raw.base);
+val rate = parseNumber(selectRate(raw.rates).amount);
+val total = base * rate;
+
+print(total);
+```
+In the corrected version, we used parseNumber to convert both raw.base and 
+selectRate(raw.rates).amount from string types to number types before perfo
+performing multiplication operation (as mathematical operations in Tundra a
+are only defined for Number types), ensuring that the output is accurate as
+as expected. The total should now be 30.

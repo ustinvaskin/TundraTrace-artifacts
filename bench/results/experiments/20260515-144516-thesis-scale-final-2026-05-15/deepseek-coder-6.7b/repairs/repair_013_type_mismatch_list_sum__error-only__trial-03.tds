@@ -1,0 +1,14 @@
+The program is expecting the `second` variable to be a number, but it's cur
+currently being read as a string from the list. You need to parse this into
+into a number before adding them together. Here's how you can fix that:
+
+```tundra
+val raw = ["4", "6", "8"];
+
+val first = parseNumber(raw[0]);
+val second = parseNumber(raw[1]);
+val third = parseNumber(raw[2]);
+
+val total = first + second + third;
+print(total);
+```

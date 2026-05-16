@@ -1,0 +1,26 @@
+The error is due to trying to add a String and a Number together in Tundra,
+Tundra, which isn't allowed. In this case, we need to convert the string "1
+"10" into a numeric value before performing arithmetic operations on it. Th
+The `parseNumber` function can be used for that purpose. Here is the correc
+corrected program:
+
+```Tundra
+def getPriceText(raw) {
+  return raw.price;
+}
+
+val raw = {
+  price: "10"
+};
+
+val item = {
+  cost: parseNumber(getPriceText(raw))
+};
+
+val cart = [item];
+val subtotal = cart[0].cost;
+val fee = 5;
+val total = subtotal + fee;
+
+print(total);
+```

@@ -1,0 +1,5 @@
+cached = { 'active': False }
+current = { 'active': True }
+
+if cached['active'] : print("send")
+else : print("skip")

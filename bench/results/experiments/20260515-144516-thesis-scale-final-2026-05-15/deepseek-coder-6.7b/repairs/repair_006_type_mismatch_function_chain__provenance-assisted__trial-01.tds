@@ -1,0 +1,28 @@
+The problem lies in the fact that the function `getPriceText()` returns a S
+String, not a Number. We need to parse this String into a Number before we 
+can perform arithmetic operations on it. Let's modify our program as follow
+follows:
+
+```tundra
+def getPriceText(raw) {
+  return raw.price;
+}
+
+val raw = {
+  price: "10"
+};
+
+val item = {
+  cost: parseNumber(getPriceText(raw))
+};
+
+val cart = [item];
+val subtotal = cart[0].cost;
+val fee = 5;
+val total = subtotal + fee;
+
+print(total);
+```
+This program first retrieves the price from raw and parses it into a Number
+Number using `parseNumber()`. After that, it performs arithmetic operations
+operations as usual and prints out the result.

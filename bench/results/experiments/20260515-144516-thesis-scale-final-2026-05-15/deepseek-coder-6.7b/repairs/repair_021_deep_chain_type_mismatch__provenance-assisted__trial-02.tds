@@ -1,0 +1,35 @@
+The error is occurring because the programmer attempted to add a String and
+and Number together directly, which results in a TypeError. To resolve this
+this issue, we need to parse "40", a string, into an integer before perform
+performing addition. 
+
+Here is the corrected Tundra code:
+
+```tundra
+def readAmount(raw) {
+  return parseNumber(raw.invoice.amount);
+}
+
+def wrapLine(raw) {
+  return {
+    charge: readAmount(raw)
+   };
+}
+
+val raw = {
+  invoice: {
+    amount: "40"
+   }
+};
+
+val line = wrapLine(raw);
+val lines = [line];
+val subtotal = lines[0].charge;
+val fee = 2;
+val total = subtotal + fee;
+
+print(total);
+```
+This program should now produce the expected output of 42. It is correctly 
+parsing the String to a Number with `parseNumber()`, and then adding it to 
+an integer value for the fee before printing.

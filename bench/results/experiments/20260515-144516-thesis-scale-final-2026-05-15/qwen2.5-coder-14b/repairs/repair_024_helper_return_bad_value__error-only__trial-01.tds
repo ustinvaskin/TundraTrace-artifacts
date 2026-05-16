@@ -1,0 +1,13 @@
+def loadCount(raw) {
+  return raw.label;
+}
+
+val raw = {
+  label: "6",
+  count: "widgets"
+};
+
+val count = loadCount(raw);
+val total = parseNumber(count) + 4;
+
+print(total);

@@ -1,0 +1,24 @@
+The reason for the IndexError is that Tundra arrays (or Lists in other lang
+languages) are zero-indexed, meaning they start from 0 and not 1. So when y
+you try to access `scores[3]` it's trying to find an element at index 4 whi
+which does not exist because "7,8,9" only has three elements (indices 0 thr
+through 2).
+
+The corrected program should look like this:
+
+```tundra
+def chooseBest(scores) {
+  return scores[2];
+}
+
+val row = {
+  name: "Ada",
+  scores: [7, 8, 9]
+};
+
+val best = chooseBest(row.scores);
+print(best);
+```
+In this version of the code `chooseBest` is returning the third element (at
+(at index 2) from the list 'scores', which has been previously defined in t
+the variable `row`. So it prints "9" as expected.

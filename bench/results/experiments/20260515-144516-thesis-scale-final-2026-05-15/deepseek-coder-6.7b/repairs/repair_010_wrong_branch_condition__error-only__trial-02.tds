@@ -1,0 +1,5 @@
+This problem is actually a Tundra language syntax and semantics issue rathe
+rather than a bug in programming logic. The provided Tundra code doesn't ha
+have any errors so there can be no fixes to it. However, if this program is
+isn't running correctly or producing the expected output, you might need to
+to check how the score and threshold variables are being initialized.

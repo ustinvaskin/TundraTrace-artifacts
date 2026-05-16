@@ -1,0 +1,18 @@
+def selectRate(rates) {
+  return rates[1]; // Change index from 0 to 1 to select the "current" rate
+rate
+}
+
+val raw = {
+  base: "10",
+  rates: [
+    { label: "old", amount: "2" },
+    { label: "current", amount: "3" }
+  ]
+};
+
+val base = parseNumber(raw.base);
+val rate = parseNumber(selectRate(raw.rates).amount);
+val total = base * rate;
+
+print(total);

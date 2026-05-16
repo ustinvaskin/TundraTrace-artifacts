@@ -1,0 +1,17 @@
+In your for loop, you are always assigning the last element of "items" list
+list to variable 'total'. What you need is to add all the costs in a runnin
+running total fashion.
+
+Here's how it can be corrected:
+
+val items = [
+  { name: "a", cost: 2 },
+  { name: "b", cost: 3 },
+  { name: "c", cost: 4 }
+];
+
+var total = 0;
+for(item in items) {
+  total = total + item.cost;
+}
+print(total);

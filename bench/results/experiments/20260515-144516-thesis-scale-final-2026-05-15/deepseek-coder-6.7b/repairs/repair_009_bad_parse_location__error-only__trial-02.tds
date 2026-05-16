@@ -1,0 +1,20 @@
+The bug is in the last line of the code, where you are applying `parseNumbe
+`parseNumber` twice on `numeric` variable which should be converted to numb
+number once only. Here is the corrected Tundra source code:
+
+```tundra
+val raw = { price: "10" };
+
+// Convert string to number using parseNumber function and store it in a ne
+new variable
+val numeric = parseNumber(raw.price); 
+
+// Add 5 to the number, not the string representation of the number
+val total = numeric + 5; 
+
+print(total); // prints 15
+```
+This code will correctly convert raw price from string to a number and add 
+5 to it before printing. Please note that Tundra is a small language so its
+its syntax might be different for more complex scenarios. This solution ass
+assumes standard conventions in the given environment.

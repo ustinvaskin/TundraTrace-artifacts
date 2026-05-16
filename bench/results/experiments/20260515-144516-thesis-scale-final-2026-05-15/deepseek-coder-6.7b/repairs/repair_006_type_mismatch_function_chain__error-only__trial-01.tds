@@ -1,0 +1,26 @@
+The problem in the given program is that it assumes price is a number while
+while it's a string. In Tundra, we cannot add a string to an integer direct
+directly. We need to parse the string into a numeric value before performin
+performing addition. So, let's fix this by using `parseNumber` function whi
+which converts String to Number:
+
+```Tundra
+def getPriceText(raw) {
+  return raw.price;
+}
+
+val raw = {
+  price: "10"
+};
+
+val item = {
+  cost: parseNumber(getPriceText(raw))
+};
+
+val cart = [item];
+val subtotal = cart[0].cost;
+val fee = 5;
+val total = subtotal + fee;
+
+print(total);
+```

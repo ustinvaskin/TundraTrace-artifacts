@@ -1,0 +1,33 @@
+The program is not adding up the total correctly because it's only taking t
+the value of the final entry in each group, rather than summing them up. He
+Here is a corrected version of your code:
+
+```tundra
+val groups = [
+  {
+    name: "north",
+    entries: [
+      { amount: 2 },
+      { amount: 3 }
+    ]
+  },
+  {
+    name: "south",
+    entries: [
+      { amount: 4 }
+    ]
+  }
+];
+
+var total = 0;
+for (group in groups) {
+  for (entry in group.entries) {
+    total = total + entry.amount;
+  }
+}
+
+print(total);
+```
+This version will sum up the 'amount' values from each nested object within
+within the 'entries' lists, and then print out this summed total. It should
+should now return 9 as expected.

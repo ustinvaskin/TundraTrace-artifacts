@@ -1,0 +1,29 @@
+The program is supposed to find the last approved event and print its ID. H
+However, if it finds an unapproved event during the loop, it won't update t
+the `lastApproved` variable because there's no condition checking whether t
+the current event is approved or not. It just assigns whatever value `event
+`event.id` holds to `lastApproved` on every iteration.
+
+To fix this bug, we need to check if the current event is approved before u
+updating `lastApproved`. If it is, then update `lastApproved` with the ID o
+of that event. We can do this by adding an `if (event.approved) { lastAppro
+lastApproved = event.id }` after the assignment statement in the loop.
+
+The fixed program would be:
+
+```tundra
+val events = [
+  { id: "A", approved: true },
+  { id: "B", approved: true },
+  { id: "C", approved: false }
+];
+
+var lastApproved = "none";
+for (event in events) {
+  if (event.approved) {
+    lastApproved = event.id;
+  }
+}
+
+print(lastApproved);
+```

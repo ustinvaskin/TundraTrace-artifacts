@@ -1,0 +1,26 @@
+The error in the program is caused because Tundra automatically converts st
+strings to numbers when they are involved in an arithmetic operation. Howev
+However, the 'price' field of 'item' (a string) and the 'fee' field (also a
+a string) need to be converted back to integers before being added together
+together. 
+
+Here is the corrected code:
+
+```tundra
+def normalize(raw) {
+  return {
+    price: parseNumber(raw.price),
+    fee: parseNumber(raw.fee)
+   };
+}
+
+val raw = {
+  price: "18",
+  fee: "2"
+};
+
+val item = normalize(raw);
+val total = item.price + item.fee;
+
+print(total);
+```

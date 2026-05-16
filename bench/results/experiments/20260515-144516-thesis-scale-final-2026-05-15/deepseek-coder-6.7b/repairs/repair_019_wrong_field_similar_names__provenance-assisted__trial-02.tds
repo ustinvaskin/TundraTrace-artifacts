@@ -1,0 +1,22 @@
+The error is occurring because we are trying to add a `String` and a `Numbe
+`Number` in Tundra, which doesn't work as expected. To fix it, you need to 
+convert the scoreText from string to number before adding with bonus. Here 
+is the corrected code:
+
+```Tundra
+val raw = {
+  user: {
+    score: 12,
+    scores: [10, 11, 12],
+    scoreText: "12"
+  },
+  bonus: 3
+};
+
+var profile = raw.user; // Use var instead of val to make it mutable
+profile.score = parseNumber(profile.scoreText); // Convert string to number
+number
+val total = profile.score + raw.bonus; // Now, addition is valid as b
+both are numbers
+print(total);
+```

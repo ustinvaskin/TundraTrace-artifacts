@@ -1,0 +1,31 @@
+The issue here is that the 'raw' values are Strings, not Numbers and they s
+should be treated as such before adding them together. The function parseNu
+parseNumber() can convert a string to a number but it returns NaN for non-n
+non-numeric strings. 
+
+So we need to modify the normalize function to first use parseNumber on pri
+price and fee fields:
+
+```tundra
+def normalize(raw) {
+  return {
+    price: parseNumber(raw.price),
+    fee: parseNumber(raw.fee)
+  };
+}
+
+val raw = {
+  price: "18",
+  fee: "2"
+};
+
+val item = normalize(raw);
+val total = item.price + item.fee;
+
+print(total);
+```
+
+This code should now work as expected and print out the number 20 when run.
+run. The parseNumber function is used to convert string representations of 
+numbers into actual Numbers which can then be added together using the '+' 
+operator in Tundra.

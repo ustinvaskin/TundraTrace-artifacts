@@ -1,0 +1,25 @@
+The bug in this program is that it's replacing `total` value on every loop 
+iteration, so after the last iteration `total` ends up with the `item.cost`
+`item.cost` of the last element. 
+
+To fix it, you should add `total += item.cost;` inside your for-loop to acc
+accumulate all costs from items instead of just replacing the total with ea
+each cost on every loop iteration.
+
+Fixed Program:
+```tundra
+val items = [
+  { name: "a", cost: 2 },
+  { name: "b", cost: 3 },
+  { name: "c", cost: 4 }
+];
+
+var total = 0;
+for (item in items) {
+  total += item.cost;
+}
+
+print(total);
+```
+This program now correctly accumulates the `cost` of each `item` and prints
+prints out the final sum, which is 9 as per your expected output.

@@ -1,0 +1,25 @@
+The bug is that it's returning the second name and first score instead of t
+the reverse in the `buildSelected` function. This results in `selected.name
+`selected.name` being "Bea" and `selected.score` being "10". When we parseN
+parseNumber this string, it will return 0 because "10" is not a number stri
+string that can be parsed by JavaScript's built-in functions like parseInt 
+or Number().
+
+We should fix the function to swap names and scores as follows:
+```
+def buildSelected(names, scores) {
+    return {
+        name: names[0],  // Swap index 0 with 1
+        score: scores[1] // Swap index 1 with 0
+    };
+}
+
+val names = ["Ada", "Bea"];
+val scores = ["10", "20"];
+
+val selected = buildSelected(names, scores);
+val total = parseNumber(selected.score) + 1; // Now this will correctly ret
+return 21
+
+print(total);
+```

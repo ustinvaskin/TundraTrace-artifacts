@@ -1,0 +1,12 @@
+```tundra
+val report = {
+  user: {
+    name: "Ada",
+    score: 10
+  },
+  bonus: 2
+};
+
+val total = report.user.score + report.bonus;
+print(total);
+```

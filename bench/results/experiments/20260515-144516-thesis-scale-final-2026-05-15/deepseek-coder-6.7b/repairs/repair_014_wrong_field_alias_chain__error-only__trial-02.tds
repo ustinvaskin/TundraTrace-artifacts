@@ -1,0 +1,23 @@
+The problem is that 'score' is not defined in the record 'profile', so it c
+causes a FieldError when trying to access it from the 'selected' variable.
+
+Here is the corrected Tundra code:
+```tundra
+val raw = {
+  profile: {
+    name: "Ada",
+    score: 12
+  }
+};
+
+val profile = raw.profile;
+val selected = {
+  points: profile.score
+};
+
+print(selected.points);
+```
+This code should now print the expected output of '12'. The field 'score' i
+is correctly accessed from the 'profile' variable and assigned to 'points' 
+in the new record 'selected', then it gets printed out using `print()` func
+function.

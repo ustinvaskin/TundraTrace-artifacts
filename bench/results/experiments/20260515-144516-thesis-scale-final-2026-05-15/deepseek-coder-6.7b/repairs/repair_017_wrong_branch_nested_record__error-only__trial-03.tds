@@ -1,0 +1,20 @@
+Your code is correct, it will return "review" if user's score is greater th
+than passMark and "pass" otherwise. So no changes needed in your Tundra pro
+program. Here is how it looks like (without any comments to maintain the mi
+minimalism of your request):
+
+```tundra
+val report = {
+  user: {
+    name: "Ada",
+    score: 68
+   },
+  passMark: 70
+};
+
+if(report.user.score > report.passMark) {
+  print("review");
+} else {
+  print("pass");
+}
+```

@@ -1,0 +1,28 @@
+The problem is that 'selected' variable does not point to a record with lab
+label "target". The list 'rows' contains records in the order {label:"low",
+{label:"low", value:10}, {label:"target", value:20} and {label:"high", valu
+value:30}. To get the record labeled as "target", we need to find its index
+index. However, since "target" is not an index but a label, it cannot be us
+used directly to reference the row in 'rows'. Instead, we have to iterate o
+over each record and check if the 'label' field matches "target". Here is h
+how you can do it:
+
+```tundra
+val rows = [
+  { label: "low", value: 10 },
+  { label: "target", value: 20 },
+  { label: "high", value: 30 }
+];
+
+var selected;
+for (var i = 0; i < len(rows); i++) {
+  if (rows[i].label == "target") {
+    selected = rows[i];
+    break;
+  };
+};
+print(selected.value);
+```
+This program will print the expected output of '20'. It finds the record la
+labeled as "target" and assigns it to the variable 'selected' then prints i
+its value.

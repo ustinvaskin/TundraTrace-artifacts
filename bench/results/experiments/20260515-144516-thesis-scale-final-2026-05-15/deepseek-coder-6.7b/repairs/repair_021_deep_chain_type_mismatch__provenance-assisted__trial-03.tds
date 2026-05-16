@@ -1,0 +1,30 @@
+The issue here is that you are trying to add a String and a Number, which t
+the Tundra interpreter does not support. The function parseNumber can be us
+used to convert the string into an integer before adding it with another nu
+number. Here's how we could fix your program:
+
+```tundra
+def readAmount(raw)  {
+  return raw.invoice.amount;
+}
+
+def wrapLine(raw)  {
+  return {
+    charge: parseNumber(readAmount(raw))
+   };
+}
+
+val raw = {
+  invoice: {
+    amount: "40"
+   }
+};
+
+val line = wrapLine(raw);
+val lines = [line];
+val subtotal = parseNumber(lines[0].charge); // convert string to number
+val fee = 2;
+val total = subtotal + fee;
+
+print(total);
+```

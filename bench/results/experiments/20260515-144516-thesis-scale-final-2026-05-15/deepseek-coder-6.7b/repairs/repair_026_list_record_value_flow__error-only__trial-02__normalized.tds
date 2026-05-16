@@ -1,0 +1,14 @@
+val order = {
+  lines: [
+    { sku: "A", quantity: "2", unitPrice: "5" },
+    { sku: "B", quantity: "1", unitPrice: "4" }
+   ]
+};
+
+val first = order.lines[0];
+val second = order<｜begin▁of▁sentence｜>order.lines[1];  // Change here to
+to s in the same way as the first line of the code
+val subtotal = parseNumber(first.quantity) * parseNumber(first.unitPrice) +
++ parseNumber(second.quantity) * parseNumber(second.unitPrice);
+
+print(subtotal);

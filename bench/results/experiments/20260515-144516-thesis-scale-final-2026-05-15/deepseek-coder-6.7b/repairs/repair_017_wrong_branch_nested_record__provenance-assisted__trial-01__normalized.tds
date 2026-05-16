@@ -1,0 +1,5 @@
+val condition = (expression) ; //Semicolon at end.
+if(condition){ 
+   execute this block;
+} else {
+    execute that block;}

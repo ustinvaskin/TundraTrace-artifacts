@@ -1,0 +1,24 @@
+The main issue in your code is that you are treating a string as if it was 
+a number by using parseNumber function, which converts strings to numbers. 
+But billing.previous is a string value and not a numeric one. 
+
+Here's the corrected Tundra program. The total is calculated by converting 
+account's previous charges into actual integers before adding the fee:
+
+```tundra
+val account = {
+  name: "Ada",
+  billing: {
+    current: "30",
+    previous: "12"
+   }
+};
+
+val charge = parseNumber(account.billing.previous);
+val fee = 5;
+val total = charge + fee;
+
+print(total);
+```
+This will return the correct result 35 which is what you need as per your e
+expected output.

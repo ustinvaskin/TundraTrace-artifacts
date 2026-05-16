@@ -1,0 +1,14 @@
+val events = [
+   { id: "A", approved: true },
+   { id: "B", approved: true },
+   { id: "C", approved: false }
+];
+
+var lastApproved = "none";
+for(event in events) {
+  if (event.approved && event.id > lastApproved) {
+    lastApproved = event.id;
+  }
+}
+
+print(lastApproved);

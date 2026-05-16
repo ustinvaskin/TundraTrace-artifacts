@@ -1,0 +1,24 @@
+The bug in the program is that `parseNumber()` expects a numerical String a
+argument, but it's being given a String ("widgets"). To fix this error, we 
+need to convert the "6" string into an integer. Here's the corrected code:
+
+```tundra
+def loadCount(raw) {
+  return raw.label;
+}
+
+val raw = {
+  label: "widgets",
+  count: "6"
+};
+
+val count = loadCount(raw);
+val total = parseNumber(raw.count) + 4; // Changed to raw.count instead of 
+count
+
+print(total);
+```
+This version of the program will correctly convert the string representatio
+representation of a number into an actual Number data type using `parseNumb
+`parseNumber()`, add 4 to it, and then print the result. This way we are ab
+able to get the expected output: `10`.

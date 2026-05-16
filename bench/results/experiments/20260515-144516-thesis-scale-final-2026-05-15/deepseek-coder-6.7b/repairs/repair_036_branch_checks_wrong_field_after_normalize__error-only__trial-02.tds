@@ -1,0 +1,27 @@
+Here's the corrected version of your Tundra code:
+
+```tundra
+def normalize(raw) {
+  return {
+    previousLevel: raw.previousLevel,
+    currentLevel: raw.currentLevel
+   };
+}
+
+val raw = {
+  previousLevel: "low",
+  currentLevel: "high"
+};
+
+val normalized = normalize(raw);
+if (normalized.previousLevel == "high"){
+  print("alert");
+} else {
+  print("ok");
+}
+```
+The error in your code was a typo - you were checking if `normalized.previo
+`normalized.previousLevel` equals to string "high", but it should have been
+been a direct comparison with the actual value ("high"). By adding an equal
+equals sign (==) and quotation marks, we are able to compare the values dir
+directly which gave us expected output as 'alert'.

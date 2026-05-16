@@ -1,0 +1,24 @@
+The problem with the program is that it swaps the order of parameters when 
+calling the `ratio` function. It should be `result = ratio(numerator, denom
+denominator);` instead of `result = ratio(denominator, numerator);`. 
+
+Here's the corrected code:
+
+```tundra
+def ratio(numerator, denominator) {
+  return numerator / denominator;
+}
+
+val raw = {
+  numerator: "20",
+  denominator: "5"
+};
+
+val numerator = parseNumber(raw.numerator);
+val denominator = parseNumber(raw.denominator);
+val result = ratio(numerator, denominator); // Corrected here
+print(result);
+```
+This code will now correctly calculate the ratio of 20 over 5 and print out
+out "4". The `parseNumber` function is used to convert string numbers to ac
+actual numeric values.

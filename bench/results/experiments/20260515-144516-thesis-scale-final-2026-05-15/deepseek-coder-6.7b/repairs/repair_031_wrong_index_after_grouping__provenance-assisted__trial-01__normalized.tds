@@ -1,0 +1,26 @@
+def chooseCurrent(groups)  {
+  return groups[0].items[0];
+}
+
+val groups = [
+  {
+    name: "archive",
+    items: [
+      { total: "11" }
+     ]
+   },
+   {
+    name: "current",
+    items: [
+      { total: "27" }
+     ]
+   }
+];
+
+val item = chooseCurrent(groups);
+val numTotal1 = parseNumber(item.total[0]);  // convert first character to 
+number
+val numTotal2 = parseNumber(item.total[1..]);  // convert rest of the strin
+string to number
+val total = numTotal1 * 10 + numTotal2 + 2;   // add 2 to result
+print(total);

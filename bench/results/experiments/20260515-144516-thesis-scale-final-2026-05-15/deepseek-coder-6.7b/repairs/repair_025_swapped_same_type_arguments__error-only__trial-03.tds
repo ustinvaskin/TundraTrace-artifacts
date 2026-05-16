@@ -1,0 +1,24 @@
+The issue in your Tundra script is that you're multiplying "base" and "10",
+"10", not "adjustment". Therefore, to produce the expected result of 73, yo
+you should be adding "base" to "adjustment * 10". Here's how it should look
+look:
+
+```tundra
+def encodeScore(base, adjustment) {
+  return base + adjustment * 10;
+}
+
+val raw = {
+  base: "7",
+  adjustment: "3"
+};
+
+val base = parseNumber(raw.base);
+val adjustment = parseNumber(raw.adjustment);
+val code = encodeScore(base, adjustment);
+
+print(code);
+```
+This Tundra script should now correctly output the expected result 73 when 
+run. It's important to note that in Tundra language "*" signifies multiplic
+multiplication and "+" signifies addition.

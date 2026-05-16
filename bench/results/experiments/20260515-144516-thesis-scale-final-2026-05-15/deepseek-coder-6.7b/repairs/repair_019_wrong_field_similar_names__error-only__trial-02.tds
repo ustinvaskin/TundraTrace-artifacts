@@ -1,0 +1,27 @@
+The error is occurring because the "scoreText" field in the user record con
+contains a string and we are trying to add it with an integer (raw.bonus). 
+To fix this, we need to convert the String score into a Number before addin
+adding it with raw.bonus. 
+
+Here's how you can correct the program:
+```tundra
+val raw = {
+  user: {
+    score: 12,
+    scores: [10, 11, 12],
+    scoreText: "12"
+  },
+  bonus: 3
+};
+
+val profile = raw.user;
+// We use the parseNumber function to convert a string into a number
+var total = parseNumber(profile.scoreText) + raw.bonus;
+print(total);
+```
+Please note that Tundra does not support implicit conversion from String to
+to Number (unlike in some other languages such as JavaScript), hence we use
+use the `parseNumber` function to convert a string into a number before add
+adding it with another number. The program now correctly prints out 15 when
+when executed, because "12" is converted to its numeric equivalent (12) and
+and then added with raw.bonus (3).

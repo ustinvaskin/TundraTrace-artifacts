@@ -1,0 +1,28 @@
+The issue here is that the result of subtraction in Tundra doesn't always m
+mean integer subtraction. It depends on whether those values are numbers or
+or strings, and if they are not numbers it will do string concatenation ins
+instead. To fix this, we need to make sure both operands are numbers before
+before doing arithmetic operations:
+
+```python
+def normalize(raw)  {
+  return {
+    price: raw.price,
+    promoDiscount: raw.memberDiscount,
+    memberDiscount: raw.memberDiscount
+   };
+}
+
+val raw = {
+  price: "80",
+  promoDiscount: "12",
+  memberDiscount: "5"
+};
+
+val item = normalize(raw);
+val price = parseNumber(item.price);
+val discount = parseNumber(item.promoDiscount);
+val final = price - discount; // now both are numbers, it performs subtract
+subtraction properly
+print(final);
+```

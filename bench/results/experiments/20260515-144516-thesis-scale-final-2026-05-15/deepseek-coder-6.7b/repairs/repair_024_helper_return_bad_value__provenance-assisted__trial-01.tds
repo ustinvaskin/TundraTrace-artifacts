@@ -1,0 +1,22 @@
+The problem lies in the fact that `loadCount` function is returning a Strin
+String "widgets", but `parseNumber` expects an actual number. The correct c
+code should be:
+
+```tundra
+def loadCount(raw) {
+  return raw.count;
+}
+
+val raw = {
+  label: "widgets",
+  count: parseNumber("6")
+};
+
+val count = loadCount(raw);
+val total = count + 4;
+
+print(total);
+```
+This code now uses the `parseNumber` function to convert the String "6" int
+into a number, so that it can be correctly added to 4. The corrected versio
+version of the program will output `10` as expected.

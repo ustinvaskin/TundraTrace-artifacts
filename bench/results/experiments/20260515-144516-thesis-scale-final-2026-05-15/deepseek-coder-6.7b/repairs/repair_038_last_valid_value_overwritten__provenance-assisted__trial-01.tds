@@ -1,0 +1,27 @@
+The bug in the program is that it only updates `lastApproved` when an event
+event is not `approved: true`, but we want to update it regardless of wheth
+whether or not the event is `approved: false`. So the condition to break th
+the loop should be changed from `if !event.approved` to `if event.approved 
+== true`.
+
+Here's the corrected program:
+
+```tundra
+val events = [
+  { id: "A", approved: true },
+  { id: "B", approved: true },
+  { id: "C", approved: false }
+];
+
+var lastApproved = "none";
+for (event in events) {
+  if (event.approved == true) {
+    lastApproved = event.id;
+  }
+}
+
+print(lastApproved);
+```
+This program will iterate over all the events and update `lastApproved` whe
+whenever it encounters an approved event, regardless of whether or not othe
+other non-approved events follow. The result should be "B".

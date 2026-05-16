@@ -1,0 +1,10 @@
+val raw = { price: "10" };
+
+// Convert string to number using parseNumber function and store it in a ne
+new variable
+val numeric = parseNumber(raw.price); 
+
+// Add 5 to the number, not the string representation of the number
+val total = numeric + 5; 
+
+print(total); // prints 15

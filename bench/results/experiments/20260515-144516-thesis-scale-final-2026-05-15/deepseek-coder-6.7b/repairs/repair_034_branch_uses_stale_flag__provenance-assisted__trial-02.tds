@@ -1,0 +1,22 @@
+The problem is with the conditional check. The statement `cached.active` sh
+should be changed from `false` to `true` because we want to print "send", n
+not "skip". Here's the corrected code:
+
+```tundra
+val cached = {
+  active: true
+};
+
+val current = {
+  active: true
+};
+
+if (cached.active) {
+  print("send");
+} else {
+  print("skip");
+}
+```
+
+This code will correctly print "send" when `cached.active` is true, otherwi
+otherwise it will print "skip".

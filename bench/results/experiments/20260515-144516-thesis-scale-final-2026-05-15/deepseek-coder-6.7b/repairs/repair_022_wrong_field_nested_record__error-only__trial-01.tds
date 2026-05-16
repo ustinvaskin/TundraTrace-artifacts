@@ -1,0 +1,19 @@
+Here is the corrected Tundra source code that should produce the expected o
+output (i.e., 35):
+
+```tundra
+val account = {
+  name: "Ada",
+  billing: {
+    current: "30",
+    previous: "12"
+   }
+};
+
+val charge = parseNumber(account.billing.previous);
+val fee = 5;
+val total = (charge + fee).toString(); // Convert to string before printing
+printing
+
+print(total);
+```

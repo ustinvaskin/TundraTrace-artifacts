@@ -1,0 +1,33 @@
+The program is incorrect because it replaces `total` for every `entry` in a
+a group, which causes only the last value to be kept. To sum up all values 
+of `amount` across all entries, we need to add each `entry.amount` to the c
+current total. 
+
+Here's the corrected Tundra program:
+
+```tundra
+val groups = [
+  {
+    name: "north",
+    entries: [
+      { amount: 2 },
+      { amount: 3 }
+    ]
+  },
+  {
+    name: "south",
+    entries: [
+      { amount: 4 }
+    ]
+  }
+];
+
+var total = 0;
+for(group in groups) {
+  for(entry in group.entries) {
+    total = total + entry.amount;
+  }
+}
+
+print(total);
+```

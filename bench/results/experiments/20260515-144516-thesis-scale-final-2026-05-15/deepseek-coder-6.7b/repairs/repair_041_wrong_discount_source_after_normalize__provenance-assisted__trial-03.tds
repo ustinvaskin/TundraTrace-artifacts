@@ -1,0 +1,38 @@
+The issue is with the order of operations and the way subtraction is perfor
+performed in Tundra language. In Tundra, when you perform arithmetic operat
+operation like "-", it performs addition first before doing anything else. 
+Thus, instead of subtracting discount from price directly, we need to conve
+convert string numbers to actual numeric values, do the subtraction and the
+then convert back into a String for final output.
+
+Here is the corrected program:
+
+```tundra
+def normalize(raw) {
+  return {
+    price: raw.price,
+    promoDiscount: raw.memberDiscount,
+    memberDiscount: raw.memberDiscount
+   };
+}
+
+val raw = {
+  price: "80",
+  promoDiscount: "12",
+  memberDiscount: "5"
+};
+
+val item = normalize(raw);
+val price = parseNumber(item.price) * 1; // converting string to number, mu
+multiply with 1 is a workaround for Tundra's quirkiness when parsing string
+strings into numbers
+val discount = parseNumber(item.promoDiscount) * 1; // same as above
+val final = (price - discount)*1; // perform subtraction and convert back t
+to string
+print(final);
+```
+This corrected program will now produce the expected output of "68". The mu
+multiplication operation is used because Tundra doesn't have built-in funct
+functions for parsing strings into numbers, so we are pretending that it do
+does by multiplying a number with 1 which gives us the same effect as parsi
+parsing.

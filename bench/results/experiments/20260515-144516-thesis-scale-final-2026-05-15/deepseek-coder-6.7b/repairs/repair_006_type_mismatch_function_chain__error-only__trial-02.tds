@@ -1,0 +1,28 @@
+The problem with the program is that it tries to perform addition between a
+a string "10" and number 5, which results in a TypeError. To fix this bug w
+we need to convert the price from raw into a numeric value before doing any
+any arithmetic operations. Here's how you can modify your Tundra code:
+
+```Tundra
+def getPriceText(raw) {
+  return parseNumber(raw.price);
+}
+
+val raw = {
+  price: "10"
+};
+
+val item = {
+  cost: getPriceText(raw)
+};
+
+val cart = [item];
+val subtotal = cart[0].cost;
+val fee = 5;
+val total = subtotal + fee;
+
+print(total);
+```
+In the updated program, `parseNumber()` function is used to convert string 
+price into number. Now it should work as expected and return 15 (the sum of
+of subtotal and fee).

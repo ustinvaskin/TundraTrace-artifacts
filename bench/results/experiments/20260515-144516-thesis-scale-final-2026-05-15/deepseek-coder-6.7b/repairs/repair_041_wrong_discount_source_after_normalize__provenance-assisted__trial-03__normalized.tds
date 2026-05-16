@@ -1,0 +1,22 @@
+def normalize(raw) {
+  return {
+    price: raw.price,
+    promoDiscount: raw.memberDiscount,
+    memberDiscount: raw.memberDiscount
+   };
+}
+
+val raw = {
+  price: "80",
+  promoDiscount: "12",
+  memberDiscount: "5"
+};
+
+val item = normalize(raw);
+val price = parseNumber(item.price) * 1; // converting string to number, mu
+multiply with 1 is a workaround for Tundra's quirkiness when parsing string
+strings into numbers
+val discount = parseNumber(item.promoDiscount) * 1; // same as above
+val final = (price - discount)*1; // perform subtraction and convert back t
+to string
+print(final);

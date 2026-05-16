@@ -1,0 +1,26 @@
+The program logic itself seems correct and there is no error in syntax or l
+logical flow of Tundra language. The output should be "review", but it's sh
+showing "pass". This suggests that the if statement condition is incorrectl
+incorrectly evaluated as false, not because of a programming error. 
+
+However, without more context about the rest of the program, we can only gu
+guess what might have caused this issue. It could be due to other parts of 
+the program or how report's user score and pass mark are being updated or c
+calculated. Hence, debugging it would require knowing those details as well
+well. 
+
+In general for if statement in Tundra:
+```Tundra
+val condition = (expression) ; //Semicolon at end.
+if(condition){ 
+   execute this block;
+} else {
+    execute that block;}
+```
+Ensure the syntax is correct and conditions are properly evaluated, debuggi
+debugging should be able to solve the issue. 
+
+If it was a logical error or bug in Tundra language itself, we would need m
+more details about its specification or implementation for further troubles
+troubleshooting. But without those details, this question is off-topic as p
+per our guidelines.

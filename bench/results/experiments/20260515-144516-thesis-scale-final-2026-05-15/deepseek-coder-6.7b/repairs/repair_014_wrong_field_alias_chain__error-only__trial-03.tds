@@ -1,0 +1,20 @@
+The error is due to the fact that there is no 'score' in the record 'profil
+'profile', but we are trying to access it. We should use 'points' instead o
+of 'score'. 
+
+Here's the corrected code:
+```
+val raw = {
+  profile: {
+    name: "Ada",
+    score: 12
+   }
+};
+
+val profile = raw.profile;
+val selected = {
+  points: profile.score
+};
+
+print(selected.points);
+```

@@ -1,0 +1,26 @@
+def extractAmount(raw) {
+  return raw.backup.total;
+}
+
+def makeLine(raw) {
+  return {
+    amount: extractAmount(raw)
+  };
+}
+
+val raw = {
+  current: {
+    total: "25"
+  },
+  backup: {
+    total: "9"
+  }
+};
+
+val line = makeLine(raw);
+val ledger = [line];
+val amount = parseNumber(ledger[0].amount);
+val fee = 3;
+val final = amount + fee;
+
+print(final);

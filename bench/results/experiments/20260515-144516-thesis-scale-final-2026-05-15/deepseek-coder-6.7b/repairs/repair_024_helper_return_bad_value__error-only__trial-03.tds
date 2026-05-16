@@ -1,0 +1,24 @@
+The issue is that the `loadCount` function returns a string instead of an i
+integer, which is required by the `parseNumber` function. The solution to t
+this problem involves modifying the `loadCount` function so it can return a
+an integer value directly from the input data record. Here's the corrected 
+version:
+
+```tundra
+def loadCount(raw) {
+  return parseNumber(raw.count);
+}
+
+val raw = {
+  label: "widgets",
+  count: "6"
+};
+
+var count = loadCount(raw);
+var total = count + 4;
+
+print(total);
+```
+In this updated version, `loadCount` function calls the `parseNumber` to co
+convert raw.count into a number before returning it. Now it will return an 
+integer instead of string and the program should work as expected.

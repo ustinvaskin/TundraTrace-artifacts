@@ -1,0 +1,30 @@
+The problem here is that the comparison operator in Tundra (also used in ma
+many languages like JavaScript, Python, etc.) is `==` while it's `!=` for n
+not equal. Your if condition should be modified to return "alert" when prev
+previousLevel is "high", otherwise you get "ok". 
+
+Here is the corrected version of your program:
+```tundra
+def normalize(raw) {
+  return {
+    previousLevel: raw.previousLevel,
+    currentLevel: raw.currentLevel
+   };
+}
+
+val raw = {
+  previousLevel: "low",
+  currentLevel: "high"
+};
+
+val normalized = normalize(raw);
+if (normalized.previousLevel != "high") {
+  print("ok");
+} else {
+  print("alert");
+}
+```
+This corrected program will now return the expected output "alert". The pre
+previous level is compared with "high" using `!=` operator which means not 
+equal to in Tundra. If it's not "high", then "ok" gets printed, otherwise "
+"alert".

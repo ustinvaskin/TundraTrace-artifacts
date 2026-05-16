@@ -1,0 +1,20 @@
+```tundra
+def normalize(raw) {
+  return {
+    previousLevel: raw.previousLevel,
+    currentLevel: raw.currentLevel
+  };
+}
+
+val raw = {
+  previousLevel: "low",
+  currentLevel: "high"
+};
+
+val normalized = normalize(raw);
+if (normalized.previousLevel == "low") {
+  print("alert");
+} else {
+  print("ok");
+}
+```

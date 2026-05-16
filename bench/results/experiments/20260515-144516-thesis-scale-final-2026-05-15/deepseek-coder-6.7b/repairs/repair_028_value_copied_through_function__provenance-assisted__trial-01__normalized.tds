@@ -1,0 +1,18 @@
+def buildAdjustment(raw) {
+  return {
+    amount: raw.price
+  };
+}
+
+val raw = {
+  price: "50",
+  discount: "8"
+};
+
+val adjustment = buildAdjustment(raw);
+val price = parseNumber(raw.price);
+val discount = parseNumber(adjustment.amount); // changed this line to conv
+convert string to number
+val final = price - discount;
+
+print(final);

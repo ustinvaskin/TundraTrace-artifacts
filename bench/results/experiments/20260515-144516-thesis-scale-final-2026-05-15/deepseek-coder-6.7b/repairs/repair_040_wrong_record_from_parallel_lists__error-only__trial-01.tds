@@ -1,0 +1,25 @@
+The given Tundra code is almost correct, except that it should have parsed 
+the scores to numbers before performing any arithmetic operations instead o
+of adding 1 directly after parsing them. The fixed version would be like th
+this:
+
+```tundra
+def buildSelected(names, scores) {
+  return {
+    name: names[0],
+    score: parseNumber(scores[0]) + 1
+  };
+}
+
+val names = ["Ada", "Bea"];
+val scores = ["10", "20"];
+
+val selected = buildSelected(names, scores);
+print(selected.score); // output should be 11 instead of 21
+```
+
+In the original program, it's trying to add a string "10" with 1 which resu
+results in concatenation rather than arithmetic addition. This has been cor
+corrected by parsing the score as a number before performing addition. Now 
+the 'selected.score' will be an actual numeric value and not just a string 
+representation of its integer value, so it adds up correctly to give 21.

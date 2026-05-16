@@ -1,0 +1,14 @@
+val rows = [
+  { label: "low", value: 10 },
+  { label: "target", value: 20 },
+  { label: "high", value: 30 }
+];
+
+var selected = null;
+for (var i = 0; i < rows.length; i++) {
+  if (rows[i].label == "target") {
+    selected = rows[i];
+    break;
+  }
+}
+print(selected.value);

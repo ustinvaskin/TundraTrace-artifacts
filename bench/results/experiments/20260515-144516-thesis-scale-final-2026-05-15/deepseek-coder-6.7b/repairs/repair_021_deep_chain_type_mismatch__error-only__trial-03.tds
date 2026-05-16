@@ -1,0 +1,30 @@
+The problem is that the readAmount function returns a string, not a number.
+number. In Tundra, you can't directly add strings and numbers together like
+like in JavaScript or Python. You need to parse the string into a number fi
+first using the parseNumber function. 
+
+Fixed program:
+```
+def readAmount(raw) {
+  return parseNumber(raw.invoice.amount);
+}
+
+def wrapLine(raw) {
+  return {charge: readAmount(raw)};
+}
+
+val raw = {
+  invoice: {amount: "40"}
+};
+
+val line = wrapLine(raw);
+val lines = [line];
+var subtotal = parseNumber(lines[0].charge); // Use var because we're chang
+changing its value later.
+val fee = 2;
+val total = subtotal + fee;
+
+print(total);
+```
+This code will print "42" as expected, converting the string in readAmount 
+to a number for addition with the integer `fee`.
