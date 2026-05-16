@@ -2,7 +2,7 @@
 
 Initial public artifact-bundle release for:
 
-> **TundraTrace: Evaluating Compact Runtime Evidence for LLM Program Repair**
+> **TundraTrace: Evaluating Compact Runtime Evidence in LLM Program Repair**
 
 ## Included
 

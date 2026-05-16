@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software or benchmark, please cite it as below."
-title: "TundraTrace Artifacts"
+title: "TundraTrace: Evaluating Compact Runtime Evidence in LLM Program Repair"
 type: software
 authors:
   - family-names: "Vaskin"

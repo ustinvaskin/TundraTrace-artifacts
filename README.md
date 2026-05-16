@@ -1,8 +1,8 @@
-# TundraTrace Artifacts
+# TundraTrace: Evaluating Compact Runtime Evidence in LLM Program Repair
 
 Artifacts for the paper:
 
-> **TundraTrace: Evaluating Compact Runtime Evidence for LLM Program Repair**
+> **TundraTrace: Evaluating Compact Runtime Evidence in LLM Program Repair**
 
 This repository is the frozen artifact bundle for the TundraTrace study of when
 compact source-level runtime evidence changes large-language-model
@@ -138,6 +138,12 @@ Archived release: Zenodo `v0.1.1`, DOI `10.5281/zenodo.20228789`.
 
 Citation metadata is provided in `CITATION.cff` and should be updated with the
 final preprint citation after posting.
+
+## Related Repositories
+
+- [`TundraCore`](https://github.com/ustinvaskin/TundraCore) - small interpreted language snapshot
+- [`TundraTrace`](https://github.com/ustinvaskin/TundraTrace) - trace-enabled runtime-evidence snapshot
+- [`TundraBench`](https://github.com/ustinvaskin/TundraBench) - frozen benchmark and evaluation harness
 
 ## License
 
