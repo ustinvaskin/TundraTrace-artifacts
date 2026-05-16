@@ -134,7 +134,10 @@ PY
 
 ## Citation
 
-Citation metadata is provided in `CITATION.cff` and should be updated with the final preprint citation after posting.
+Archived release: Zenodo `v0.1.1`, DOI `10.5281/zenodo.20228789`.
+
+Citation metadata is provided in `CITATION.cff` and should be updated with the
+final preprint citation after posting.
 
 ## License
 

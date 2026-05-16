@@ -5,6 +5,9 @@ type: software
 authors:
   - family-names: "Vaskin"
     given-names: "Ustin"
+version: "v0.1.1"
+doi: "10.5281/zenodo.20228789"
+url: "https://github.com/ustinvaskin/TundraTrace-artifacts"
 abstract: >-
   Frozen artifact bundle for TundraTrace, including the interpreter source, runtime-evidence
   examples, benchmark tasks, prompt templates, scoring scripts, final study
